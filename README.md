@@ -1,9 +1,9 @@
 # Weyl-midpoint semiclassics for Wigner 3j and 6j symbols: supplement and verification programs
 
-**Repository:** <https://github.com/cmbant/weyl-midpoint-semiclassics> · **Compiled PDF:** [Supplement](supplement/joint_rank_position_uniformity.pdf) · **Paper:** arXiv {{ARXIV}}
+**Repository:** <https://github.com/cmbant/weyl-midpoint-semiclassics> · **Compiled PDF:** [Supplement](supplement/joint_rank_position_uniformity.pdf)
 
 This repository accompanies the paper *Semiclassical Asymptotics of Wigner 3j and 6j Symbols at Growing Rank: Phase Horizons and
-Turning Connections* by Antony Lewis (arXiv: {{ARXIV}}), the sequel to
+Turning Connections* by Antony Lewis, the sequel to
 *Even Asymptotic Expansions and Uniform Hard-Edge Approximations for Wigner 3j and 6j Symbols at Fixed Rank* (the fixed-rank companion paper, Hexagon 2611.00533v1, <https://hexagonmath.org/2611.00533v1>). It holds
 
 * the technical supplement *Joint Rank–Position Uniformity for Weyl–Midpoint Wigner 3j Symbols*, which proves, for the
@@ -11,8 +11,8 @@ Turning Connections* by Antony Lewis (arXiv: {{ARXIV}}), the sequel to
   fixed turning ratio (Theorem 5.4), with Racah/6j extensions; no theorem of the paper depends on it;
 * the verification programs cited by the paper and by the supplement, with their captured output.
 
-The paper itself is on arXiv and is not part of this repository. The supplement's references to the fixed-rank paper and the main paper (theorem,
-equation and lemma numbers) are fixed to the numbers of their published versions (Hexagon for the fixed-rank paper, arXiv for the main paper), so the supplement compiles on its own.
+The paper itself is not part of this repository. The supplement's references to the fixed-rank paper and the main paper (theorem,
+equation and lemma numbers) are fixed to the numbers of their released versions, so the supplement compiles on its own.
 
 ## Contents
 
@@ -54,20 +54,18 @@ The supplement uses only standard LaTeX packages.
 
 ## Citation
 
-If you use this work, please cite the paper and this repository:
+If you use this work, please cite the paper and, for the verification programs, this repository:
 
 ```bibtex
-@article{Lewis_weyl_midpoint_semiclassics,
+@unpublished{Lewis_weyl_midpoint_semiclassics,
   author  = {Lewis, Antony},
   title   = {Semiclassical Asymptotics of Wigner 3j and 6j Symbols at Growing Rank: Phase Horizons and Turning Connections},
-  eprint  = "{{ARXIV}}",
   year    = {2026}
 }
 
 @software{Lewis_weyl_midpoint_semiclassics_companion,
   author  = {Lewis, Antony},
   title   = {Supplement and verification programs for ``Semiclassical Asymptotics of Wigner 3j and 6j Symbols at Growing Rank''},
-  doi     = "{{DOI}}",
   url     = "https://github.com/cmbant/weyl-midpoint-semiclassics",
   year    = {2026}
 }

@@ -2,7 +2,7 @@
 
 Each verification script with its captured output (`logs/<script>.txt`, where one was captured) and the labels of the main paper
 (`paper`) and of the supplement (`supplement`) whose text names it. Numbers are those of the compiled PDFs (main paper: its
-arXiv version). Helper modules are imported by the scripts.
+released version). Helper modules are imported by the scripts.
 
 | script | log | cited in (label, number) |
 |---|---|---|
