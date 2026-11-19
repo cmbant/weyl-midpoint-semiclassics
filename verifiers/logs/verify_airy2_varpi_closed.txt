@@ -1,0 +1,54 @@
+PASS (A) [h^0]A[g,0] = [h^1]A[g,0] = 0 at q_* (eikonal and parity)
+PASS (A) ODE of thm:airy2-formal at q_* gives the local formula eq:general-airy-varpi-local exactly
+PASS (A) Hahn specialization, tau=+1: closed form varpi^Hahn_(sgn x)(x) exactly (max diff at test points 0.0e+00)
+PASS (A) Hahn specialization, tau=-1: closed form varpi^Hahn_(sgn x)(x) exactly (max diff at test points 0.0e+00)
+
+(B) limit eq:general-airy-varpi vs local formula
+  Hahn (2,1) x=3/5                 q*=0.800000 tau=+1  limit=-1.284485455378 (extrap. 7e-10)  local=-1.284485455380  Hahn closed=-1.284485455380
+PASS (B) Hahn (2,1) x=3/5: limit eq:general-airy-varpi = local formula (diff 2.9e-12)
+  Hahn (2,1) x=-3/5                q*=0.800000 tau=-1  limit= 6.422427276905 (extrap. 8e-10)  local= 6.422427276902  Hahn closed= 6.422427276902
+PASS (B) Hahn (2,1) x=-3/5: limit eq:general-airy-varpi = local formula (diff 3.2e-12)
+  Hahn (3/2,-1/2) x=-1/2           q*=0.866025 tau=-1  limit=-0.534597744949 (extrap. 2e-08)  local=-0.534597745059  Hahn closed=-0.534597745059
+PASS (B) Hahn (3/2,-1/2) x=-1/2: limit eq:general-airy-varpi = local formula (diff 1.1e-10)
+  Hahn (0,0) x=7/10                q*=0.714143 tau=+1  limit=-0.390351030479 (extrap. 3e-11)  local=-0.390351030479  Hahn closed=-0.390351030479
+PASS (B) Hahn (0,0) x=7/10: limit eq:general-airy-varpi = local formula (diff 8.6e-14)
+  Racah (2,1) (1,6/5,3/2)          q*=1.594978 tau=-1  limit= 0.872244200541 (extrap. 2e-10)  local= 0.872244200540
+PASS (B) Racah (2,1) (1,6/5,3/2): limit eq:general-airy-varpi = local formula (diff 9.2e-13)
+  Racah (0,0) (1,1,13/10)          q*=1.519868 tau=-1  limit=-0.068422191510 (extrap. 1e-10)  local=-0.068422191510
+PASS (B) Racah (0,0) (1,1,13/10): limit eq:general-airy-varpi = local formula (diff 3.1e-13)
+  Racah (3/2,1/2) (11/10,1,9/10)   q*=1.885618 tau=-1  limit=-0.330679887520 (extrap. 2e-06)  local=-0.330679922953
+PASS (B) Racah (3/2,1/2) (11/10,1,9/10): limit eq:general-airy-varpi = local formula (diff 3.5e-08)
+  Racah (1,0) (1,2,6/5)            q*=1.519868 tau=+1  limit= 0.490365717305 (extrap. 7e-11)  local= 0.490365717305
+PASS (B) Racah (1,0) (1,2,6/5): limit eq:general-airy-varpi = local formula (diff 2.2e-13)
+  Racah (2,-1) (1,2,6/5)           q*=1.519868 tau=+1  limit= 7.044910203053 (extrap. 8e-11)  local= 7.044910203053
+PASS (B) Racah (2,-1) (1,2,6/5): limit eq:general-airy-varpi = local formula (diff 2.8e-13)
+PASS (B) both turn types covered for Hahn and Racah
+
+(C) exact 3j/6j brackets in |t| <= 2
+  3j (2,1) upper               N=500.0   varpi=-1.284485 pts=20  max|br-Ai|=1.916e-04  max|br-Ai-N^-4/3 varpi Ai'|=3.562e-06
+  3j (2,1) upper               N=1000.0  varpi=-1.284485 pts=24  max|br-Ai|=7.123e-05  max|br-Ai-N^-4/3 varpi Ai'|=8.871e-07
+  3j (2,1) upper               N=2000.0  varpi=-1.284485 pts=30  max|br-Ai|=2.847e-05  max|br-Ai-N^-4/3 varpi Ai'|=2.213e-07
+  3j (2,1) upper               N=4000.0  varpi=-1.284485 pts=38  max|br-Ai|=1.160e-05  max|br-Ai-N^-4/3 varpi Ai'|=5.517e-08
+  3j (2,1) upper exponents: Ai alone -1.35, with varpi Ai' -2.00, control -varpi -1.35
+PASS (C) 3j (2,1) upper: bracket error N^-4/3 -> N^-2 with the local varpi; control -varpi stays N^-4/3
+  3j (3/2,-1/2) lower          N=500.5   varpi=-0.533492 pts=17  max|br-Ai|=7.651e-05  max|br-Ai-N^-4/3 varpi Ai'|=3.876e-06
+  3j (3/2,-1/2) lower          N=1000.5  varpi=-0.534044 pts=21  max|br-Ai|=3.057e-05  max|br-Ai-N^-4/3 varpi Ai'|=1.000e-06
+  3j (3/2,-1/2) lower          N=2000.5  varpi=-0.534321 pts=26  max|br-Ai|=1.127e-05  max|br-Ai-N^-4/3 varpi Ai'|=2.382e-07
+  3j (3/2,-1/2) lower          N=4000.5  varpi=-0.534459 pts=33  max|br-Ai|=4.977e-06  max|br-Ai-N^-4/3 varpi Ai'|=6.601e-08
+  3j (3/2,-1/2) lower exponents: Ai alone -1.33, with varpi Ai' -1.97, control -varpi -1.34
+PASS (C) 3j (3/2,-1/2) lower: bracket error N^-4/3 -> N^-2 with the local varpi; control -varpi stays N^-4/3
+PASS (C) 6j recurrence values equal sympy wigner_6j at N=40 (max diff 8.0e-29)
+  6j (2,1) tau=-1              N=40      varpi= 0.872244 pts= 7  max|br-Ai|=3.238e-03  max|br-Ai-N^-4/3 varpi Ai'|=2.855e-04
+  6j (2,1) tau=-1              N=80      varpi= 0.872244 pts= 9  max|br-Ai|=1.225e-03  max|br-Ai-N^-4/3 varpi Ai'|=7.003e-05
+  6j (2,1) tau=-1              N=160     varpi= 0.872244 pts=12  max|br-Ai|=5.920e-04  max|br-Ai-N^-4/3 varpi Ai'|=2.091e-05
+  6j (2,1) tau=-1              N=320     varpi= 0.872244 pts=15  max|br-Ai|=2.161e-04  max|br-Ai-N^-4/3 varpi Ai'|=4.908e-06
+  6j (2,1) tau=-1 exponents: Ai alone -1.28, with varpi Ai' -1.93, control -varpi -1.26
+PASS (C) 6j (2,1) tau=-1: bracket error N^-4/3 -> N^-2 with the local varpi; control -varpi stays N^-4/3
+PASS (C) 6j recurrence values equal sympy wigner_6j at N=40 (max diff 1.5e-29)
+  6j (1,0) tau=+1              N=40      varpi= 0.490366 pts=15  max|br-Ai|=2.266e-03  max|br-Ai-N^-4/3 varpi Ai'|=4.057e-04
+  6j (1,0) tau=+1              N=80      varpi= 0.490366 pts=19  max|br-Ai|=8.584e-04  max|br-Ai-N^-4/3 varpi Ai'|=9.976e-05
+  6j (1,0) tau=+1              N=160     varpi= 0.490366 pts=24  max|br-Ai|=3.481e-04  max|br-Ai-N^-4/3 varpi Ai'|=2.621e-05
+  6j (1,0) tau=+1              N=320     varpi= 0.490366 pts=30  max|br-Ai|=1.390e-04  max|br-Ai-N^-4/3 varpi Ai'|=6.730e-06
+  6j (1,0) tau=+1 exponents: Ai alone -1.34, with varpi Ai' -1.97, control -varpi -1.31
+PASS (C) 6j (1,0) tau=+1: bracket error N^-4/3 -> N^-2 with the local varpi; control -varpi stays N^-4/3
+ALL CHECKS PASSED

@@ -1,0 +1,64 @@
+PASS (A1) local formula = Olver form psi_F(0) + F1^(-2/3)[F1^2/240 + G] (exact)
+PASS (A2) D_6(rho_*) = 0 and D_6 = sin^2(theta) - gamma^2 rho^2/(4 alpha^2 beta^2) (turn and eq:D6linear)
+PASS (A2) e(rho_*^2) = |eps| and u1 = sin^2(theta)/(rho_* eps^2) exactly
+PASS (A2) Racah: 280 q_*^2 u1^(2/3) varpi/2^(1/3) = [140 eps^3((m^2+n^2)x-2mn) + P(x,vs)]/eps^4 (exact; gives the closed form)
+PASS (A2) vs = 0 gives the Hahn numerator of eq:hahn-varpi
+PASS (A3) F1^2(4 t2^2 - 2 t3) = F1^2/240 for cosh (t2 = 1/24, t3 = 1/720) and 0 for the ODE symbol
+PASS (A3) Hahn x = 3/5: u1 = q_*/x^2 = 20/9, F1 = 2 u1 = 40/9
+PASS (A3) dropping F1^2/240 changes varpi by -F1^(4/3)/240 = -0.0304 (Hahn x = 3/5; the offsets only enter G)
+
+(B) limit eq:general-airy-varpi vs closed Racah form
+  (m,n)=(1,0) (al,be,ga)=(1, 2, 6/5) q*=1.519868 tau=+1 physical 6j limit= 0.490365717305 (extrap 7e-11) closed= 0.490365717305
+PASS (B) limit = closed Racah varpi (diff 2.2e-13 < 1e-6)
+  (m,n)=(2,-1) (al,be,ga)=(1, 2, 6/5) q*=1.519868 tau=+1 physical 6j limit= 7.044910203053 (extrap 8e-11) closed= 7.044910203053
+PASS (B) limit = closed Racah varpi (diff 2.8e-13 < 1e-6)
+  (m,n)=(1/2,-1/2) (al,be,ga)=(1, 5/3, 2) q*=1.662959 tau=-1 physical 6j limit=-0.197857498464 (extrap 1e-09) closed=-0.197857498470
+PASS (B) limit = closed Racah varpi (diff 5.3e-12 < 1e-6)
+  (m,n)=(1/2,-1/2) (al,be,ga)=(1, 3, 201/80) q*=1.883874 tau=+1 chain data only limit=-0.126525962628 (extrap 2e-06) closed=-0.126525999240
+PASS (B) limit = closed Racah varpi (diff 3.7e-08 < 1e-6)
+  (m,n)=(2,1) (al,be,ga)=(1, 6/5, 3/2) q*=1.594978 tau=-1 physical 6j limit= 0.872244200541 (extrap 2e-10) closed= 0.872244200540
+PASS (B) limit = closed Racah varpi (diff 9.2e-13 < 1e-6)
+  (m,n)=(0,0) (al,be,ga)=(1, 1, 13/10) q*=1.519868 tau=-1 physical 6j limit=-0.068422191510 (extrap 1e-10) closed=-0.068422191510
+PASS (B) limit = closed Racah varpi (diff 3.1e-13 < 1e-6)
+  (m,n)=(3/2,1/2) (al,be,ga)=(11/10, 1, 9/10) q*=1.885618 tau=-1 chain data only limit=-0.330679887520 (extrap 2e-06) closed=-0.330679922953
+PASS (B) limit = closed Racah varpi (diff 3.5e-08 < 1e-6)
+PASS (B) both tau with integer offsets (6j), tau = -1 with half-integer offsets (6j), both tau with half-integer chain data only
+
+(C)/(D) Olver coefficient B_tau(q) and uniform exact 6j on q in [q*-1/4, q*+1/5], every rank of the window
+PASS (C) (1,0) tau=+1: B(q*) = psi(0) = closed varpi (diff 7.6e-13, Chebyshev tail 2e-12)
+PASS (C) (1,0): B = tau*Gt/sqrt(-zeta) - 5/(48 zeta^2) on the oscillatory side (max diff 1.6e-13)
+PASS (D) N=40: recurrence = sympy wigner_6j at the last rank (diff 2e-89)
+  (1,0) tau=+1 N=40     pts= 18  max |err|/(M/E): Ai 6.790e-03 | Ai+N^-4/3 varpi Ai' 1.315e-03 | Ai+N^-4/3 B(q) Ai' 1.792e-04
+PASS (D) N=80: recurrence = sympy wigner_6j at the last rank (diff 4e-88)
+  (1,0) tau=+1 N=80     pts= 36  max |err|/(M/E): Ai 2.572e-03 | Ai+N^-4/3 varpi Ai' 5.351e-04 | Ai+N^-4/3 B(q) Ai' 5.171e-05
+  (1,0) tau=+1 N=160    pts= 72  max |err|/(M/E): Ai 1.629e-03 | Ai+N^-4/3 varpi Ai' 3.017e-04 | Ai+N^-4/3 B(q) Ai' 1.350e-05
+  (1,0) tau=+1 N=320    pts=144  max |err|/(M/E): Ai 8.311e-04 | Ai+N^-4/3 varpi Ai' 1.584e-04 | Ai+N^-4/3 B(q) Ai' 3.386e-06
+  exponents: Ai -0.98, constant varpi -1.00, B(q) -1.91
+PASS (D) (1,0) tau=+1: uniform relative-envelope error N^-2 with B_tau(q); N^-1 without it
+  fit N^-2 a(q) Ai + c_N Ai (common degree-6 a(q), 4 constants c_N) to the B_tau residual: max error 6.63e-06, 6.85e-07, 9.88e-08, 1.27e-08; slope -2.99; error x N^3: 0.42, 0.35, 0.40, 0.42
+PASS (D) (1,0) tau=+1: remainder after the fit is O(N^-3 M/E) (log-slope -2.99 <= -2.6)
+PASS (C) (2,1) tau=-1: B(q*) = psi(0) = closed varpi (diff 6.3e-13, Chebyshev tail 2e-12)
+PASS (C) (2,1): B = tau*Gt/sqrt(-zeta) - 5/(48 zeta^2) on the oscillatory side (max diff 1.0e-13)
+PASS (D) N=40: recurrence = sympy wigner_6j at the last rank (diff 3e-89)
+  (2,1) tau=-1 N=40     pts= 18  max |err|/(M/E): Ai 1.483e-02 | Ai+N^-4/3 varpi Ai' 2.218e-03 | Ai+N^-4/3 B(q) Ai' 2.103e-04
+PASS (D) N=80: recurrence = sympy wigner_6j at the last rank (diff 2e-86)
+  (2,1) tau=-1 N=80     pts= 36  max |err|/(M/E): Ai 7.618e-03 | Ai+N^-4/3 varpi Ai' 1.176e-03 | Ai+N^-4/3 B(q) Ai' 5.242e-05
+  (2,1) tau=-1 N=160    pts= 72  max |err|/(M/E): Ai 4.150e-03 | Ai+N^-4/3 varpi Ai' 7.025e-04 | Ai+N^-4/3 B(q) Ai' 1.328e-05
+  (2,1) tau=-1 N=320    pts=144  max |err|/(M/E): Ai 2.155e-03 | Ai+N^-4/3 varpi Ai' 3.804e-04 | Ai+N^-4/3 B(q) Ai' 3.304e-06
+  exponents: Ai -0.92, constant varpi -0.84, B(q) -2.00
+PASS (D) (2,1) tau=-1: uniform relative-envelope error N^-2 with B_tau(q); N^-1 without it
+  fit N^-2 a(q) Ai + c_N Ai (common degree-6 a(q), 4 constants c_N) to the B_tau residual: max error 1.51e-05, 1.98e-06, 2.78e-07, 3.67e-08; slope -2.89; error x N^3: 0.96, 1.02, 1.14, 1.20
+PASS (D) (2,1) tau=-1: remainder after the fit is O(N^-3 M/E) (log-slope -2.89 <= -2.6)
+PASS (C) (1/2,-1/2) tau=-1: B(q*) = psi(0) = closed varpi (diff 2.3e-09, Chebyshev tail 7e-09)
+PASS (C) (1/2,-1/2): B = tau*Gt/sqrt(-zeta) - 5/(48 zeta^2) on the oscillatory side (max diff 8.8e-11)
+PASS (D) N=159/4: recurrence = sympy wigner_6j at the last rank (diff 2e-89)
+  (1/2,-1/2) tau=-1 N=159/4  pts= 18  max |err|/(M/E): Ai 3.196e-03 | Ai+N^-4/3 varpi Ai' 9.889e-04 | Ai+N^-4/3 B(q) Ai' 1.085e-05
+PASS (D) N=321/4: recurrence = sympy wigner_6j at the last rank (diff 1e-86)
+  (1/2,-1/2) tau=-1 N=321/4  pts= 36  max |err|/(M/E): Ai 1.515e-03 | Ai+N^-4/3 varpi Ai' 4.493e-04 | Ai+N^-4/3 B(q) Ai' 2.953e-06
+  (1/2,-1/2) tau=-1 N=639/4  pts= 72  max |err|/(M/E): Ai 7.690e-04 | Ai+N^-4/3 varpi Ai' 2.337e-04 | Ai+N^-4/3 B(q) Ai' 7.670e-07
+  (1/2,-1/2) tau=-1 N=1281/4 pts=144  max |err|/(M/E): Ai 3.874e-04 | Ai+N^-4/3 varpi Ai' 1.199e-04 | Ai+N^-4/3 B(q) Ai' 1.936e-07
+  exponents: Ai -1.01, constant varpi -1.01, B(q) -1.93
+PASS (D) (1/2,-1/2) tau=-1: uniform relative-envelope error N^-2 with B_tau(q); N^-1 without it
+  fit N^-2 a(q) Ai + c_N Ai (common degree-6 a(q), 4 constants c_N) to the B_tau residual: max error 3.39e-06, 3.11e-07, 2.52e-08, 1.12e-09; slope -3.82; error x N^3: 0.21, 0.16, 0.10, 0.04
+PASS (D) (1/2,-1/2) tau=-1: remainder after the fit is O(N^-3 M/E) (log-slope -3.82 <= -2.6)
+ALL CHECKS PASSED

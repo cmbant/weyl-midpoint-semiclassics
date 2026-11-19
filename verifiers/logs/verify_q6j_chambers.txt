@@ -1,0 +1,2 @@
+PASS independent exact KR squared values and signs, and SU(2) matrix exponentials: 84 chamber images
+PASS negative control: dropping the generator sign fails in 24 nonzero images

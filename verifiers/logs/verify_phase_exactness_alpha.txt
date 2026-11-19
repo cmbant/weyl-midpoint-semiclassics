@@ -1,0 +1,38 @@
+PASS (A) Sigma_2 = -c_ab(theta)/q^2 + O(1) (prop:general-second-eikonal-pole)
+PASS (A) the q^-2 terms of J_2 cancel, so J_2 extends to q = 0
+PASS (A) J_2(0,x) = eq:phase-exactness-J20 (depends on epsilon_1, beta_1, beta_2 only)
+PASS (A) identity 1/8 - (a^2+b^2)/2 - c_ab' = c_ab cot, so c_a + 2 A_2 = c_ab cot for A_2 = -c_ab'/2
+PASS (B) Hahn: the d' coefficients of y_k and u_k agree
+PASS (B) Hahn, all (M,sigma): c(x) = -J_2(0,x), c = (8*M**2*x**2 + 4*M*sigma*x**3 - 20*M*sigma*x + 8*sigma**2*x**2 - 5*x**2 - 3)/(48*(x - 1)**2*(x + 1)**2)
+PASS (B) Racah: the d' coefficients of y_k and u_k agree
+PASS (B) Racah, all (m,n,alpha,beta): c(x) = -J_2(0,x)
+  Hahn (2,1) x=0.3 s=0.45: J_2 = 0.4527035299; |(J-1/2)/h^2 - J_2| at h=1/100, 1/200: 5.78e-03, 1.44e-03
+PASS (C) flux of the amplitude-phase branch: J = 1/2 + h^2 J_2 + O(h^4) (difference quotient error O(h^2))
+  Darboux at theta=1.1, kappa=80.5,160.5: with A_2 9.44e-07, 1.19e-07; without 3.11e-05, 6.22e-06
+PASS (C) Darboux amplitude 1 - c_ab'/(2 kappa^2): residual O(kappa^-3) vs O(kappa^-2)
+
+(D) exact 3j/6j at fixed ratio
+  3j (2,1) x=3/10 q~0.45         N=80     max|Y-U2|=9.819e-05  max|Y-(1-h^2 J_2)U2|=3.341e-07
+  3j (2,1) x=3/10 q~0.45         N=160    max|Y-U2|=2.258e-05  max|Y-(1-h^2 J_2)U2|=3.814e-08
+  3j (2,1) x=3/10 q~0.45         N=320    max|Y-U2|=5.358e-06  max|Y-(1-h^2 J_2)U2|=3.238e-09
+  3j (2,1) x=3/10 q~0.45         N=640    max|Y-U2|=1.345e-06  max|Y-(1-h^2 J_2)U2|=4.261e-10
+  3j (2,1) x=3/10 q~0.45 exponents: U2 -2.06, (1 - h^2 J_2) U2 -3.24
+PASS (D) 3j (2,1) x=3/10 q~0.45: natural-gauge error O(N^-2) -> O(N^-3) with alpha = -J_2
+  3j (3/2,-1/2) x~1/5 q~0.5      N=161/2  max|Y-U2|=1.243e-05  max|Y-(1-h^2 J_2)U2|=3.735e-07
+  3j (3/2,-1/2) x~1/5 q~0.5      N=321/2  max|Y-U2|=2.545e-06  max|Y-(1-h^2 J_2)U2|=4.128e-08
+  3j (3/2,-1/2) x~1/5 q~0.5      N=641/2  max|Y-U2|=6.511e-07  max|Y-(1-h^2 J_2)U2|=5.306e-09
+  3j (3/2,-1/2) x~1/5 q~0.5      N=1281/2 max|Y-U2|=1.490e-07  max|Y-(1-h^2 J_2)U2|=6.576e-10
+  3j (3/2,-1/2) x~1/5 q~0.5 exponents: U2 -2.12, (1 - h^2 J_2) U2 -3.05
+PASS (D) 3j (3/2,-1/2) x~1/5 q~0.5: natural-gauge error O(N^-2) -> O(N^-3) with alpha = -J_2
+  6j (2,1) (1,6/5,3/2) rho~0.9   N=80     max|Y-U2|=1.882e-05  max|Y-(1-h^2 J_2)U2|=1.071e-06
+  6j (2,1) (1,6/5,3/2) rho~0.9   N=160    max|Y-U2|=4.720e-06  max|Y-(1-h^2 J_2)U2|=1.314e-07
+  6j (2,1) (1,6/5,3/2) rho~0.9   N=320    max|Y-U2|=1.176e-06  max|Y-(1-h^2 J_2)U2|=1.628e-08
+  6j (2,1) (1,6/5,3/2) rho~0.9   N=640    max|Y-U2|=2.950e-07  max|Y-(1-h^2 J_2)U2|=2.037e-09
+  6j (2,1) (1,6/5,3/2) rho~0.9 exponents: U2 -2.00, (1 - h^2 J_2) U2 -3.01
+PASS (D) 6j (2,1) (1,6/5,3/2) rho~0.9: natural-gauge error O(N^-2) -> O(N^-3) with alpha = -J_2
+  6j (1,0) (1,2,6/5) rho~0.8     N=80     max|Y-U2|=1.101e-04  max|Y-(1-h^2 J_2)U2|=4.593e-06
+  6j (1,0) (1,2,6/5) rho~0.8     N=160    max|Y-U2|=2.401e-05  max|Y-(1-h^2 J_2)U2|=6.090e-07
+  6j (1,0) (1,2,6/5) rho~0.8     N=320    max|Y-U2|=6.125e-06  max|Y-(1-h^2 J_2)U2|=7.409e-08
+  6j (1,0) (1,2,6/5) rho~0.8 exponents: U2 -2.08, (1 - h^2 J_2) U2 -2.98
+PASS (D) 6j (1,0) (1,2,6/5) rho~0.8: natural-gauge error O(N^-2) -> O(N^-3) with alpha = -J_2
+ALL CHECKS PASSED

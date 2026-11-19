@@ -1,0 +1,41 @@
+  (0,0) upper N=500 x=0.598000 pts=19 max|E|=4.472e-05 N^(4/3)max|E|=0.1775 fitted varpi=-0.31637 formula varpi=-0.32067 |E-N^-4/3 varpi Ai'|=1.03e-06
+  (0,0) upper N=1000 x=0.599000 pts=25 max|E|=1.950e-05 N^(4/3)max|E|=0.1950 fitted varpi=-0.31772 formula varpi=-0.32084 |E-N^-4/3 varpi Ai'|=3.24e-07
+  (0,0) upper N=2000 x=0.599500 pts=31 max|E|=7.680e-06 N^(4/3)max|E|=0.1935 fitted varpi=-0.31904 formula varpi=-0.32092 |E-N^-4/3 varpi Ai'|=7.97e-08
+  (0,0) upper N=4000 x=0.599750 pts=39 max|E|=3.076e-06 N^(4/3)max|E|=0.1953 fitted varpi=-0.31981 formula varpi=-0.32097 |E-N^-4/3 varpi Ai'|=2.02e-08
+  exponents: bracket -1.29, after Ai' term -1.90, control (-varpi) -1.30; rel. diff fitted/formula varpi 3.61e-03
+PASS (0,0) upper: bracket error O(N^-4/3) (exponent -1.29)
+PASS (0,0) upper: E N^4/3 / Ai'(t) -> varpi_tau(x) of eq:general-airy-varpi (rel. diff 3.6e-03)
+PASS (0,0) upper: remainder after the Ai' term O(N^-2); control with -varpi O(N^-4/3)
+  (1,0) lower N=500 x=-0.600000 pts=20 max|E|=4.201e-05 N^(4/3)max|E|=0.1667 fitted varpi= 0.26848 formula varpi= 0.25702 |E-N^-4/3 varpi Ai'|=3.78e-06
+  (1,0) lower N=1000 x=-0.600000 pts=24 max|E|=1.513e-05 N^(4/3)max|E|=0.1513 fitted varpi= 0.26281 formula varpi= 0.25702 |E-N^-4/3 varpi Ai'|=8.83e-07
+  (1,0) lower N=2000 x=-0.600000 pts=30 max|E|=5.918e-06 N^(4/3)max|E|=0.1491 fitted varpi= 0.26053 formula varpi= 0.25702 |E-N^-4/3 varpi Ai'|=2.23e-07
+  (1,0) lower N=4000 x=-0.600000 pts=38 max|E|=2.378e-06 N^(4/3)max|E|=0.1510 fitted varpi= 0.25929 formula varpi= 0.25702 |E-N^-4/3 varpi Ai'|=5.72e-08
+  exponents: bracket -1.38, after Ai' term -2.01, control (-varpi) -1.36; rel. diff fitted/formula varpi 8.83e-03
+PASS (1,0) lower: bracket error O(N^-4/3) (exponent -1.38)
+PASS (1,0) lower: E N^4/3 / Ai'(t) -> varpi_tau(x) of eq:general-airy-varpi (rel. diff 8.8e-03)
+PASS (1,0) lower: remainder after the Ai' term O(N^-2); control with -varpi O(N^-4/3)
+  (2,1) upper N=500 x=0.600000 pts=20 max|E|=1.916e-04 N^(4/3)max|E|=0.7603 fitted varpi=-1.29367 formula varpi=-1.28440 |E-N^-4/3 varpi Ai'|=3.56e-06
+  (2,1) upper N=1000 x=0.600000 pts=24 max|E|=7.123e-05 N^(4/3)max|E|=0.7123 fitted varpi=-1.29054 formula varpi=-1.28440 |E-N^-4/3 varpi Ai'|=8.88e-07
+  (2,1) upper N=2000 x=0.600000 pts=30 max|E|=2.847e-05 N^(4/3)max|E|=0.7173 fitted varpi=-1.28832 formula varpi=-1.28440 |E-N^-4/3 varpi Ai'|=2.22e-07
+  (2,1) upper N=4000 x=0.600000 pts=38 max|E|=1.160e-05 N^(4/3)max|E|=0.7367 fitted varpi=-1.28685 formula varpi=-1.28440 |E-N^-4/3 varpi Ai'|=5.53e-08
+  exponents: bracket -1.35, after Ai' term -2.00, control (-varpi) -1.35; rel. diff fitted/formula varpi 1.91e-03
+PASS (2,1) upper: bracket error O(N^-4/3) (exponent -1.35)
+PASS (2,1) upper: E N^4/3 / Ai'(t) -> varpi_tau(x) of eq:general-airy-varpi (rel. diff 1.9e-03)
+PASS (2,1) upper: remainder after the Ai' term O(N^-2); control with -varpi O(N^-4/3)
+  (2,1) lower N=500 x=-0.600000 pts=20 max|E|=9.842e-04 N^(4/3)max|E|=3.9060 fitted varpi= 6.50667 formula varpi= 6.42267 |E-N^-4/3 varpi Ai'|=2.90e-05
+  (2,1) lower N=1000 x=-0.600000 pts=24 max|E|=3.629e-04 N^(4/3)max|E|=3.6286 fitted varpi= 6.46440 formula varpi= 6.42267 |E-N^-4/3 varpi Ai'|=6.72e-06
+  (2,1) lower N=2000 x=-0.600000 pts=30 max|E|=1.440e-04 N^(4/3)max|E|=3.6292 fitted varpi= 6.44808 formula varpi= 6.42267 |E-N^-4/3 varpi Ai'|=1.69e-06
+  (2,1) lower N=4000 x=-0.600000 pts=38 max|E|=5.844e-05 N^(4/3)max|E|=3.7104 fitted varpi= 6.43936 formula varpi= 6.42267 |E-N^-4/3 varpi Ai'|=4.35e-07
+  exponents: bracket -1.36, after Ai' term -2.02, control (-varpi) -1.35; rel. diff fitted/formula varpi 2.60e-03
+PASS (2,1) lower: bracket error O(N^-4/3) (exponent -1.36)
+PASS (2,1) lower: E N^4/3 / Ai'(t) -> varpi_tau(x) of eq:general-airy-varpi (rel. diff 2.6e-03)
+PASS (2,1) lower: remainder after the Ai' term O(N^-2); control with -varpi O(N^-4/3)
+  (3/2,-1/2) lower N=1001/2 x=-0.500500 pts=17 max|E|=7.651e-05 N^(4/3)max|E|=0.3040 fitted varpi=-0.52243 formula varpi=-0.53295 |E-N^-4/3 varpi Ai'|=3.80e-06
+  (3/2,-1/2) lower N=2001/2 x=-0.500250 pts=21 max|E|=3.057e-05 N^(4/3)max|E|=0.3060 fitted varpi=-0.52736 formula varpi=-0.53350 |E-N^-4/3 varpi Ai'|=9.68e-07
+  (3/2,-1/2) lower N=4001/2 x=-0.500125 pts=26 max|E|=1.127e-05 N^(4/3)max|E|=0.2840 fitted varpi=-0.53133 formula varpi=-0.53378 |E-N^-4/3 varpi Ai'|=2.27e-07
+  (3/2,-1/2) lower N=8001/2 x=-0.500062 pts=33 max|E|=4.977e-06 N^(4/3)max|E|=0.3161 fitted varpi=-0.53181 formula varpi=-0.53392 |E-N^-4/3 varpi Ai'|=6.09e-08
+  exponents: bracket -1.33, after Ai' term -2.00, control (-varpi) -1.34; rel. diff fitted/formula varpi 3.94e-03
+PASS (3/2,-1/2) lower: bracket error O(N^-4/3) (exponent -1.33)
+PASS (3/2,-1/2) lower: E N^4/3 / Ai'(t) -> varpi_tau(x) of eq:general-airy-varpi (rel. diff 3.9e-03)
+PASS (3/2,-1/2) lower: remainder after the Ai' term O(N^-2); control with -varpi O(N^-4/3)
+ALL CHECKS PASSED

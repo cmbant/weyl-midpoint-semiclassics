@@ -1,0 +1,51 @@
+PASS contact identity with lambda_1 (rho_20 -> rho_20 + lam1 x/sqrt(1-x^2), source + lam1 x d_k): residuals [0, 0, 0, 0, 0, 0]
+PASS negative control: without the lam1*x term in rho_20 the contact residual is -sqrt(7)*dk*lam1*x != 0
+S1 (m,n)=(2,1) c=.6 triangle (1,1.1,1.5) N = [25, 55, 95, 135, 175, 215, 255]
+   N= 25  e1*N=0.75  e2*N^2=0.05057  e3*N^3=1.149 | control e2noEta*N=0.02536 e3noShift*N^3=1.549
+   N= 55  e1*N=0.717  e2*N^2=0.02711  e3*N^3=1.135 | control e2noEta*N=0.02218 e3noShift*N^3=1.704
+   N= 95  e1*N=0.6965  e2*N^2=0.02195  e3*N^3=1.087 | control e2noEta*N=0.02179 e3noShift*N^3=1.885
+   N=135  e1*N=0.6821  e2*N^2=0.01375  e3*N^3=1.059 | control e2noEta*N=0.02686 e3noShift*N^3=4.772
+   N=175  e1*N=0.6693  e2*N^2=0.02401  e3*N^3=1.036 | control e2noEta*N=0.02114 e3noShift*N^3=6.222
+   N=215  e1*N=0.6572  e2*N^2=0.01977  e3*N^3=1.015 | control e2noEta*N=0.0208 e3noShift*N^3=7.356
+   N=255  e1*N=0.587  e2*N^2=0.01046  e3*N^3=0.9074 | control e2noEta*N=0.02626 e3noShift*N^3=8.143
+PASS S1 (m,n)=(2,1) c=.6 triangle (1,1.1,1.5): first order O(N^-1) (growth of e1*N 0.909)
+PASS S1 (m,n)=(2,1) c=.6 triangle (1,1.1,1.5): second order O(N^-2) (growth of e2*N^2 0.475)
+PASS S1 (m,n)=(2,1) c=.6 triangle (1,1.1,1.5): phase-exact O(N^-3) (growth of e3*N^3 0.921)
+PASS S1 (m,n)=(2,1) c=.6 triangle (1,1.1,1.5): control without eta in a_2: error/second-order error grows ~N (late/early mean ratio 6.34, last 640.0)
+PASS S1 (m,n)=(2,1) c=.6 triangle (1,1.1,1.5): control without -c^2/12: phase-exact fails (e3*N^3 grows by 4.32)
+S2 (m,n)=(1,0) c=.7 triangle (1.5,.8,1.1) N = [25, 55, 95, 135, 175, 215, 255]
+   N= 25  e1*N=0.03213  e2*N^2=0.1928  e3*N^3=0.1234 | control e2noEta*N=0.01307 e3noShift*N^3=1.595
+   N= 55  e1*N=0.01725  e2*N^2=0.2546  e3*N^3=0.1196 | control e2noEta*N=0.01594 e3noShift*N^3=3.653
+   N= 95  e1*N=0.02434  e2*N^2=0.2507  e3*N^3=0.09591 | control e2noEta*N=0.008477 e3noShift*N^3=5.371
+   N=135  e1*N=0.03142  e2*N^2=0.1282  e3*N^3=0.1502 | control e2noEta*N=0.01588 e3noShift*N^3=6.929
+   N=175  e1*N=0.001811  e2*N^2=0.3465  e3*N^3=0.02021 | control e2noEta*N=0.00363 e3noShift*N^3=13.46
+   N=215  e1*N=0.01967  e2*N^2=0.2844  e3*N^3=0.08462 | control e2noEta*N=0.008102 e3noShift*N^3=13.58
+   N=255  e1*N=0.03091  e2*N^2=0.1388  e3*N^3=0.1473 | control e2noEta*N=0.01546 e3noShift*N^3=11.59
+PASS S2 (m,n)=(1,0) c=.7 triangle (1.5,.8,1.1): first order O(N^-1) (growth of e1*N 0.978)
+PASS S2 (m,n)=(1,0) c=.7 triangle (1.5,.8,1.1): second order O(N^-2) (growth of e2*N^2 1.36)
+PASS S2 (m,n)=(1,0) c=.7 triangle (1.5,.8,1.1): phase-exact O(N^-3) (growth of e3*N^3 1.22)
+PASS S2 (m,n)=(1,0) c=.7 triangle (1.5,.8,1.1): control without eta in a_2: error/second-order error grows ~N (late/early mean ratio 4.77, last 28.4)
+PASS S2 (m,n)=(1,0) c=.7 triangle (1.5,.8,1.1): control without -c^2/12: phase-exact fails (e3*N^3 grows by 2.53)
+S3 (m,n)=(3,-1) c=.5 triangle (1.2,1,1.7) N = [25, 55, 95, 135, 175, 215, 255]
+   N= 25  e1*N=0.3819  e2*N^2=1.374  e3*N^3=1.328 | control e2noEta*N=0.08211 e3noShift*N^3=0.7482
+   N= 55  e1*N=0.515  e2*N^2=0.9914  e3*N^3=1.517 | control e2noEta*N=0.05517 e3noShift*N^3=0.9797
+   N= 95  e1*N=0.5719  e2*N^2=1.092  e3*N^3=1.675 | control e2noEta*N=0.04288 e3noShift*N^3=2.265
+   N=135  e1*N=0.3329  e2*N^2=1.399  e3*N^3=0.9604 | control e2noEta*N=0.0177 e3noShift*N^3=4.027
+   N=175  e1*N=0.5237  e2*N^2=1.041  e3*N^3=1.522 | control e2noEta*N=0.03875 e3noShift*N^3=4.346
+   N=215  e1*N=0.2329  e2*N^2=1.568  e3*N^3=0.6132 | control e2noEta*N=0.01833 e3noShift*N^3=6.137
+   N=255  e1*N=0.2048  e2*N^2=1.596  e3*N^3=0.6346 | control e2noEta*N=0.02254 e3noShift*N^3=6.032
+PASS S3 (m,n)=(3,-1) c=.5 triangle (1.2,1,1.7): first order O(N^-1) (growth of e1*N 0.916)
+PASS S3 (m,n)=(3,-1) c=.5 triangle (1.2,1,1.7): second order O(N^-2) (growth of e2*N^2 1.16)
+PASS S3 (m,n)=(3,-1) c=.5 triangle (1.2,1,1.7): phase-exact O(N^-3) (growth of e3*N^3 0.909)
+PASS S3 (m,n)=(3,-1) c=.5 triangle (1.2,1,1.7): control without eta in a_2: error/second-order error grows ~N (late/early mean ratio 1.3, last 3.6)
+PASS S3 (m,n)=(3,-1) c=.5 triangle (1.2,1,1.7): control without -c^2/12: phase-exact fails (e3*N^3 grows by 2.71)
+PASS rho_2(0,x) = main-paper formula + lam1 x/sqrt(1-x^2): 0.675447988169 vs 0.675447988169
+PASS negative control: main-paper rho_20 without the lam1 term differs by 0.04886
+PASS J_2(0,x) = main-paper formula + lam1/(2(1-x^2)): -0.0326702707529 vs -0.0326702707529
+PASS fixed-rank datum c(x) is k-independent: ['0.002670270753', '0.002670270753', '0.002670270753']
+PASS c(x) = -J_2(0,x) - c^2/12: 0.002670270753 vs 0.002670270753
+D. exact symbolic fixed-rank datum (symbolic m, n)
+PASS c(x) + J_2(0,x) + 1/12 = 0 identically in (u,v,w) with symbolic (m,n): the numerator, a polynomial in (u,v,w,m,n), expands to 0 (54 s)
+PASS negative control: c + J_2(0,x) is NOT identically 0, it equals the nonzero constant (exact value at a rational point (u,v,w,m,n)) -1/12
+PASS symbolic c (c=1 units) at the part-B triangle = measured chain datum / c^2: 0.00741741875797751 vs 0.007417418758
+ALL PASS

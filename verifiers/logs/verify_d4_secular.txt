@@ -1,0 +1,3 @@
+D4 secular verification passed
+deg_J(A4-A4_tilde) = 1
+deg_J(B4-B4_tilde) = 2

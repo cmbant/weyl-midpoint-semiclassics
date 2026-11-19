@@ -1,0 +1,28 @@
+PASS triangle (1,1.1,1.5): x -> flat value, errors 0.000293, 7.33e-5, 1.83e-5 (ratios 3.999, 4.0: O(c^2))
+PASS triangle (1,1.1,1.5): rs -> flat value, errors 0.000218, 5.45e-5, 1.36e-5 (ratios 3.999, 4.0: O(c^2))
+PASS triangle (1,1.1,1.5): e -> flat value, errors 8.81e-5, 2.2e-5, 5.51e-6 (ratios 4.0, 4.0: O(c^2))
+PASS triangle (1,1.1,1.5): b0 -> flat value, errors 8.86e-5, 2.21e-5, 5.54e-6 (ratios 4.0, 4.0: O(c^2))
+PASS triangle (1,1.1,1.5): eps1 -> flat value, errors 0.000267, 6.67e-5, 1.67e-5 (ratios 4.001, 4.0: O(c^2))
+PASS triangle (1,1.1,1.5): b1 -> flat value, errors 0.000268, 6.7e-5, 1.67e-5 (ratios 4.001, 4.0: O(c^2))
+PASS triangle (1,1.1,1.5): b2 -> flat value, errors 0.000869, 0.000217, 5.43e-5 (ratios 4.0, 4.0: O(c^2))
+PASS triangle (1,1.1,1.5): chi -> flat value, errors 0.000206, 5.14e-5, 1.29e-5 (ratios 4.0, 4.0: O(c^2))
+PASS triangle (1,1.1,1.5): D -> flat value, errors 0.000121, 3.02e-5, 7.55e-6 (ratios 4.002, 4.0: O(c^2))
+PASS triangle (1,1.1,1.5): lam1 -> flat value, errors 0.000267, 6.67e-5, 1.67e-5 (ratios 4.0, 4.0: O(c^2))
+PASS triangle (1,1.1,1.5): eta -> flat value, errors 0.000267, 6.67e-5, 1.67e-5 (ratios 4.0, 4.0: O(c^2))
+PASS triangle (1,1.1,1.5): turning action int_0^{q*} p dq (- pi q* for tau=-1) equals the Racah value pi(gamma-|alpha-beta|) (resp. -pi(alpha+beta-gamma)) EXACTLY at every scale (Lemma q6j-turn-action is scale invariant): errors ['7.9e-30', '6.5e-28', '5.7e-28']
+PASS triangle (1,1.1,1.5): turn type tau = -1 agrees with the flat type at all three scales
+PASS triangle (2,1,1.3): x -> flat value, errors 0.000168, 4.2e-5, 1.05e-5 (ratios 3.998, 3.999: O(c^2))
+PASS triangle (2,1,1.3): rs -> flat value, errors 0.000418, 0.000105, 2.62e-5 (ratios 3.998, 3.999: O(c^2))
+PASS triangle (2,1,1.3): e -> flat value, errors 9.06e-5, 2.26e-5, 5.66e-6 (ratios 4.001, 4.0: O(c^2))
+PASS triangle (2,1,1.3): b0 -> flat value, errors 0.000116, 2.89e-5, 7.23e-6 (ratios 4.0, 4.0: O(c^2))
+PASS triangle (2,1,1.3): eps1 -> flat value, errors 0.000267, 6.67e-5, 1.67e-5 (ratios 4.001, 4.0: O(c^2))
+PASS triangle (2,1,1.3): b1 -> flat value, errors 0.000333, 8.33e-5, 2.08e-5 (ratios 4.0, 4.0: O(c^2))
+PASS triangle (2,1,1.3): b2 -> flat value, errors 0.00102, 0.000254, 6.35e-5 (ratios 4.0, 4.0: O(c^2))
+PASS triangle (2,1,1.3): chi -> flat value, errors 8.63e-5, 2.16e-5, 5.4e-6 (ratios 3.997, 3.999: O(c^2))
+PASS triangle (2,1,1.3): D -> flat value, errors 0.000253, 6.32e-5, 1.58e-5 (ratios 3.998, 4.0: O(c^2))
+PASS triangle (2,1,1.3): lam1 -> flat value, errors 0.000267, 6.67e-5, 1.67e-5 (ratios 4.0, 4.0: O(c^2))
+PASS triangle (2,1,1.3): eta -> flat value, errors 0.000267, 6.67e-5, 1.67e-5 (ratios 4.0, 4.0: O(c^2))
+PASS triangle (2,1,1.3): turning action int_0^{q*} p dq (- pi q* for tau=-1) equals the Racah value pi(gamma-|alpha-beta|) (resp. -pi(alpha+beta-gamma)) EXACTLY at every scale (Lemma q6j-turn-action is scale invariant): errors ['2.3e-28', '9.5e-28', '2.8e-27']
+PASS triangle (2,1,1.3): turn type tau = 1 agrees with the flat type at all three scales
+PASS flux defect delta_fl = -c^2/12 -> 0 (c=0.005: -2.083e-6)
+ALL PASS

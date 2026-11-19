@@ -1,0 +1,14 @@
+(A) 3j: Phi_L = (-1)^{...} sqrt(N) 3j(L, jm, jp; M, mu-M/2, -mu-M/2), nodes x = 2 mu/N
+PASS (A) 3j (M,sigma)=(1,0) N=7: lambda^2 = N and lambda^2 (x_{j+1}-x_{j-1})/2 = 2 at all 6 nodes
+PASS (A) 3j (M,sigma)=(2,1) N=8: lambda^2 = N and lambda^2 (x_{j+1}-x_{j-1})/2 = 2 at all 6 nodes
+PASS (A) 3j (M,sigma)=(1,1) N=9: lambda^2 = N and lambda^2 (x_{j+1}-x_{j-1})/2 = 2 at all 8 nodes
+PASS (A) 3j (M,sigma)=(2,0) N=10: lambda^2 = N and lambda^2 (x_{j+1}-x_{j-1})/2 = 2 at all 8 nodes
+
+(B) 6j: Psi_f = (-1)^{...} 2 sqrt(AB) {6j}, x = (A^2+B^2-C^2)/(2AB), C = c + 1/2
+PASS (B) 6j offsets (1,0) A=7/2 B=9/2: lambda^2 = 4AB/(2C) and lambda^2 (x_{C-1}-x_{C+1})/2 = 2 (6 nodes)
+PASS (B) 6j offsets (2,1) A=9/2 B=11/2: lambda^2 = 4AB/(2C) and lambda^2 (x_{C-1}-x_{C+1})/2 = 2 (7 nodes)
+
+(C) control: truncation (hard edge inside the oscillatory region)
+   central node: full sum = 9, half-truncated sum = 2604/715
+PASS (C) a truncated chain does not satisfy lambda^2 = N: the Gauss-weight identity is a hard-edge property
+ALL CHECKS PASSED

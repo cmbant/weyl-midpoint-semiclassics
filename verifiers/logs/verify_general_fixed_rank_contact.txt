@@ -1,0 +1,15 @@
+PASS q^-2 and q^-1 parts of rho_2 cancel (Darboux renormalization)
+PASS rho_2(0,x) equals the closed form linear in (eps1,beta1,beta2)
+PASS rho_2(0,x) is independent of eps2, beta20, beta11, beta02
+PASS Theta_q = theta - chi q^2/(3 sin theta) + O(q^4)
+PASS W_q expansion of eq:class-small-q
+PASS Q_{2,k} = (kappa^2 chi/3 - sqrt(s) rho20) d_x + kappa^2 W2 + x rho20/(2 sqrt s)
+PASS ladder identities (1-x^2)d_k' = (-kx+ab/k)d_k + (R_k/k)d_{k-1}, its partner, and eq:wigner-natural-jacobi on 9 integer/half-integer channels
+PASS contact identity holds identically in (a,b,k,x,eps1,beta1,beta2) on the basis (d_k,d_{k-1})
+PASS exceptional channel a=b=k=0 (d_0=1, d_1=x, B_0:=0): contact identity holds
+PASS contact identity on 27 explicit (channel, rank) pairs incl. k=k_min and half-integer offsets
+PASS negative controls (wrong rho20 / wrong source) fail
+PASS specializations reproduce the former Hahn/Racah rho20 and the Racah source delta_k^(6)
+PASS class data: Hahn (eps1,beta1,beta2)=(1/2,0,0); Racah (E/8, P/4, (1/2-m^2-n^2)P/8)
+PASS numerical: Racah closed rho20 matches full density at rho=1e-3 (max diff 4.3e-06)
+ALL CHECKS PASSED

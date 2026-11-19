@@ -1,0 +1,12 @@
+=== Part A: Exact Symbolic Identities (Centered Racah / 6j) [symbolic checks] ===
+  [PASS] Exact derivative d/drho S_6(rho, x) - omega_6(rho) == 0 verified symbolically
+  [PASS] Polynomial check D_6^{5/2}*(d/drho tilde_Gamma^{(6)} - Sigma_2^{(6)}) == 0
+  [PASS] Hahn degeneration limit tilde_Gamma^{(6)} -> tilde_Gamma^{(3)} verified
+  [PASS] Hahn limit Lam^-2 C_0^(6) -> C_0^(3) verified ((2 Lam)^-2 scaling rejected)
+  [PASS] Thm 6.1(c) isosceles A_2, A_3, and F_1(tv,0)==F_2(tv,0) pole cancellations verified symbolically
+  [PASS] Fixed-rank O(S^{-2}) expansion matches Paper II cor:uniformNLO in all 4 chambers
+
+=== Part B: Numerical Recurrence Check & Exact Tetrahedral Duality [mixed checks] ===
+  [PASS] Max |Phi_f - sympy.wigner_6j| = 3.331e-16; tetrahedral corner swap exact (diff=0)
+
+ALL 6J SYMBOLIC, NUMERICAL & DUALITY CHECKS PASSED.

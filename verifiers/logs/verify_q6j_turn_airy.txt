@@ -1,0 +1,43 @@
+PASS turn quantization at 60 random hyperbolic triangles (tau=+1: 11, tau=-1: 49), max error 6.59e-25
+PASS turn type rule tau = -sgn[(coshX-coshY coshZ)(coshY-coshX coshZ)], mismatches 0
+PASS negative control: int p dK - pi q* differs from pi*(Z-|X-Y|)/2 - pi q* by 1.508
+PASS dS*/dZ = pi/2 at a tau=+1 triangle: 1.570796327
+PASS d_Z p = mu/sqrt(D): 1.080038206 vs 1.080038206
+PASS B1 tau=-1, (m,n)=(2,1), c=.6, triangle (1,1.1,1.5): turn type tau=-1 (expected -1), q*=1.3154643
+   varpi = 1.025003079 (without eta term: 1.159418668)
+   N=  35  |R-Ai|N^(4/3)=0.2413  |R-Ai-N^(-4/3)varpi Ai'|N^2=0.1866  control(no eta)*N^(4/3)=0.04677
+   N= 125  |R-Ai|N^(4/3)=0.2593  |R-Ai-N^(-4/3)varpi Ai'|N^2=0.1697  control(no eta)*N^(4/3)=0.04066
+   N= 225  |R-Ai|N^(4/3)=0.2572  |R-Ai-N^(-4/3)varpi Ai'|N^2=0.1524  control(no eta)*N^(4/3)=0.03824
+   N= 315  |R-Ai|N^(4/3)=0.2619  |R-Ai-N^(-4/3)varpi Ai'|N^2=0.1552  control(no eta)*N^(4/3)=0.03796
+   N= 415  |R-Ai|N^(4/3)=0.2606  |R-Ai-N^(-4/3)varpi Ai'|N^2=0.15  control(no eta)*N^(4/3)=0.03718
+PASS B1 tau=-1, (m,n)=(2,1), c=.6, triangle (1,1.1,1.5): bracket error O(N^-2) with varpi (max ratio late/early 0.832)
+PASS B1 tau=-1, (m,n)=(2,1), c=.6, triangle (1,1.1,1.5): control without varpi term: error does not decay faster than N^-4/3 (late/early N^2-scaled growth 1.52)
+PASS B1 tau=-1, (m,n)=(2,1), c=.6, triangle (1,1.1,1.5): control without eta in varpi leaves an N^-4/3 residual (0.03824 vs 0.00279)
+PASS B2 tau=+1, (m,n)=(3,3), c=.5, triangle (2,1,1.3): turn type tau=1 (expected 1), q*=1.8951258
+   varpi = -1.299421266 (without eta term: -0.8706643271)
+   N=  35  |R-Ai|N^(4/3)=0.3555  |R-Ai-N^(-4/3)varpi Ai'|N^2=0.3861  control(no eta)*N^(4/3)=0.1313
+   N= 125  |R-Ai|N^(4/3)=0.3395  |R-Ai-N^(-4/3)varpi Ai'|N^2=0.3175  control(no eta)*N^(4/3)=0.118
+   N= 225  |R-Ai|N^(4/3)=0.3419  |R-Ai-N^(-4/3)varpi Ai'|N^2=0.2673  control(no eta)*N^(4/3)=0.1166
+   N= 315  |R-Ai|N^(4/3)=0.3375  |R-Ai-N^(-4/3)varpi Ai'|N^2=0.2799  control(no eta)*N^(4/3)=0.1147
+   N= 415  |R-Ai|N^(4/3)=0.34  |R-Ai-N^(-4/3)varpi Ai'|N^2=0.2521  control(no eta)*N^(4/3)=0.1147
+PASS B2 tau=+1, (m,n)=(3,3), c=.5, triangle (2,1,1.3): bracket error O(N^-2) with varpi (max ratio late/early 0.725)
+PASS B2 tau=+1, (m,n)=(3,3), c=.5, triangle (2,1,1.3): control without varpi term: error does not decay faster than N^-4/3 (late/early N^2-scaled growth 1.45)
+PASS B2 tau=+1, (m,n)=(3,3), c=.5, triangle (2,1,1.3): control without eta in varpi leaves an N^-4/3 residual (0.1166 vs 0.00503)
+PASS flat limit: varpi_q(c=.02)=1.1726531, varpi_q(c=.01)=1.1727659 -> Racah varpi=1.1728035 (error halves/quarters: O(c^2))
+PASS D1 tau=-1, (m,n)=(2,1), c=.6, triangle (1,1.1,1.5): turn type tau=-1
+   N=  35  plain(varpi) 0.00111  full(B_tau, amplitude) 2.33e-5  no delta_fl 3.08e-5  no N^-2 amplitude 0.000328
+   N= 125  plain(varpi) 0.00014  full(B_tau, amplitude) 3.71e-7  no delta_fl 1.98e-6  no N^-2 amplitude 2.53e-5
+   N= 315  plain(varpi) 5.2e-5  full(B_tau, amplitude) 2.18e-8  no delta_fl 3.04e-7  no N^-2 amplitude 4.02e-6
+   N= 795  plain(varpi) 3.8e-5  full(B_tau, amplitude) 1.9e-9  no delta_fl 4.16e-8  no N^-2 amplitude 5.75e-7
+   slopes in N: plain -1.10  full -3.03  no delta_fl -2.11  no amplitude -2.03
+PASS D1 tau=-1, (m,n)=(2,1), c=.6, triangle (1,1.1,1.5): uniform law with delta_fl=-c^2/12 is O(N^-3 M/E): slope -3.03 < -2.85
+PASS D1 tau=-1, (m,n)=(2,1), c=.6, triangle (1,1.1,1.5): negative control without delta_fl is only O(N^-2): slope -2.11
+PASS D2 tau=+1, (m,n)=(3,3), c=.5, triangle (2,1,1.3): turn type tau=1
+   N=  35  plain(varpi) 0.00111  full(B_tau, amplitude) 2.46e-5  no delta_fl 3.67e-5  no N^-2 amplitude 0.000364
+   N= 125  plain(varpi) 0.00011  full(B_tau, amplitude) 2.16e-7  no delta_fl 1.33e-6  no N^-2 amplitude 3.86e-5
+   N= 315  plain(varpi) 2.88e-5  full(B_tau, amplitude) 9.7e-9  no delta_fl 2.09e-7  no N^-2 amplitude 5.98e-6
+   N= 795  plain(varpi) 1.08e-5  full(B_tau, amplitude) 5.11e-10  no delta_fl 3.27e-8  no N^-2 amplitude 9.3e-7
+   slopes in N: plain -1.49  full -3.45  no delta_fl -2.24  no amplitude -1.92
+PASS D2 tau=+1, (m,n)=(3,3), c=.5, triangle (2,1,1.3): uniform law with delta_fl=-c^2/12 is O(N^-3 M/E): slope -3.45 < -2.85
+PASS D2 tau=+1, (m,n)=(3,3), c=.5, triangle (2,1,1.3): negative control without delta_fl is only O(N^-2): slope -2.24
+ALL PASS

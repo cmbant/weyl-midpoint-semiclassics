@@ -1,0 +1,13 @@
+=== Part A: Exact Symbolic Identities (Hahn / 3j) [symbolic checks] ===
+  [PASS] d/dq S(q, x) - arccos(x / sqrt(1 - q^2)) == 0 on the positive-parameter branch
+  [PASS] d/dq tilde_Gamma^{(3)}(q, x) - Sigma_2^{(3)}(q, x) == 0 (main-paper eq:generic-second-weyl-density)
+  [PASS] Lemma 5.1 Olver Bessel-Darboux operator & Wigner-series regularity verified through M = 4
+  [PASS] Lemma 5.2 blown-up nu^2*zhat^2*widehat_Gamma_2 scaling & eps=0 regularity of K_2, K_1, K_0
+  [PASS] Fixed-rank O(N^{-2}) expansion matches Paper II cor:uniformNLO in all 4 chambers
+  [PASS] Corollary 3.2 near-turning gap 2/3 and Bessel coefficient 77/72
+
+=== Part B: Numerical Recurrence Cross-Check vs sympy.physics.wigner.wigner_3j [numerical evidence] ===
+  [PASS] Max |Phi_L - sympy.wigner_3j| across all chambers & endpoints = 9.992e-16
+  [PASS] Thm 3.1 lower-edge sign (-1)^(L-sigma) eps(-M,sigma) holds in 28 cases; (-1)^(L-L0) eps(-M,sigma) fails in 12 (negative control)
+
+ALL 3J SYMBOLIC CHECKS & NUMERICAL CROSS-CHECKS PASSED.

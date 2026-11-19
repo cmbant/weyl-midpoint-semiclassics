@@ -1,0 +1,56 @@
+(A0) flux identity and carrier
+PASS (A0) pi a Im(conj(psi^c(q-h/2)) psi^c(q+h/2)) = h^(1/3) a (A_- B_+ - B_- A_+) exactly, with C,S as in lem:airy2-shift-parity (diff 9.9e-32)
+PASS (A0) Im(conj(chi) chi') = Ai Bi' - Bi Ai' = 1/pi for chi = Ai + i Bi
+PASS (A0) chi(-y) ~ pi^(-1/2) y^(-1/4) exp(-i(xi - pi/4)): phase increases with q (xi decreases): the + Darboux branch for tau = +1
+PASS (A0) tau = -1: u_k = (-1)^k conj(psi_k) has the same flux as psi: the physical + branch is the conjugate carrier in the alternating gauge
+PASS (A) F(q_*;h) = 1 + 0*h + ...: normalization V g^2 = 1 and parity (exact, generic jets)
+PASS (A) J(q_*) = B_zeta + zeta'^2 B/6 + 13 zeta'^6/10080 - ... (exact symbolic, generic jets of the class)
+
+(A2) symbolic Olver transport function
+PASS (A2) [h^0] A[g,0] = 2 a_0 g tau u (the eikonal) and [h^1] A[g,0] = 0 at first order in q - q_* (exact, generic jets)
+PASS (A2) psi_tau(q_*) from [h^2] A[g,0] equals the local formula eq:general-airy-varpi-local for v = 0 (independent derivation; both turn types)
+PASS (A2) after z_1^3 = 2 u_1 the Hahn J(q_*) contains no cube root: a rational function of w (exact)
+PASS (A2) J^H(q_*) = [-2 S2/5 + (5x^2-1) P/(5x) + (125x^4-35x^2+14)/(900x^4)]/(1-x^2)^2 for x > 0: exact derivation from the general formula and the Hahn jets (no fit); tau = -1 enters only through tau M sigma and |x|
+
+(B) J(q_*): closed forms vs the numerical flux (Richardson in h)
+  Racah (1,0) (1, 2, 6/5) tau=+1: J(q*) numeric -0.4832234628  jets formula -0.4832234628
+PASS (B) Racah (1,0) tau=+1: jets formula = numerical flux (diff 9.1e-13)
+  Racah (2,1) (1, 6/5, 3/2) tau=-1: J(q*) numeric -0.6878125684  jets formula -0.6878125685
+PASS (B) Racah (2,1) tau=-1: jets formula = numerical flux (diff 9.3e-11)
+  Hahn (2,1) x=3/5 tau=+1: J(q*) numeric -3.2123413922  closed form -3.2123413923
+PASS (B) Hahn (2,1) x=3/5: closed form J^H(q*) = numerical flux (diff 1.0e-10)
+  Hahn (3/2,-1/2) x=7/10 tau=+1: J(q*) numeric -4.5613327809  closed form -4.5613327809
+PASS (B) Hahn (3/2,-1/2) x=7/10: closed form J^H(q*) = numerical flux (diff 1.8e-11)
+  Hahn (2,1) x=-3/5 tau=-1: J(q*) numeric -5.8165080590  closed form -5.8165080590
+PASS (B) Hahn (2,1) x=-3/5: closed form J^H(q*) = numerical flux (diff 3.3e-11)
+  Hahn (0,0) x=3/5 tau=+1: J(q*) numeric  0.3683877744  closed form  0.3683877743
+PASS (B) Hahn (0,0) x=3/5: closed form J^H(q*) = numerical flux (diff 8.2e-11)
+  Hahn (3,-2) x=4/5 tau=+1: J(q*) numeric -64.6905676905  closed form -64.6905676655
+PASS (B) Hahn (3,-2) x=4/5: closed form J^H(q*) = numerical flux (diff 2.5e-08)
+
+(C) exact chains: uniform bracket error with a_N = -N^-2 J(q)/2 (delta = 0 for Hahn and Racah)
+    N=40   pts= 18 max err/(M/E): B only 1.79e-04 | with a_N 6.61e-06 | a_N + 0.2/N^2 1.25e-04 | a_N - 0.2/N^2 1.24e-04
+    N=80   pts= 36 max err/(M/E): B only 5.17e-05 | with a_N 6.37e-07 | a_N + 0.2/N^2 3.12e-05 | a_N - 0.2/N^2 3.10e-05
+    N=160  pts= 36 max err/(M/E): B only 1.35e-05 | with a_N 9.87e-08 | a_N + 0.2/N^2 7.78e-06 | a_N - 0.2/N^2 7.76e-06
+    N=320  pts= 29 max err/(M/E): B only 3.17e-06 | with a_N 1.18e-08 | a_N + 0.2/N^2 1.94e-06 | a_N - 0.2/N^2 1.94e-06
+  Racah (1,0) (1,2,6/5) tau=+1: exponents  B only -1.94 | with a_N -3.01 | with a_N +- 0.2/N^2 -2.00, -2.00
+PASS (C) Racah (1,0) (1,2,6/5) tau=+1: relative-envelope error N^-3 with a_N; N^-2 without it or with a wrong constant
+    N=40   pts= 18 max err/(M/E): B only 2.10e-04 | with a_N 1.59e-05 | a_N + 0.2/N^2 1.25e-04 | a_N - 0.2/N^2 1.27e-04
+    N=80   pts= 36 max err/(M/E): B only 5.24e-05 | with a_N 2.05e-06 | a_N + 0.2/N^2 3.11e-05 | a_N - 0.2/N^2 3.12e-05
+    N=160  pts= 36 max err/(M/E): B only 1.28e-05 | with a_N 2.62e-07 | a_N + 0.2/N^2 7.81e-06 | a_N - 0.2/N^2 7.82e-06
+    N=320  pts= 29 max err/(M/E): B only 3.19e-06 | with a_N 3.45e-08 | a_N + 0.2/N^2 1.91e-06 | a_N - 0.2/N^2 1.92e-06
+  Racah (2,1) (1,6/5,3/2) tau=-1: exponents  B only -2.02 | with a_N -2.95 | with a_N +- 0.2/N^2 -2.01, -2.01
+PASS (C) Racah (2,1) (1,6/5,3/2) tau=-1: relative-envelope error N^-3 with a_N; N^-2 without it or with a wrong constant
+    N=40   pts=  9 max err/(M/E): B only 1.12e-03 | with a_N 3.21e-05 | a_N + 0.2/N^2 1.26e-04 | a_N - 0.2/N^2 1.24e-04
+    N=80   pts= 18 max err/(M/E): B only 3.08e-04 | with a_N 3.45e-06 | a_N + 0.2/N^2 3.16e-05 | a_N - 0.2/N^2 3.04e-05
+    N=160  pts= 17 max err/(M/E): B only 7.40e-05 | with a_N 4.03e-07 | a_N + 0.2/N^2 7.82e-06 | a_N - 0.2/N^2 7.73e-06
+    N=320  pts= 14 max err/(M/E): B only 1.71e-05 | with a_N 4.74e-08 | a_N + 0.2/N^2 1.90e-06 | a_N - 0.2/N^2 1.92e-06
+  Hahn (2,1) x~3/5 tau=+1: exponents  B only -2.02 | with a_N -3.13 | with a_N +- 0.2/N^2 -2.02, -2.00
+PASS (C) Hahn (2,1) x~3/5 tau=+1: relative-envelope error N^-3 with a_N; N^-2 without it or with a wrong constant
+    N=40   pts=  7 max err/(M/E): B only 1.46e-04 | with a_N 4.32e-05 | a_N + 0.2/N^2 1.32e-04 | a_N - 0.2/N^2 1.25e-04
+    N=80   pts= 15 max err/(M/E): B only 4.49e-05 | with a_N 7.88e-06 | a_N + 0.2/N^2 3.12e-05 | a_N - 0.2/N^2 3.13e-05
+    N=160  pts= 14 max err/(M/E): B only 1.12e-05 | with a_N 5.87e-07 | a_N + 0.2/N^2 7.77e-06 | a_N - 0.2/N^2 7.77e-06
+    N=320  pts= 12 max err/(M/E): B only 1.59e-06 | with a_N 1.13e-07 | a_N + 0.2/N^2 1.76e-06 | a_N - 0.2/N^2 1.77e-06
+  Hahn (1,0) x~-1/2 tau=-1: exponents  B only -2.16 | with a_N -2.95 | with a_N +- 0.2/N^2 -2.07, -2.04
+PASS (C) Hahn (1,0) x~-1/2 tau=-1: relative-envelope error N^-3 with a_N; N^-2 without it or with a wrong constant
+ALL CHECKS PASSED

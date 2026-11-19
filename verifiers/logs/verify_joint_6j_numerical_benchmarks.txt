@@ -1,0 +1,20 @@
+=== Part C: Turning-Action Law, Dense Multi-S Scans, Hard Edges & Corner [numerical evidence] ===
+  [PASS] C1 Exact atan2 turning-point perimeter laws (<1e-12) & interior quadrature (<1e-7)
+  [PASS] C2 Multi-S dense sup (m=0.0, n=0.0, A:B~3:2, nu_6<=0.82): S~500..32k -> [0.4493, 0.4831, 0.4911, 0.4999] (increments=[0.0339, 0.008, 0.0087])
+  [PASS] C2 Multi-S dense sup (m=2.0, n=-1.0, A:B~3:2, nu_6<=0.82): S~500..32k -> [0.8547, 1.0057, 0.9983, 1.0074] (increments=[0.151, 0.0074, 0.0091])
+  [PASS] C2 Multi-S dense sup (m=1.5, n=-0.5, A:B~3:2, nu_6<=0.82): S~500..32k -> [0.5304, 0.5601, 0.5658, 0.5701] (increments=[0.0297, 0.0058, 0.0042])
+  [PASS] C3a Separated r=0 (A:B~3:2): C_min ratios=15.37, 15.86; C_max ratios=13.68, 15.46 (~16 = O(S^-2))
+  [PASS] C3b Isosceles A=B: C_min (x>=0) 4x-S ratio=257.8 (~256 = O(S^-4)); C_max (x->-1) ratios=13.37, 15.42 (~16 = O(S^-2))
+  [PASS] C3c Isosceles A=B at fixed x=-0.5312 < 0 (C/A=7/4): 2x-S ratios=[16.12, 16.03, 16.01] (~16 = O(S^-4))
+  [PASS] C3c Isosceles A=B at fixed x=-0.8050 < 0 (C/A=19/10): 2x-S ratios=[14.14, 15.56, 15.89] (~16 = O(S^-4); first 1 ratio pre-asymptotic, not asserted)
+  [PASS] C4 Growing-rank corridor nu_6=0.60 (S~1000->4000): max = 0.1307 -> 0.1308
+  [PASS] C5 Macroscopic isosceles corner (A=B=500->2000, rho=0.35, integer C=2..15): max(D_6^{1/4}*sqrt(2f+1)*|dPhi|*C^2) = 0.0432 -> 0.0431; with C in {18,66,258} added: 0.0432 -> 0.0431
+
+=== Part D: Mandatory Negative Controls [numerical evidence] ===
+  [PASS] NC1 Omitting E_{A,B}(C_min): sep rel_err=0.1547 (2/sqrt(3)-1), isosceles rel_err=0.3333 (exact 1/3=0.3333)
+  [PASS] NC2 Nonlinear shift E*W_6^[2]*d(Theta_6^[2]) at C_min: rel_err=0.1385->0.1384 (exact 1-(23/24)^(7/2)=0.1384)
+  [PASS] NC3a Non-covariant raw d_Theta at C_min: 4x-S ratio=0.99 (~1 = O(1) double-pole failure)
+  [PASS] NC3b Omitting C_0^{(6)}(delta,x) at C_min: 4x-S ratio=3.92 (~4 = O(S^-1) simple-pole degradation)
+  [PASS] NC4 Separated coalescent corner (r=0, nu_6=0.75, S=801.5->3201.5): rel_err=0.0420->0.0428 (O(1) non-vanishing)
+
+ALL 6J NUMERICAL BENCHMARKS & NEGATIVE CONTROLS PASSED.

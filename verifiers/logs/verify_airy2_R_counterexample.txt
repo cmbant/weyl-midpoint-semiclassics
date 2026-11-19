@@ -1,0 +1,8 @@
+chain e = sqrt(1-s), v = beta2 t with the Hahn seed at x = 1/2 (beta2 = 0.4) and control beta2 = 0
+  N= 100  beta2=0.4: max|br-Ai|=1.406e-02  N*(Bi coefficient)=-0.61469   beta2=0: max|br-Ai|=1.444e-04  N*(Bi coeff)= 3.20e-06
+  N= 200  beta2=0.4: max|br-Ai|=7.916e-03  N*(Bi coefficient)=-0.61980   beta2=0: max|br-Ai|=3.290e-05  N*(Bi coeff)= 6.91e-05
+  N= 400  beta2=0.4: max|br-Ai|=4.414e-03  N*(Bi coefficient)=-0.62255   beta2=0: max|br-Ai|=8.800e-06  N*(Bi coeff)=-1.92e-05
+  N= 800  beta2=0.4: max|br-Ai|=2.042e-03  N*(Bi coefficient)=-0.62289   beta2=0: max|br-Ai|=3.144e-06  N*(Bi coeff)=-1.19e-04
+  exponents: beta2=0.4 -0.92, control -1.85;  -pi beta2/2 = -0.62832
+PASS (R) fails for v = beta2 t: Bi coefficient ~ -pi beta2/(2N), bracket error O(N^-1); control has none
+ALL CHECKS PASSED

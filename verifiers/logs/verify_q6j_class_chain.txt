@@ -1,0 +1,59 @@
+PASS Jacobi residual (a,b,c,m,n,H)=(14, 12, 17, 2, 1, '0.13'): 6.67e-51
+PASS Jacobi residual (a,b,c,m,n,H)=(11, 13, 16, 2, -1, '0.2'): 2.8e-51
+PASS Jacobi residual (a,b,c,m,n,H)=(10, 9, 12, 1, 0, '0.17'): 2.79e-51
+PASS Jacobi residual (a,b,c,m,n,H)=(mpf('10.5'), mpf('9.5'), 12, mpf('1.5'), mpf('0.5'), '0.15'): 5.63e-51
+PASS negative control (diagonal perturbed by (1-lam)mn/(k(k+1))): residual 0.000425 is NOT small
+PASS exceptional channel m=n=0: k=0 row residual -3.3e-51
+PASS and Jacobi rows k>=1 for m=n=0: 1.91e-50
+PASS seed lemma, exact rational arithmetic (zeta^(1/2) = 3/2): (a,b,c,m,n)=(14, 12, 17, 2, 1): KR sum at f=m has 1 term(s) and W_m^2 = S_m exactly
+PASS seed lemma, exact rational arithmetic (zeta^(1/2) = 3/2): (a,b,c,m,n)=(11, 13, 16, 2, -1): KR sum at f=m has 1 term(s) and W_m^2 = S_m exactly
+PASS seed lemma, exact rational arithmetic (zeta^(1/2) = 3/2): (a,b,c,m,n)=(10, 9, 12, 1, 0): KR sum at f=m has 1 term(s) and W_m^2 = S_m exactly
+PASS seed lemma, exact rational arithmetic (zeta^(1/2) = 3/2): (a,b,c,m,n)=(10, 9, 12, 0, 0): KR sum at f=m has 1 term(s) and W_m^2 = S_m exactly
+PASS seed lemma, exact rational arithmetic (zeta^(1/2) = 3/2): (a,b,c,m,n)=(9, 9, 11, 3, 3): KR sum at f=m has 1 term(s) and W_m^2 = S_m exactly
+PASS seed lemma, exact rational arithmetic (zeta^(1/2) = 3/2): (a,b,c,m,n)=(Fraction(21, 2), Fraction(19, 2), 12, Fraction(3, 2), Fraction(1, 2)): KR sum at f=m has 1 term(s) and W_m^2 = S_m exactly
+PASS seed lemma, exact rational arithmetic (zeta^(1/2) = 3/2): (a,b,c,m,n)=(Fraction(21, 2), Fraction(19, 2), 12, Fraction(3, 2), Fraction(-1, 2)): KR sum at f=m has 1 term(s) and W_m^2 = S_m exactly
+PASS (exact rational, zeta = 25/16) same identity
+PASS (m,n)=(2,1) e(s,0)^2 = (1-tanh^2K coth^2X)(1-tanh^2K coth^2Y) at 3 points
+PASS (m,n)=(2,1) eta(K) closed form (series coefficient vs closed form, K=0.7 and K=0.2)
+PASS (m,n)=(2,1) lambda_1=(m^2+n^2-1)/6 and eta(0)=lambda_1
+PASS (m,n)=(2,1) e(0,t)=lambda(t): lim_{K->0} e^2 = lambda^2
+PASS (m,n)=(2,1) v(U,H) analytic at U=0: H^0,H^2,H^4 coefficients have no negative powers of U
+PASS (m,n)=(2,1) negative control: B_k-B_k^(0) NOT analytic, coefficient of H^4/U^2 = 4/3
+PASS (m,n)=(2,1) v(s,0) = cothX cothY tanh^2U
+PASS (m,n)=(2,1) beta_1 = cothX cothY, beta_2 = (1/2-m^2-n^2) cc/2 - mn/3
+PASS (m,n)=(2,1) v_t(U^2,0) closed form
+   (section B (2,1): 17.5 s)
+PASS (m,n)=(1,0) e(s,0)^2 = (1-tanh^2K coth^2X)(1-tanh^2K coth^2Y) at 3 points
+PASS (m,n)=(1,0) eta(K) closed form (series coefficient vs closed form, K=0.7 and K=0.2)
+PASS (m,n)=(1,0) lambda_1=(m^2+n^2-1)/6 and eta(0)=lambda_1
+PASS (m,n)=(1,0) v(U,H) analytic at U=0: H^0,H^2,H^4 coefficients have no negative powers of U
+PASS (m,n)=(1,0) v(s,0) = cothX cothY tanh^2U
+PASS (m,n)=(1,0) beta_1 = cothX cothY, beta_2 = (1/2-m^2-n^2) cc/2 - mn/3
+PASS (m,n)=(1,0) v_t(U^2,0) closed form
+   (section B (1,0): 19.4 s)
+PASS (m,n)=(3,-1) e(s,0)^2 = (1-tanh^2K coth^2X)(1-tanh^2K coth^2Y) at 3 points
+PASS (m,n)=(3,-1) eta(K) closed form (series coefficient vs closed form, K=0.7 and K=0.2)
+PASS (m,n)=(3,-1) lambda_1=(m^2+n^2-1)/6 and eta(0)=lambda_1
+PASS (m,n)=(3,-1) e(0,t)=lambda(t): lim_{K->0} e^2 = lambda^2
+PASS (m,n)=(3,-1) v(U,H) analytic at U=0: H^0,H^2,H^4 coefficients have no negative powers of U
+PASS (m,n)=(3,-1) negative control: B_k-B_k^(0) NOT analytic, coefficient of H^4/U^2 = -9/2
+PASS (m,n)=(3,-1) v(s,0) = cothX cothY tanh^2U
+PASS (m,n)=(3,-1) beta_1 = cothX cothY, beta_2 = (1/2-m^2-n^2) cc/2 - mn/3
+PASS (m,n)=(3,-1) v_t(U^2,0) closed form
+   (section B (3,-1): 17.5 s)
+PASS A_k^2/A_k^(0)2 = e^2 (Xi-form) exactly at random points, worst diff 1.07e-50
+PASS coth^2X+coth^2Y-2x cothX cothY = sin^2(theta)+mu^2
+PASS D*cosh^2 q = sin^2(theta) - mu^2 sinh^2 q
+PASS turn: D=0 at tanh^2 q* = sin^2(theta)/Delta0 (so sinh q* = sin(theta)/mu) [exact symbolic cancellation]
+PASS eps=x-b0(q*) = (x cothX-cothY)(cothX-x cothY)/Delta0 [exact symbolic cancellation]
+PASS cos^2 p = C34^2/(C33 C44): p is the dihedral angle at V1V2 of the hyperbolic tetrahedron with edges (2q;Z;X,X;Y,Y) [exact symbolic cancellation]
+PASS sign of the dihedral identity cos p = -C34/sqrt(C33 C44) at two points (diffs [2.62e-141, 5.25e-141])
+PASS q-orthogonality sum_f [2f+1][2c+1] W_f^2 = 1 (-8.02e-51)
+PASS (R): max_k Yhat_k^2 = 16.985 <= [2A][2B]/[2c+1] = 66.891
+PASS seed S_m = polynomial in cosh Z of degree 2m (paired factors), diffs ['2.04e-56', '1.63e-55', '6.12e-56']
+PASS (Z): seed zeros in x lie within O(H) of +-1 and are real, so the seed continues analytically and zero-free to a fixed nbhd of any compact X in (-1,1) (distances 0.363, 0.1906, 0.09767)
+PASS chain from the closed seed + Jacobi rows = Yhat_f from the KR sum, f = 2..12: max rel. diff 1.68e-49
+PASS seed at fixed Weyl lengths -> Wigner value dhat_m as h -> 0, error O(h^2): errors ['3.052e-5', '7.631e-6', '1.908e-6'], ratios 4.0 4.0
+PASS evenness in h of the paired numerator product (symmetric shift multisets): -60.5738873951 vs -60.5738873951
+PASS lambda^2 wbar = 2h/sinh h identically (exact symbolic), series 2 - h^2/3 + ...: 2 - hh**2/3 + O(hh**4)
+ALL PASS

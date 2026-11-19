@@ -1,0 +1,17 @@
+PASS N,a,b,c,m,n=(60, 29, 35, 44, 1, 1) tau=-1 closed-form dev A,B=1e-31,3e-31 hyperbolic 15/15  decay 6/6 max rho/bound=0.51
+PASS N,a,b,c,m,n=(60, 29, 35, 50, 1, 1) tau=-1 closed-form dev A,B=1e-31,3e-31 hyperbolic 21/21  decay 9/9 max rho/bound=0.53
+PASS N,a,b,c,m,n=(100, 48, 60, 70, 2, 1) tau=-1 closed-form dev A,B=2e-31,5e-31 hyperbolic 19/19  decay 8/8 max rho/bound=0.54
+PASS N,a,b,c,m,n=(100, 48, 60, 75, 2, 0) tau=-1 closed-form dev A,B=2e-31,5e-31 hyperbolic 24/24  decay 11/11 max rho/bound=0.61
+PASS N,a,b,c,m,n=(100, 48, 60, 60, 2, 2) tau=-1 closed-form dev A,B=2e-31,5e-31 hyperbolic 12/12  decay 5/5 max rho/bound=0.53
+PASS N,a,b,c,m,n=(100, 48, 60, 80, 0, 0) tau=-1 closed-form dev A,B=2e-31,5e-31 hyperbolic 30/30  decay 14/14 max rho/bound=0.74
+PASS N,a,b,c,m,n=(200, 98, 119, 150, 1, 1) tau=-1 closed-form dev A,B=3e-31,4e-31 hyperbolic 52/52  decay 25/25 max rho/bound=0.68
+PASS N,a,b,c,m,n=(80, 39, 47, 60, 3, -1) tau=-1 closed-form dev A,B=3e-31,3e-31 hyperbolic 19/19  decay 8/8 max rho/bound=0.53
+PASS N,a,b,c,m,n=(300, 148, 180, 230, 1, 1) tau=-1 closed-form dev A,B=3e-31,6e-31 hyperbolic 82/82  decay 40/40 max rho/bound=0.72
+PASS N,a,b,c,m,n=(400, 199, 240, 300, 1, 0) tau=-1 closed-form dev A,B=3e-31,6e-31 hyperbolic 104/104  decay 51/51 max rho/bound=0.77
+PASS N,a,b,c,m,n=(400, 190, 260, 330, 0, 0) tau=-1 closed-form dev A,B=2e-31,6e-31 hyperbolic 106/106  decay 52/52 max rho/bound=0.93
+PASS N,a,b,c,m,n=(600, 290, 350, 102, 1, 1) tau=+1 closed-form dev A,B=3e-31,5e-31 hyperbolic 44/44  decay 21/21 max rho/bound=0.86
+PASS N,a,b,c,m,n=(600, 290, 350, 102, 2, 0) tau=+1 closed-form dev A,B=3e-31,5e-31 hyperbolic 46/46  decay 21/21 max rho/bound=0.86
+PASS N,a,b,c,m,n=(600, 290, 350, 102, 0, 0) tau=+1 closed-form dev A,B=3e-31,5e-31 hyperbolic 44/44  decay 21/21 max rho/bound=0.86
+PASS N,a,b,c,m,n=(1200, 590, 700, 212, 1, 1) tau=+1 closed-form dev A,B=8e-31,5e-31 hyperbolic 54/54  decay 26/26 max rho/bound=0.86
+turn types covered: [-1, 1]; families checked: 15
+PASS (D) negative control: hyperbolicity fails on the oscillatory side in 15 of 15 families

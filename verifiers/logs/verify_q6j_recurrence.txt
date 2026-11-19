@@ -1,0 +1,24 @@
+A. Zeilberger identity (all eight symbols free)
+PASS A1 E(w) = rho_- f3 + rho_0 f2 + rho_+ f1 - (g1 Pol(qw) + g2 Pol(w)) = 0 identically in (q,A,B,C,F,M,N,w)  (3.1 s)
+PASS A2 negative control: diagonal without the s_m s_n/(s_f s_{f+1}) term gives E != 0
+PASS A3 negative control: rho_- with the factor s_{2B+f} -> s_{2B-f-1} gives E != 0
+PASS A4 negative control: p0 -> p0 + 1 gives E != 0
+B. gauge identities
+PASS B1 rho_+^2 = A_{f+1}^2 ([2f+3]/[2f+1]) P(f+1)^2/P(f)^2
+PASS B2 rho_-^2 = A_f^2 ([2f-1]/[2f+1]) P(f-1)^2/P(f)^2
+PASS B3 exact rational arithmetic: shift ratios Rp, Rm equal the q-factorial ratios of P(f)^2 (4 families, mismatches 0)
+C. row f = 0 of the exceptional channel m = n = 0
+PASS C1 (x - B_0) S_0 = rho_+(0) S_1 (S_1/S_0 = [b+c-a][a+c-b]-[a+b+c+2][a+b-c]), exact symbolic in (q,A,B,C)
+PASS C2 negative control: dropping the second term of S_1 breaks the row
+D. exact rational arithmetic on families
+PASS D (a,b,c,m,n)=(14, 12, 17, 2, 1): (R3) exactly at all 25 rows f=2..f_max, S_f=0 outside [m,f_max], rho_+- < 0, S_m, S_f_max != 0: (True, True, True, True)
+PASS D (a,b,c,m,n)=(11, 13, 16, 2, -1): (R3) exactly at all 20 rows f=2..f_max, S_f=0 outside [m,f_max], rho_+- < 0, S_m, S_f_max != 0: (True, True, True, True)
+PASS D (a,b,c,m,n)=(10, 9, 12, 1, 0): (R3) exactly at all 19 rows f=1..f_max, S_f=0 outside [m,f_max], rho_+- < 0, S_m, S_f_max != 0: (True, True, True, True)
+PASS D (a,b,c,m,n)=(9, 9, 11, 3, 3): (R3) exactly at all 19 rows f=3..f_max, S_f=0 outside [m,f_max], rho_+- < 0, S_m, S_f_max != 0: (True, True, True, True)
+PASS D (a,b,c,m,n)=(10, 9, 12, 0, 0): (R3) exactly at all 19 rows f=0..f_max, S_f=0 outside [m,f_max], rho_+- < 0, S_m, S_f_max != 0: (True, True, True, True)
+PASS D (a,b,c,m,n)=(12, 9, 11, 1, 1): (R3) exactly at all 19 rows f=1..f_max, S_f=0 outside [m,f_max], rho_+- < 0, S_m, S_f_max != 0: (True, True, True, True)
+PASS D (a,b,c,m,n)=(Fraction(21, 2), Fraction(19, 2), 12, Fraction(3, 2), Fraction(1, 2)): (R3) exactly at all 20 rows f=3/2..f_max, S_f=0 outside [m,f_max], rho_+- < 0, S_m, S_f_max != 0: (True, True, True, True)
+PASS D (a,b,c,m,n)=(Fraction(21, 2), Fraction(19, 2), 12, Fraction(3, 2), Fraction(-1, 2)): (R3) exactly at all 20 rows f=3/2..f_max, S_f=0 outside [m,f_max], rho_+- < 0, S_m, S_f_max != 0: (True, True, True, True)
+PASS D (a,b,c,m,n)=(8, 13, 14, 2, 0): (R3) exactly at all 15 rows f=2..f_max, S_f=0 outside [m,f_max], rho_+- < 0, S_m, S_f_max != 0: (True, True, True, True)
+PASS D (a,b,c,m,n)=(15, 6, 18, 1, -1): (R3) exactly at all 13 rows f=1..f_max, S_f=0 outside [m,f_max], rho_+- < 0, S_m, S_f_max != 0: (True, True, True, True)
+ALL PASS

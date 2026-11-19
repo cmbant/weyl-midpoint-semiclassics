@@ -1,0 +1,17 @@
+PASS (A) e''(s) = -(1/a-1/b)^2/(4 e^3) <= 0 (a = 4 alpha^2, b = 4 beta^2): e is concave (Hahn: e'' = -1/(4 e^3))
+PASS (A) Psi_+'(0) = e'(0) + 1/(4 alpha beta) = -(alpha-beta)^2/(8 alpha^2 beta^2) <= 0: Psi_+ decreasing; Psi_-' = beta_0 - e' > 0
+PASS (A) Racah B_k (without the mn term) = (sigma_k + sigma_{k+1})/(8 alpha beta) - h^2 (m^2+n^2)/(8 alpha beta), sigma_k = k^2 h^2
+PASS (A) (sigma_k + sigma_{k+1})/2 = q_k^2 + h^2/4
+PASS (A) |r_k - 1| <= (a^2 + b^2 + 1/3)/k^2 for all k > max(|a|,|b|) (grid of offsets, k up to 400)
+
+(B) explicit-constant scan
+PASS (B) both turn types for both chains scanned
+PASS (B) 158 (chain, x, N) cases: intermediate inequality, slope bound and hyperbolicity beyond q_* + C_0 N^-2 hold on all 17594 ranks tested; largest N^2 tau (x_edge - Psi_tau) = 2.299
+
+(C) negative control: e = (1-s)^2, v = s (Psi = (1-s)^2 + s not concave): hyperbolicity fails beyond the turn
+  N=100 tau=+1 q*=0.3357 ranks beyond turn+3 violating hyperbolicity: 6
+  N=200 tau=+1 q*=0.3357 ranks beyond turn+3 violating hyperbolicity: 12
+  N=400 tau=+1 q*=0.3357 ranks beyond turn+3 violating hyperbolicity: 23
+  N=800 tau=+1 q*=0.3357 ranks beyond turn+3 violating hyperbolicity: 46
+PASS (C) non-concave Psi: hyperbolicity beyond the turn FAILS (the proof needs concavity of e and affine b_0)
+ALL CHECKS PASSED

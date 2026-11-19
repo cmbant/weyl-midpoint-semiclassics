@@ -1,0 +1,35 @@
+PASS helper rho_2(0,x) equals the closed form eq:general-rho20 (max diff 2.4e-14)
+
+Hahn (M,sigma)=(2,1): q0=0.4 x0=0.5
+  N= 100 L=  40 x=0.50139639  |x-x[2]|=1.544e-08 N^4*=-1.5439  |x-x[1]|=6.424e-05 N^2*= 0.6424  BS full=1.08e-05 (N^3*=10.814) no-Darboux=2.23e-02 lead=1.92e-02
+  N= 200 L=  80 x=0.50468687  |x-x[2]|=9.791e-10 N^4*=-1.5666  |x-x[1]|=1.602e-05 N^2*= 0.6406  BS full=1.36e-06 (N^3*=10.914) no-Darboux=1.11e-02 lead=9.59e-03
+  N= 400 L= 160 x=0.50626983  |x-x[2]|=6.158e-11 N^4*=-1.5764  |x-x[1]|=3.998e-06 N^2*= 0.6397  BS full=1.71e-07 (N^3*=10.965) no-Darboux=5.57e-03 lead=4.79e-03
+  N= 800 L= 320 x=0.49889775  |x-x[2]|=3.592e-12 N^4*=-1.4712  |x-x[1]|=1.002e-06 N^2*= 0.6414  BS full=2.16e-08 (N^3*=11.051) no-Darboux=2.84e-03 lead=2.45e-03
+  fitted exponents: zeros[2] -4.02  zeros[1] -2.00  BS full -2.99  BS no-Darboux -0.99  BS lead -0.99
+PASS Hahn (M,sigma)=(2,1): second-order pullback zeros O(N^-4) (exponent -4.02)
+PASS Hahn (M,sigma)=(2,1): control, leading pullback zeros only O(N^-2) (exponent -2.00)
+PASS Hahn (M,sigma)=(2,1): Bohr-Sommerfeld with h(Gamma_2 + c_ab/q) holds to O(N^-3) (exponent -2.99)
+PASS Hahn (M,sigma)=(2,1): controls, BS without the Darboux term or without hGamma_2 only O(N^-1)
+
+Hahn (M,sigma)=(0,0): q0=0.4 x0=-0.3
+  N= 100 L=  40 x=-0.33217054  |x-x[2]|=5.399e-09 N^4*= 0.5399  |x-x[1]|=1.684e-05 N^2*=-0.1684  BS full=2.57e-07 (N^3*=0.257) no-Darboux=1.12e-03 lead=3.75e-04
+  N= 200 L=  80 x=-0.31642088  |x-x[2]|=3.031e-10 N^4*= 0.4849  |x-x[1]|=3.952e-06 N^2*=-0.1581  BS full=3.24e-08 (N^3*=0.259) no-Darboux=5.35e-04 lead=1.88e-04
+  N= 400 L= 160 x=-0.30842878  |x-x[2]|=1.794e-11 N^4*= 0.4593  |x-x[1]|=9.559e-07 N^2*=-0.1529  BS full=4.05e-09 (N^3*=0.260) no-Darboux=2.61e-04 lead=9.42e-05
+  N= 800 L= 320 x=-0.30440326  |x-x[2]|=1.091e-12 N^4*= 0.4470  |x-x[1]|=2.350e-07 N^2*=-0.1504  BS full=5.06e-10 (N^3*=0.259) no-Darboux=1.29e-04 lead=4.70e-05
+  fitted exponents: zeros[2] -4.09  zeros[1] -2.05  BS full -3.00  BS no-Darboux -1.04  BS lead -1.00
+PASS Hahn (M,sigma)=(0,0): second-order pullback zeros O(N^-4) (exponent -4.09)
+PASS Hahn (M,sigma)=(0,0): control, leading pullback zeros only O(N^-2) (exponent -2.05)
+PASS Hahn (M,sigma)=(0,0): Bohr-Sommerfeld with h(Gamma_2 + c_ab/q) holds to O(N^-3) (exponent -3.00)
+PASS Hahn (M,sigma)=(0,0): controls, BS without the Darboux term or without hGamma_2 only O(N^-1)
+
+Racah (m,n)=(1,0), (alpha,beta)=(1,5/4): q0=0.4 x0=0.3
+  N= 100 L=  40 x=0.31296567  |x-x[2]|=3.667e-11 N^4*= 0.0037  |x-x[1]|=1.305e-06 N^2*=-0.0131  BS full=6.31e-07 (N^3*=0.631) no-Darboux=2.97e-03 lead=2.91e-03
+  N= 200 L=  80 x=0.31463538  |x-x[2]|=2.265e-12 N^4*= 0.0036  |x-x[1]|=3.248e-07 N^2*=-0.0130  BS full=8.11e-08 (N^3*=0.649) no-Darboux=1.50e-03 lead=1.48e-03
+  N= 400 L= 160 x=0.29701885  |x-x[2]|=1.514e-13 N^4*= 0.0039  |x-x[1]|=8.362e-08 N^2*=-0.0134  BS full=9.41e-09 (N^3*=0.603) no-Darboux=7.06e-04 lead=6.92e-04
+  N= 800 L= 320 x=0.29742548  |x-x[2]|=9.432e-15 N^4*= 0.0039  |x-x[1]|=2.088e-08 N^2*=-0.0134  BS full=1.19e-09 (N^3*=0.607) no-Darboux=3.54e-04 lead=3.47e-04
+  fitted exponents: zeros[2] -3.97  zeros[1] -1.99  BS full -3.03  BS no-Darboux -1.03  BS lead -1.03
+PASS Racah (m,n)=(1,0), (alpha,beta)=(1,5/4): second-order pullback zeros O(N^-4) (exponent -3.97)
+PASS Racah (m,n)=(1,0), (alpha,beta)=(1,5/4): control, leading pullback zeros only O(N^-2) (exponent -1.99)
+PASS Racah (m,n)=(1,0), (alpha,beta)=(1,5/4): Bohr-Sommerfeld with h(Gamma_2 + c_ab/q) holds to O(N^-3) (exponent -3.03)
+PASS Racah (m,n)=(1,0), (alpha,beta)=(1,5/4): controls, BS without the Darboux term or without hGamma_2 only O(N^-1)
+ALL CHECKS PASSED

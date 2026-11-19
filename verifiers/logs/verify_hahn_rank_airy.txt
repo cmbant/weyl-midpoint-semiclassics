@@ -1,0 +1,32 @@
+PASS rank Langer coordinate zeta_tau(q;x) == spatial xi_tau(q,x) (max diff 5.05e-31)
+PASS S(q_*,x) = pi(1-x)/2 (x>0), pi q_* - pi(1+x)/2 (x<0)
+PASS K_+ = nu_+ + p_+ and K_- = L - nu_- + (p_+-p_-)/2 are integers at physical nodes
+PASS eq:PhiDef tends to +d^L_{M sigma} for half-integer L; without (-1)^{2L} it tends to -d
+
+rank-direction Airy collapse at fixed node: channel edge N x npts max|bracket err| N*err
+  (0, 0) upper 250 0.596 15 0.0001078 0.02696
+  (0, 0) upper 500 0.598 19 4.472e-5 0.02236
+  (0, 0) upper 1000 0.599 25 1.95e-5 0.0195
+  (0, 0) lower 250 -0.596 15 0.0001078 0.02696
+  (0, 0) lower 500 -0.598 19 4.472e-5 0.02236
+  (0, 0) lower 1000 -0.599 25 1.95e-5 0.0195
+  (2, 1) upper 250 0.6 15 0.0004729 0.1182
+  (2, 1) upper 500 0.6 20 0.0001916 0.09579
+  (2, 1) upper 1000 0.6 24 7.123e-5 0.07123
+  (2, 1) lower 250 -0.6 15 0.002468 0.6171
+  (2, 1) lower 500 -0.6 20 0.0009842 0.4921
+  (2, 1) lower 1000 -0.6 24 0.0003629 0.3629
+  (1/2, 1/2) upper 501/2 0.596806 15 0.0001636 0.04098
+  (1/2, 1/2) upper 1001/2 0.598402 19 6.88e-5 0.03443
+  (1/2, 1/2) upper 2001/2 0.5992 25 3.054e-5 0.03056
+  (1/2, 1/2) lower 501/2 -0.600798 15 0.0001699 0.04256
+  (1/2, 1/2) lower 1001/2 -0.6004 19 6.784e-5 0.03395
+  (1/2, 1/2) lower 2001/2 -0.6002 25 2.889e-5 0.0289
+  (3/2, -1/2) upper 501/2 0.596806 15 0.0008615 0.2158
+  (3/2, -1/2) upper 1001/2 0.598402 19 0.0003564 0.1784
+  (3/2, -1/2) upper 2001/2 0.5992 25 0.0001565 0.1565
+  (3/2, -1/2) lower 501/2 -0.600798 15 0.0001008 0.02526
+  (3/2, -1/2) lower 1001/2 -0.6004 19 4.315e-5 0.02159
+  (3/2, -1/2) lower 2001/2 -0.6002 25 1.92e-5 0.01921
+PASS exact Hahn rank sequences collapse on the normalized Ai branch, error decreasing with N
+ALL CHECKS PASSED

@@ -1,0 +1,1659 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=24mm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs,array}
+\usepackage{microtype}
+\emergencystretch=5em
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!48!black,citecolor=blue!48!black,urlcolor=blue!48!black]{hyperref}
+\usepackage{enumitem}
+\makeatletter
+\makeatother
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\threej}[6]{\begin{pmatrix}#1&#2&#3\\#4&#5&#6\end{pmatrix}}
+\newcommand{\sixj}[6]{\begin{Bmatrix}#1&#2&#3\\#4&#5&#6\end{Bmatrix}}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\ii}{\mathrm{i}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\heff}{\hbar_{\mathrm{eff}}}
+\newcommand{\atanTwo}{\mathrm{atan2}}
+\let\oldunderscore\_
+\renewcommand{\_}{\oldunderscore\penalty0\hskip0pt\relax}
+\let\oldtexttt\texttt
+\renewcommand{\texttt}[1]{\oldtexttt{\hyphenchar\font=`\-\relax #1}}
+
+\hypersetup{
+  pdfauthor={Antony Lewis},
+  pdftitle={Joint rank-position uniformity for Weyl-midpoint Wigner 3j symbols},
+  pdfsubject={Technical supplement to Semiclassical Asymptotics of Wigner 3j and 6j Symbols at Growing Rank}
+}
+\title{Joint Rank--Position Uniformity for Weyl--Midpoint\\
+Wigner $3j$ Symbols\\[3pt]
+{\large A Technical Supplement with Racah $6j$ Extensions}}
+\author{\href{https://orcid.org/0000-0001-5927-6667}{Antony Lewis}\\[2pt]
+{\small\normalfont Department of Physics \& Astronomy, University of Sussex, Brighton BN1 9QH, UK}}
+\date{}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Our earlier fixed-rank paper established asymptotics for Weyl-midpoint Wigner $3j$ and one-small $6j$ symbols uniformly up to the physical
+  lattice boundaries, while the growing-rank paper that this supplement accompanies (the main paper) treats growing rank on compact interior position sets. We bridge these regimes for the
+  Hahn/$3j$ family. An explicit edge factor, a covariant Wigner-$d$ derivative, and an algebraic second-eikonal correction define
+  a single second-order pullback. For every fixed turning margin $\delta\in(0,1)$, the naturally normalized error satisfies
+\begin{equation}
+ D(q_L,x)^{1/4}\sqrt{2L+1}\,
+ \bigl|\Phi_L^{M,\sigma}-\Phi_L^{\mathrm{U2,cov}}\bigr|
+ \le C_{\delta,M,\sigma}\,[N(1-|x|)]^{-2}
+\end{equation}
+uniformly at every physical position and every admissible rank with $q_L/\sqrt{1-x^2}\le\sqrt{1-\delta}$. The proof combines a
+  Bessel-toe estimate, an edge-uniform Darboux residual, and discrete Jost propagation. A spectral Laguerre limit describes the
+  regime where rank and hard-edge scales meet and identifies the sharpness of the approximation outside isolated spectral values.
+
+For the centered Racah/$6j$ family we establish algebraic actions, fixed-rank second-order matching, an isosceles improvement,
+  and a tetrahedral-duality corner approximation. The analogous global growing-rank $6j$ bound is stated as a \emph{conjecture},
+  not a theorem. This supplement builds on both papers; neither paper depends on its proofs.
+\end{abstract}
+
+\setcounter{tocdepth}{1}
+\tableofcontents
+
+\section{Introduction and scope}
+\label{sec:intro}
+
+\subsection{Complementary edge and rank limits}
+For bounded-width $SU(2)$ recoupling kernels centered at their unique affine Regge/Weyl midpoints, our fixed-rank paper~\cite{LewisFixedRank} and the growing-rank paper to which this is a supplement (the main paper~\cite{LewisGrowingRank}) establish two complementary asymptotic theorems:
+\begin{enumerate}[leftmargin=2em,itemsep=2pt]
+\item \emph{Fixed rank, uniform to both hard edges~\cite{LewisFixedRank}.} At fixed small rank $L$ (for $3j$) or $f$ (for $6j$),
+  multiplying $d^k_{ab}(\arccos x)$ by an explicit product of centered Pochhammer edge factors $E$ removes the
+  discrete-versus-continuum orthogonality weight mismatch at $x=\pm 1$. Dividing by $E$ and by the endpoint envelope
+  $W_{ab}(x)=((1-x)/2)^{p_+/2}((1+x)/2)^{p_-/2}$ leaves a polynomial in $x$ that is holomorphic in the inverse square large scale
+  $h^2$, giving uniform leading $O(h^2)$ and next-to-leading $O(h^4)$ approximations across the whole physical lattice up to the
+  outermost boundary points.
+\item \emph{Growing rank below the rank turn, fixed interior $x$~\cite{LewisGrowingRank}.} On any compact interior interval
+  $x\in[-1+\eta,1-\eta]$ ($\eta>0$), pulling back $d^k_{ab}(\Theta)$ along the exact Hamilton--Jacobi angle
+  $\Theta(q,x)=S(q,x)/q$ with metaplectic prefactor $W_q(x)=(\sin^2\Theta/D)^{1/4}$ and nonlinear second-order angle shift
+  $\Theta^{[2]}=\Theta+h^2\Gamma_2/q$ yields an $O(h^2)$ envelope-weighted approximation uniform from the minimal rank
+  $k_0=\max(|a|,|b|)$ up to any fixed turning ratio $\nu=q/q_*(x)\le\sqrt{1-\delta}$ ($\delta\in(0,1)$).
+\end{enumerate}
+
+Neither result implies the other. When $x\to\pm 1$ at scale $1-|x|\asymp h$ (bounded lattice index $n=O(1)$ from the boundary),
+  omitting $E$ incurs an $O(1)$ relative error even at minimal rank. Conversely, simply multiplying the main paper's second-order
+  formula $W_q^{[2]}d^k_{ab}(\Theta^{[2]})$ by $E$ fails at $O(1)$ near the hard edges: as $x\to 1$,
+  $\Theta(q,x)\asymp\sqrt{1-x}$ vanishes while $h^2\Gamma_2/q\asymp h^2(1-x)^{-3/2}$, so at $1-x\asymp h$ the shift
+  $h^2\Gamma_2/q$ is comparable to $\Theta$ itself and perturbs the singular envelope $(\sin\frac{\Theta}{2})^{p_+}$ inside
+  $d^k_{ab}$ by a non-vanishing $O(1)$ factor (Remark~\ref{rem:nonlinear-shift-failure}).
+
+In this supplement we construct a unified, quadrature-free approximation $\Phi^{\mathrm{U2,cov}}$ based on a covariant angular
+  derivative basis $(d^k_{ab},\cD_\Theta d^k_{ab})$ and closed-form algebraic second eikonals, prove its joint rank--position
+  uniformity for the Hahn/$3j$ chain across the full oscillatory domain below the rank turning curve, prove the exact spectral
+  Laguerre corner limit establishing sharpness of the domain, and extend the algebraic, fixed-rank, super-convergent isosceles,
+  and tetrahedral-corner results to the centered Racah/$6j$ chain.
+
+The central estimate of this supplement is Theorem~\ref{thm:joint-3j}. Its rank--position domain is the entire physical Hahn lattice under the fixed
+  turning-margin condition $\nu_L(x)\le\sqrt{1-\delta}$, and its error is an \emph{absolute} natural-gauge bound: no relative
+  estimate is asserted at a zero of the Wigner symbol. The Bessel-toe and Laguerre limits clarify why both the edge factor and
+  the restriction on the simultaneous rank--edge limit matter. For Racah, the proved results concern algebraic and fixed-rank
+  structure and special corners; Conjecture~\ref{conj:joint-6j} states the unresolved growing-rank counterpart.
+
+Among earlier rigorous results, Lin and Wong~\cite{LinWong2013} established global Hahn-polynomial asymptotics when the degree-to-lattice ratio tends to a fixed
+  value in $(0,1)$. Wang and Wong analysed Racah polynomials with varying parameters~\cite{WangWong2016} and with fixed
+  parameters~\cite{WangWong2018}. These results address related regimes and are not superseded by the estimates below. Our
+  formulation concerns the physically normalized Weyl-midpoint symbols, includes explicit discrete edge factors, and controls
+  ranks all the way from fixed rank to a prescribed distance below the rank turning curve. The difference in parameter domains,
+  normalizations and error metrics should be borne in mind when comparing these results.
+
+\subsection{Inputs from the fixed-rank and growing-rank papers}
+The proofs below use the two companion papers as established inputs. The fixed-rank paper~\cite{LewisFixedRank} supplies the exact normalized Hahn
+  and Racah recurrences, their minimal-rank seeds and Jacobi representations, centered edge factors, and fixed-rank edge-uniform
+  expansions through second order. The main paper~\cite{LewisGrowingRank} supplies the midpoint self-adjoint gauges, Hamilton--Jacobi and
+  second-eikonal constructions, fixed-rank contact, the interior second-order pullback, and the two-carrier Darboux
+  corner-matching lemma. Equation, theorem and lemma numbers quoted from Refs.~\cite{LewisFixedRank,LewisGrowingRank} refer, respectively, to the published fixed-rank paper and the accompanying growing-rank manuscript.
+
+Only selected algebraic identities can be checked exactly by symbolic computation. Finite-precision symbol comparisons and
+  multi-scale scans are numerical evidence, not proofs of universal asymptotic bounds. The analytic remainder estimates are
+  established in the arguments below. Appendix~\ref{sec:numerics} records the numerical checks and negative controls; the programs and their captured outputs
+  will be available in the companion GitHub repository at release (see \emph{Reproducibility}).
+
+\section{Geometry and joint edge--rank scaling}
+\label{sec:kinematics}
+
+\subsection{Weyl-midpoint coordinates and universal edge factors}
+For the Wigner $3j$ symbol $\threej{L}{j_-}{j_+}{M}{m_-}{m_+}$ with fixed offsets $M=-(m_-+m_+)$ and $\sigma=j_+-j_-$, set
+\begin{equation}
+  N := j_-+j_++1 =: h^{-1},\qquad x := \frac{2\mu}{N}\in(-1,1)\quad\Bigl(\mu=\frac{m_--m_+}{2}\Bigr),\qquad q_L := \Bigl(L+\frac12\Bigr)h = \kappa_L h,
+  \label{eq:3j-coords}
+\end{equation}
+with minimal rank $L_0:=\max(|M|,|\sigma|)$, endpoint exponents $p_+:=|M-\sigma|$ and $p_-:=|M+\sigma|$ ($p_++p_-=2L_0$),
+  physical magnetic grid $\cX_N=\{1-\frac{p_++1+2n_+}{N}:0\le n_+\le N-L_0-1\}$, and lattice edge distances
+\begin{equation}
+  u_\pm(x) := N(1\mp x) = p_\pm + 1 + 2n_\pm \ge 1,\qquad u(x) := \min\bigl(u_+(x),u_-(x)\bigr) = N(1-|x|).
+  \label{eq:3j-u}
+\end{equation}
+The rank turning curve, normalized turning ratio, and semiclassical discriminant are
+\begin{equation}
+  \begin{gathered}
+  q_*(x) := \sqrt{1-x^2},\qquad \nu_L(x) := \frac{q_L}{q_*(x)} = \frac{L+\tfrac12}{N\sqrt{1-x^2}},\\
+  D(q,x) := 1-x^2-q^2 = (1-x^2)(1-\nu^2).
+  \end{gathered}
+  \label{eq:3j-turn}
+\end{equation}
+With $R_p(X):=1$ for $p\in\{0,1\}$ and $R_p(X):=\prod_{k=0}^{p-1}\bigl(1+\frac{-(p-1)/2+k}{X}\bigr)^{1/2}$ for integer $p\ge 2$,
+  the edge factor and continuum endpoint envelope of Ref.~\cite{LewisFixedRank} are
+\begin{equation}
+  E_N(x) := R_{p_+}\!\left(\frac{N(1-x)}{2}\right) R_{p_-}\!\left(\frac{N(1+x)}{2}\right),\qquad
+  W_{3j}(x) := \left(\frac{1-x}{2}\right)^{p_+/2}\left(\frac{1+x}{2}\right)^{p_-/2}.
+  \label{eq:3j-edge-factor}
+\end{equation}
+
+For the one-small $6j$ family $\sixj{a}{b}{c}{b+m}{a+n}{f}$ with fixed $(m,n)$, put $f_0:=\max(|m|,|n|)$, $p_{\min}:=|m-n|$,
+  $p_{\max}:=|m+n|$, and centered lengths $A:=a+\frac{n+1}{2}$, $B:=b+\frac{m+1}{2}$, $C:=c+\frac12$, $S:=A+B=:h^{-1}$. Write
+  $\alpha:=A/S=\frac{1+\delta}{2}$, $\beta:=B/S=\frac{1-\delta}{2}$ ($\delta=\alpha-\beta\in(-1,1)$),
+  $\gamma:=C/S=\sqrt{\alpha^2+\beta^2-2\alpha\beta x}$ with $x:=\frac{A^2+B^2-C^2}{2AB}\in(-1,1)$, and
+  $\rho=\rho_f:=(f+\frac12)/S$. On the physical $c$-lattice $C\in\{C_{\min}+r:r\in\mathbb{Z}_{\ge 0},\;C\le C_{\max}\}$ with
+  $C_{\min}=|A-B|+\frac{p_{\min}+1}{2}$ and $C_{\max}=A+B-\frac{p_{\max}+1}{2}$, the Racah turning curve, discriminant, lattice
+  edge distance, and edge factor are
+\begin{align}
+  \rho_*(x) &:= \frac{2\alpha\beta\sqrt{1-x^2}}{\gamma},\qquad \nu_6(\rho,x) := \frac{\rho}{\rho_*(x)},\notag\\
+  D_6(\rho,x) &:= (1-x^2)-\frac{\gamma^2\rho^2}{4\alpha^2\beta^2} = (1-x^2)(1-\nu_6^2), \label{eq:6j-turn}\\
+  u_6(A,B,C) &:= \min\bigl(C-|A-B|,\;A+B-C\bigr) \notag\\
+  &\phantom{:}= \min\!\left(\frac{p_{\min}+1}{2}+r,\;\frac{p_{\max}+1}{2}+r'\right) \ge \frac12, \label{eq:6j-u}\\
+  E_{A,B}(C) &:= R_{p_{\min}}(A-B+C)\,R_{p_{\min}}(-A+B+C) \notag\\
+  &\phantom{:=}\;\times R_{p_{\max}}(A+B-C)\,R_{p_{\max}}(A+B+C), \label{eq:6j-edge-factor}
+\end{align}
+with continuum envelope $W_{6j}(x):=((1-x)/2)^{p_{\min}/2}((1+x)/2)^{p_{\max}/2}$.
+
+The normalized symbols are those of Ref.~\cite[Eqs.~(17) and~(115)]{LewisFixedRank}:
+\begin{gather}
+  \Phi_L^{M,\sigma}(x;h):=(-1)^{2L+j_++m_+}\sqrt N\,\threej{L}{j_-}{j_+}{M}{m_-}{m_+},\nonumber\\
+  \Phi_f(A,B,C):=(-1)^{a+b+c+f+n}\,2\sqrt{AB}\,\sixj{a}{b}{c}{b+m}{a+n}{f},
+  \label{eq:Phi-defs}
+\end{gather}
+where $L,M,\sigma$ (respectively $f,m,n$) are integers or all half-integers with $L\pm M,L\pm\sigma,M\pm\sigma$ (respectively $f\pm m,f\pm n$) integers, $L-L_0\in\mathbb Z_{\ge0}$ (respectively $f-f_0\in\mathbb Z_{\ge0}$), and $j_\pm,m_\pm,a,b,c$ are admissible spins.  The signs are those for which the limit is the Wigner function $d^L_{M\sigma}$ (respectively $d^f_{nm}$); no other property of them is used below; the main paper's $6j$ kernel is $\Psi_f=(-1)^{m-n}\Phi_f\to d^f_{mn}$.
+
+\subsection{Quadrature-free actions and triangle-perimeter turning laws}
+Let $\omega_3(r,x):=\arccos(x/\sqrt{1-r^2})$ and $\omega_6(r,x):=\arccos\bigl((x-\frac{r^2}{4\alpha\beta})/\eta(r)\bigr)$ with
+  $\eta(r):=\sqrt{(1-\frac{r^2}{4\alpha^2})(1-\frac{r^2}{4\beta^2})}$ denote the local rank momenta of the main paper. Both principal
+  actions $S(q,x)=\int_0^q\omega_3(r,x)\,\dd r$ and $S_6(\rho,x)=\int_0^\rho\omega_6(r,x)\,\dd r$ evaluate in elementary
+  $\atanTwo$ form, and their turning-point values equal $\pi$ times the discrete lattice boundary distance.
+
+\begin{proposition}[Quadrature-free actions and perimeter turning laws]
+\label{prop:perimeter-laws}
+\begin{enumerate}[label=(\alph*),leftmargin=2em,itemsep=3pt]
+\item \textbf{Hahn/$3j$ chain.} For all $x\in(-1,1)$ and all $q$ with $0\le q\le q_*(x)=\sqrt{1-x^2}$ (at $(q,x)=(1,0)$ by continuity, $S(1,0)=\pi/2$),
+\begin{equation}
+  \begin{split}
+  S(q,x) &= q\,\arccos\!\left(\frac{x}{\sqrt{1-q^2}}\right) - x\,\arcsin\!\left(\frac{q}{\sqrt{1-x^2}}\right)\\
+  &\quad + \atanTwo\!\bigl(xq,\sqrt{D(q,x)}\bigr),
+  \end{split}
+  \label{eq:S3-closed}
+\end{equation}
+and $\Theta_q(x):=S(q,x)/q$ ($\Theta_0(x):=\arccos x$) satisfies $\Theta_q(-x)=\pi-\Theta_q(x)$. At $q=q_*(x)$,
+\begin{equation}
+\begin{aligned}
+  N\,S(q_*(x),x) &= \frac{\pi}{2}\,u_+(x) = \pi\!\left(\frac{p_++1}{2}+n_+\right) && (x\ge 0),\\
+  N\bigl(\pi q_*(x)-S(q_*(x),x)\bigr) &= \frac{\pi}{2}\,u_-(x) = \pi\!\left(\frac{p_-+1}{2}+n_-\right) && (x\le 0).
+\end{aligned}
+  \label{eq:3j-perimeter-law}
+\end{equation}
+\item \textbf{Centered Racah/$6j$ chain.} For all $\alpha,\beta>0$ with $\alpha+\beta=1$, $x\in(-1,1)$, and
+  $0\le\rho\le\rho_*(x)$, put $\phi:=\arcsin(\rho/\rho_*(x))\in[0,\frac{\pi}{2}]$. Then
+  $\omega_6(\rho,x)=\atanTwo\bigl(\sqrt{1-x^2}\cos\phi,\;x-\frac{\rho^2}{4\alpha\beta}\bigr)$ and
+\begin{equation}
+  \begin{split}
+  S_6(\rho,x) &= \rho\,\omega_6(\rho,x) + 2\gamma\phi - 2\alpha\,\atanTwo\bigl((\alpha-\beta x)\sin\phi,\;\gamma\cos\phi\bigr)\\
+  &\quad - 2\beta\,\atanTwo\bigl((\beta-\alpha x)\sin\phi,\;\gamma\cos\phi\bigr).
+  \end{split}
+  \label{eq:S6-closed}
+\end{equation}
+At the turning locus $\rho=\rho_*(x)$ ($\phi=\frac{\pi}{2}$),
+\begin{align}
+  S\,S_6(\rho_*(x),x) &= \pi\bigl(C-|A-B|\bigr) && \text{whenever } |A^2-B^2|>C^2 \text{ (obtuse base)}, \label{eq:6j-obtuse-law}\\
+  S\bigl(\pi\rho_*(x)-S_6(\rho_*(x),x)\bigr) &= \pi\bigl(A+B-C\bigr) && \text{whenever } C^2>|A^2-B^2| \text{ (acute base)}. \label{eq:6j-acute-law}
+\end{align}
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+For~(a), $S(0,x)=0$, and differentiating \eqref{eq:S3-closed} for $0<q<q_*(x)$ gives
+\begin{equation}
+  \partial_q S(q,x) = \arccos\!\left(\frac{x}{\sqrt{1-q^2}}\right) - \frac{q^2 x}{(1-q^2)\sqrt{D}} - \frac{x}{\sqrt{D}} +
+    \frac{x\sqrt{D}+x q^2/\sqrt{D}}{D+x^2q^2} = \arccos\!\left(\frac{x}{\sqrt{1-q^2}}\right),
+\end{equation}
+since $D+x^2q^2=(1-q^2)(1-x^2)$ reduces the last term to $\frac{x}{(1-q^2)\sqrt{D}}$ and $-\frac{q^2
+  x}{(1-q^2)\sqrt{D}}-\frac{x}{\sqrt{D}}+\frac{x}{(1-q^2)\sqrt{D}}=0$. Evaluating \eqref{eq:S3-closed} at $q=q_*(x)$ ($D=0$)
+  gives $S(q_*,x)=-\frac{\pi}{2}x+\frac{\pi}{2}=\frac{\pi}{2}(1-x)$ for $x>0$ and $S(q_*,x)=\pi
+  q_*-\frac{\pi}{2}x-\frac{\pi}{2}=\pi q_*-\frac{\pi}{2}(1+x)$ for $x<0$; continuity gives $x=0$.
+
+For~(b), $S_6(0,x)=0$, and since $\sin\omega_6(\rho,x)=\sqrt{D_6(\rho,x)}/\eta(\rho)=\sqrt{1-x^2}\cos\phi/\eta(\rho)$ with
+  $\eta(\rho)>0$, the $\atanTwo$ expression for $\omega_6(\rho,x)$ is exact. Using $\gamma^2-(\alpha-\beta x)^2=\beta^2(1-x^2)$
+  and $\rho_*^2=4\alpha^2\beta^2(1-x^2)/\gamma^2$, the denominators of the $\atanTwo$ derivatives simplify algebraically:
+\begin{equation}
+  \gamma^2\cos^2\phi + (\alpha-\beta x)^2\sin^2\phi = \gamma^2 - \beta^2(1-x^2)\frac{\rho^2}{\rho_*^2} = \gamma^2\!\left(1-\frac{\rho^2}{4\alpha^2}\right),
+\end{equation}
+and likewise $\gamma^2\cos^2\phi+(\beta-\alpha x)^2\sin^2\phi=\gamma^2(1-\frac{\rho^2}{4\beta^2})$. Since
+  $\phi'(\rho)=(\rho_*^2-\rho^2)^{-1/2}=\frac{\gamma}{2\alpha\beta\sqrt{D_6}}$, differentiating the last three terms of
+  \eqref{eq:S6-closed} yields
+\begin{equation}
+  \frac{\gamma}{\alpha\beta\sqrt{D_6}}\left[\gamma - \frac{\alpha(\alpha-\beta x)}{\gamma(1-\frac{\rho^2}{4\alpha^2})} -
+    \frac{\beta(\beta-\alpha x)}{\gamma(1-\frac{\rho^2}{4\beta^2})}\right]
+  = \frac{\rho^2\bigl[(\alpha^2+\beta^2)x-2\alpha\beta+\frac{\gamma^2\rho^2}{4\alpha\beta}\bigr]}{4\alpha^2\beta^2\eta(\rho)^2\sqrt{D_6}},
+\end{equation}
+using $\gamma^2-\alpha(\alpha-\beta x)-\beta(\beta-\alpha x)=0$. Differentiating
+  $\cos\omega_6=(x-\frac{\rho^2}{4\alpha\beta})/\eta(\rho)$ directly gives $\rho\,\omega_6'(\rho)$ equal to the negative of this
+  exact rational expression, so $\partial_\rho S_6(\rho,x)=\omega_6(\rho,x)$.
+
+At $\rho=\rho_*(x)$ ($\phi=\frac{\pi}{2}$, $\cos\phi=0$, $\sin\phi=1$), $x-\frac{\rho_*^2}{4\alpha\beta}=-\frac{(\alpha-\beta
+  x)(\beta-\alpha x)}{\gamma^2}$, where $\alpha-\beta x=\frac{\alpha^2-\beta^2+\gamma^2}{2\alpha}$ and $\beta-\alpha
+  x=\frac{\beta^2-\alpha^2+\gamma^2}{2\beta}$. When $|A^2-B^2|>C^2$, assuming $A>B$ by symmetry gives $\alpha-\beta x>0$ and
+  $\beta-\alpha x<0$, so $\omega_6(\rho_*,x)=0$ and the $\atanTwo$ values are $+\frac{\pi}{2}$ and $-\frac{\pi}{2}$, yielding
+  $S_6(\rho_*,x)=\pi(\gamma-\alpha+\beta)=\pi(C-|A-B|)/S$. When $C^2>|A^2-B^2|$, both $\alpha-\beta x>0$ and $\beta-\alpha x>0$,
+  so $\omega_6(\rho_*,x)=\pi$ and both $\atanTwo$ values are $+\frac{\pi}{2}$, yielding
+  $\pi\rho_*-S_6(\rho_*,x)=\pi(\alpha+\beta-\gamma)=\pi(A+B-C)/S$.
+\end{proof}
+
+\subsection{Regimes in the joint edge--rank limit}
+Proposition~\ref{prop:perimeter-laws} resolves the geometry of the classical Bessel scaling $(1-|x|)\kappa_L^2=O(1)$:
+\begin{itemize}[leftmargin=2em,itemsep=2pt]
+\item \emph{Hilb/Bessel toe} ($u(x)\to\infty$ and $\kappa_L\sqrt{1-x^2}=O(1)$). Since
+  $\nu_L(x)\asymp\frac{\kappa_L\sqrt{1-x^2}}{u(x)}$, holding $\kappa_L\sqrt{1-x^2}=O(1)$ with $u(x)\to\infty$ (e.g.\ $1-x\asymp
+  N^{-2/3}$, $L\asymp N^{1/3}$) forces $\nu_L(x)\to 0$. Here $\Theta_q(x)=\arccos x\,(1+\frac16\nu_L^2+O(\nu_L^4))$ places
+  $d^L_{M\sigma}(\Theta_q)$ in its Bessel transition while the turning point $q_*(x)$ remains separated by large action
+  $\frac{\pi}{2}u(x)\to\infty$.
+\item \emph{Growing-rank edge corridor} ($u(x)\to\infty$ and $\nu_L(x)\in(0,\sqrt{1-\delta}]$). Here $L\asymp\nu_L\sqrt{u(x)N}$
+  grows macroscopically with the local turning rank, $\kappa_L\Theta_q(x)\asymp u(x)\nu_L\to\infty$ is in the oscillatory Wigner
+  bulk, and the effective Planck parameter of the rank WKB problem is $\heff:=(N(1-x^2))^{-1}\asymp u(x)^{-1}\to 0$.
+\item \emph{Coalescent spectral Laguerre corner} ($u(x)=O(1)$ and $\nu_L(x)\in(0,1)$ fixed). At fixed lattice index
+  $n_\pm=O(1)$, $1-|x|=\frac{p_\pm+1+2n_\pm}{N}$, so $(1-|x|)\kappa_L^2=O(1)$ means $L\asymp\sqrt{N}$, which is \emph{already} a
+  fixed fraction $\nu_L\in(0,1)$ of the turning rank $N\sqrt{1-x^2}\asymp\sqrt{2u_\pm N}$. By \eqref{eq:3j-perimeter-law}, the
+  action between $q=0$ and $q_*(x)$ is fixed at $\frac{\pi}{2}u_\pm(x)=O(1)$, so $q=0$ and $q_*(x)$ coalesce and Wigner-$d$
+  ceases to be valid.
+\end{itemize}
+
+\section{Spectral Laguerre corner limit and sharpness}
+\label{sec:laguerre-corner}
+
+\begin{theorem}[Normalized spectral Laguerre corner limit]
+\label{thm:laguerre-corner}
+Fix $(M,\sigma)$, an integer $n\ge 0$, and $0<\lambda_0<\Lambda<\infty$. Put $p_+:=|M-\sigma|$, $p_-:=|M+\sigma|$,
+  $\epsilon(M,\sigma):=(-1)^{M-\sigma}$ if $\sigma\le M$ and $1$ if $\sigma>M$, and $x_n^+:=1-\frac{p_++1+2n}{N}\in\cX_N$. As
+  $N\to\infty$, for all $L\ge L_0$ with $\lambda_N:=\frac{L(L+1)}{N}\le\Lambda$,
+\begin{equation}
+  \Phi_L^{M,\sigma}(x_n^+;N^{-1}) = \epsilon(M,\sigma)\sqrt{\frac{n!}{(n+p_+)!}}\,\lambda_N^{p_+/2}\mathrm{e}^{-\lambda_N/2}L_n^{(p_+)}(\lambda_N) + \cE_{N,L}^{(n)},
+  \label{eq:laguerre-limit-plus}
+\end{equation}
+where $|\cE_{N,L}^{(n)}|\le C_{M,\sigma,n,\lambda_0,\Lambda}N^{-1}$ uniformly for $\lambda_N\in[\lambda_0,\Lambda]$ (and
+  $|\cE_{N,L}^{(n)}|\le C'_{M,\sigma,n,\Lambda}N^{-1}$ on all of $[0,\Lambda]$ when $p_+\ne1$, or
+  $C'_{M,\sigma,n,\Lambda}N^{-1/2}$ on $[0,\Lambda]$ when $p_+=1$). At $x_n^-:=-1+\frac{p_-+1+2n}{N}$, the same estimate
+  holds with $(p_+,\epsilon(M,\sigma))$ replaced by $(p_-,(-1)^{L-\sigma}\epsilon(-M,\sigma))$.
+\end{theorem}
+
+\begin{proof}
+By the exact Hahn representation~\cite[Eq.~(52)]{LewisFixedRank}, putting $D=N-L_0-1$ and $d=L-L_0$,
+\begin{equation}
+  \Phi_L^{M,\sigma}(x_n^+;N^{-1}) = \epsilon(M,\sigma)\sqrt{\frac{N\,w_H(n)}{(2L+1)\,h_{H,d}}}\,Q_d(n;p_+,p_-,D),
+  \label{eq:hahn-kernel-recall}
+\end{equation}
+where $w_H(n)=\binom{n+p_+}{p_+}\binom{D-n+p_-}{p_-}$,
+  $Q_d(n;p_+,p_-,D)=\sum_{k=0}^{\min(d,n)}\frac{(-d)_k(d+2L_0+1)_k(-n)_k}{(p_++1)_k(-D)_k\,k!}$, and by the standard Hahn
+  orthogonality norm (\cite{KLS2010}, \S9.5.2),
+\begin{equation}
+  \frac{N\,w_H(n)}{(2L+1)\,h_{H,d}} = \frac{N\,(p_++1)_n\,(D-n+p_-)!\,(D!)^2\,(d+p_+)!\,(d+2L_0)!}{n!\,(D-n)!\,(N+L)!\,(N-L-1)!\,(d+p_-)!\,d!\,p_+!}.
+\end{equation}
+We expand each factor for $L\ge L_0$ with $\lambda_N=L(L+1)/N\le\Lambda$:
+\begin{enumerate}[leftmargin=2em,itemsep=2pt]
+\item Since $(-n)_k=0$ for $k>n$, the sum in $Q_d(n;p_+,p_-,D)$ has at most $n+1$ terms. Pairing factors in
+  $(-d)_k(d+2L_0+1)_k=\prod_{j=0}^{k-1}[-(L-L_0-j)(L+L_0+1+j)]=\prod_{j=0}^{k-1}[-N\lambda_N+(L_0+j)(L_0+1+j)]$ eliminates all
+  odd powers of $L$, while $(-D)_k=(-N)^k(1+O_{L_0,n}(N^{-1}))$. Thus
+  $\frac{(-d)_k(d+2L_0+1)_k}{(-D)_k}=\lambda_N^k+O_{L_0,n,\Lambda}(N^{-1})$ for every $0\le k\le n$, giving
+\begin{equation}
+  \begin{aligned}
+  Q_d(n;p_+,p_-,D) &= \sum_{k=0}^n\frac{(-n)_k}{(p_++1)_k\,k!}\lambda_N^k + O_{M,\sigma,n,\Lambda}(N^{-1})\\
+  &= \frac{n!\,p_+!}{(n+p_+)!}L_n^{(p_+)}(\lambda_N) + O_{M,\sigma,n,\Lambda}(N^{-1}).
+  \end{aligned}
+\end{equation}
+\item Since $p_++p_-=2L_0$, pairing the $r$-th factor of $(d+p_+)!/d!$ with the $(p_++1-r)$-th factor of $(d+2L_0)!/(d+p_-)!$ gives
+\begin{equation}
+  \frac{(d+p_+)!\,(d+2L_0)!}{(d+p_-)!\,d!} = \prod_{r=1}^{p_+}\bigl[(L-L_0+r)(L+L_0+1-r)\bigr] = \prod_{r=1}^{p_+}\bigl[N\lambda_N-(L_0-r)(L_0+1-r)\bigr].
+\end{equation}
+Dividing by $N^{p_+}$ and taking the square root yields $\lambda_N^{p_+/2}+O_{L_0,\lambda_0,\Lambda}(N^{-1})$ on
+  $[\lambda_0,\Lambda]$ (uniformly on $[0,\Lambda]$ the error is $O(N^{-1})$ when $p_+\ne1$: every factor is positive, for $\lambda_N\le C/N$ both
+  terms are $O(N^{-p_+/2})$, and for $\lambda_N\ge C/N$ factoring out $\lambda_N^{p_+/2}$ leaves $\lambda_N^{p_+/2-1}O(N^{-1})$; when
+  $p_+=1$, $\sqrt{\lambda_N+O(N^{-1})}-\sqrt{\lambda_N}=O(N^{-1/2})$ near $\lambda_N=0$).
+\item For the $N$-dependent factorials, $\frac{(D-n+p_-)!}{(D-n)!}=N^{p_-}(1+O_{M,\sigma,n}(N^{-1}))$, while
+  $\frac{(D!)^2}{(N+L)!(N-L-1)!}=N^{-(2L_0+1)}(1+O_{L_0}(N^{-1}))\prod_{j=L_0+1}^L\frac{1-j/N}{1+j/N}$ (where $j$ runs over
+  $L_0+1,\dots,L$). Since $\log\frac{1-u}{1+u}=-2u-\frac23 u^3-O(u^5)$ is odd, all $j^2/N^2$ terms cancel identically:
+\begin{equation}
+  \sum_{j=L_0+1}^L\log\frac{1-j/N}{1+j/N} = -\frac{2}{N}\sum_{j=L_0+1}^L j + O\!\left(\frac{L^4}{N^3}\right) = -\lambda_N + O_{L_0,\Lambda}(N^{-1}).
+\end{equation}
+\end{enumerate}
+Combining $N\cdot N^{p_-}\cdot N^{p_+}\cdot N^{-(2L_0+1)}=1$ with
+  $\frac{(p_++1)_n}{n!\,p_+!}\cdot\bigl(\frac{n!\,p_+!}{(n+p_+)!}\bigr)^2=\frac{n!}{(n+p_+)!}$ gives
+  \eqref{eq:laguerre-limit-plus}. Reflection $x\mapsto -x$ in \cite[Eq.~(17)]{LewisFixedRank} multiplies $\Phi_L^{M,\sigma}$ by $(-1)^{L-\sigma}$
+  and sends $(M,\sigma)\mapsto(-M,\sigma)$ ($p_+\leftrightarrow p_-$), giving the $x_n^-$ limit.
+\end{proof}
+
+\begin{corollary}[Sharpness of the joint domain for $\Phi_L^{\mathrm{U2,cov}}$]
+\label{cor:sharpness}
+Fix $(M,\sigma)$, $n\in\mathbb{Z}_{\ge 0}$, and $\nu\in(0,1)$, put $u:=p_++1+2n$, and track $x_n^+=1-\frac{u}{N}$ and
+  the largest admissible rank $L_N=L_0+\lfloor\nu N\sqrt{1-(x_n^+)^2}-\frac12-L_0\rfloor$ not exceeding $\nu N\sqrt{1-(x_n^+)^2}-\frac12$ as $N\to\infty$. Then $\lambda_N\to\lambda_*:=2u\nu^2\in(0,2u)$, while
+\begin{equation}
+  N\,S(q_{L_N},x_n^+) \longrightarrow z_* := u\bigl[\nu\sqrt{1-\nu^2} + \arcsin\nu\bigr].
+  \label{eq:z-star-limit}
+\end{equation}
+In this limit $\Phi_{L_N}^{M,\sigma}(x_n^+;N^{-1})$ converges to the normalized Laguerre value in \eqref{eq:laguerre-limit-plus}
+  at $\lambda_*$, whereas the covariant pullback $\Phi_{L_N}^{\mathrm{U2,cov}}(x_n^+;N^{-1})$ defined in \eqref{eq:Phi-3j-U2-cov}
+  below converges with $O(N^{-1/2})$ error ($O(N^{-1})$ error when \eqref{eq:u2cov-corner-bessel-limit} is evaluated at the exact
+  lattice ratio $\nu_{L_N}(x_n^+)$) to the closed-form Bessel expression
+\begin{equation}
+  \lim_{N\to\infty}\Phi_{L_N}^{\mathrm{U2,cov}}(x_n^+;N^{-1}) =
+    \epsilon(M,\sigma)\,R_{p_+}\!\left(\frac{u}{2}\right)\left(\frac{z_*}{2u\nu\sqrt{1-\nu^2}}\right)^{1/2}\left[J_{p_+}(z_*) -
+    \frac{\nu\,\widehat{\gamma}_2(\nu)}{2u}\,J_{p_++1}(z_*)\right],
+  \label{eq:u2cov-corner-bessel-limit}
+\end{equation}
+where $g_0(\nu):=\frac{z_*}{2u\nu}=\frac{\nu\sqrt{1-\nu^2}+\arcsin\nu}{2\nu}$ and
+\begin{equation}
+  \widehat{\gamma}_2(\nu) := \frac{(4p_+^2-1)\sqrt{1-\nu^2}}{8\nu^2} + \frac{1}{4\sqrt{1-\nu^2}} + \frac{5\nu^2}{24(1-\nu^2)^{3/2}} - \frac{p_+^2-\tfrac14}{2\nu^2 g_0(\nu)}
+\end{equation}
+(and the leading pullback $E_N(x_n^+)W_{q_{L_N}}(x_n^+)d^{L_N}_{M\sigma}(\Theta_{q_{L_N}}(x_n^+))$ converges to
+  \eqref{eq:u2cov-corner-bessel-limit} without the $J_{p_++1}$ term). For every $(M,\sigma)$ and every $n\ge 0$, both
+  \eqref{eq:u2cov-corner-bessel-limit} and the leading pullback limit are real-analytic functions of $\nu\in(0,1)$ that do not
+  equal the real-analytic Laguerre limit \eqref{eq:laguerre-limit-plus} identically on $(0,1)$, hence differ from it for all
+  $\nu\in(0,1)$ outside an at most discrete set of isolated roots (for example, at $n=0$, $p_+=3$, $\nu=0.75$, one has $u=4$,
+  $z_*=5.376562$, and asymptotic relative discrepancy $0.0434$: Appendix~\ref{sec:numerics}, Tests~\texttt{3j~C6b}
+  and~\texttt{NC4}). Consequently, within $\nu_L(x)\le\sqrt{1-\delta}$, the condition $\min(\nu_L(x),u(x)^{-1})\to 0$ is
+  sufficient for $\Phi_L^{\mathrm{U2,cov}}$ to be asymptotically exact (by \eqref{eq:joint-3j-bound} when $u(x)\to\infty$ and by
+  \eqref{eq:bessel-toe-bound} when $\nu_L(x)\to 0$ at bounded $u(x)$), and along any
+  sequence with bounded $u(x)=u$ and $\nu_L(x)\to\nu\in(0,\sqrt{1-\delta}]$ it is also necessary except possibly at isolated
+  values of $\nu\in(0,1)$.
+\end{corollary}
+
+\begin{proof}
+Put $\varepsilon_N:=\sqrt{1-(x_n^+)^2}=\sqrt{2u/N}(1+O(N^{-1}))$ and $\nu_N:=q_{L_N}/\varepsilon_N$. The floor in the definition
+  of $L_N$ gives $\nu_N=\nu+O(N^{-1/2})$, not generally $O(N^{-1})$. Expanding the action at the \emph{exact lattice ratio}
+  $\nu_N$ gives
+\begin{equation}
+N S(q_{L_N},x_n^+)=u\bigl[\nu_N\sqrt{1-\nu_N^2}+\arcsin\nu_N\bigr]+O(N^{-1})
+=z_*+O(N^{-1/2}).
+\end{equation}
+Consequently $\Theta_{q_{L_N}}(x_n^+)=\varepsilon_N g_0(\nu_N)(1+O(N^{-1}))$ and
+$W_{q_{L_N}}(x_n^+)=(g_0(\nu_N)/\sqrt{1-\nu_N^2})^{1/2}+O(N^{-1})
+=(z_*/[2u\nu\sqrt{1-\nu^2}])^{1/2}+O(N^{-1/2})$, while $E_N(x_n^+)=R_{p_+}(u/2)(1+O(N^{-2}))$ and
+  $h^2\cC_0^{(3)}(x_n^+)=O(N^{-1})$. By the Jacobi form~\cite[Eq.~(68)]{LewisFixedRank} and Mehler--Heine's theorem at
+  $\kappa_{L_N}\Theta_{q_{L_N}}=z_*+O(N^{-1/2})$ (equivalently $u[\nu_N\sqrt{1-\nu_N^2}+\arcsin\nu_N]+O(N^{-1})$),
+  $d^{L_N}_{M\sigma}(\Theta_{q_{L_N}})\to\epsilon(M,\sigma)J_{p_+}(z_*)$, while $\varepsilon_N\cD_\Theta
+  d^{L_N}_{M\sigma}(\Theta_{q_{L_N}})\to\epsilon(M,\sigma)2u\nu[J'_{p_+}(z_*)-\frac{p_+}{z_*}J_{p_+}(z_*)]=-\epsilon(M,\sigma)2u\nu
+  J_{p_++1}(z_*)$. Expanding \eqref{eq:tilde-Gamma-3}--\eqref{eq:Gamma2-3} at $q=\nu_N\varepsilon_N$ using
+  $(4\Sigma-1)-8\tau_\star=4p_+^2-1$ and $(\Sigma-\frac14)-2\tau_\star=p_+^2-\frac14$ gives
+  $\varepsilon_N^{-1}\frac{h^2}{q_{L_N}}\Gamma_2^{(3)}(q_{L_N},x_n^+)\to(2u)^{-2}\widehat{\gamma}_2(\nu)$, yielding
+  \eqref{eq:u2cov-corner-bessel-limit}.
+
+To prove non-coincidence with \eqref{eq:laguerre-limit-plus} for every $(M,\sigma)$ and $n\ge 0$, let $\nu\to 1^-$. Then
+  $\lambda_*=2u\nu^2\to 2u$, so the Laguerre limit \eqref{eq:laguerre-limit-plus} stays bounded as $\nu\to 1^-$, whereas $z_*\to
+  z_\star:=\frac{\pi}{2}u>0$. Since $J_{p_+}$ and $J_{p_++1}$ have no common positive zeros, either $J_{p_++1}(z_\star)\ne
+  0$---in which case $\widehat{\gamma}_2(\nu)\sim\frac{5}{24}(1-\nu^2)^{-3/2}$ makes \eqref{eq:u2cov-corner-bessel-limit} diverge
+  like $(1-\nu^2)^{-7/4}$---or $J_{p_++1}(z_\star)=0$ and $J_{p_+}(z_\star)\ne 0$. In the latter case
+  $z_\star-z_*=u(\arccos\nu-\nu\sqrt{1-\nu^2})=\frac{2u}{3}(1-\nu^2)^{3/2}+O((1-\nu^2)^{5/2})$ and
+  $J'_{p_++1}(z_\star)=J_{p_+}(z_\star)$, so
+  $J_{p_+}(z_*)-\frac{\nu\widehat{\gamma}_2(\nu)}{2u}J_{p_++1}(z_*)\to\frac{77}{72}J_{p_+}(z_\star)\ne 0$, and the prefactor
+  $(1-\nu^2)^{-1/4}$ still forces \eqref{eq:u2cov-corner-bessel-limit} to diverge. For the \emph{leading} pullback, the same
+  prefactor yields divergence if $J_{p_+}(z_\star)\ne0$. If $J_{p_+}(z_\star)=0$, then $J_{p_+}(z_*)=O((1-\nu^2)^{3/2})$, so the
+  leading limit tends to zero instead. In that case the Laguerre limit at $\nu=1$ is nevertheless nonzero: $L_n^{(p_+)}(2u)\ne0$
+  for $u=p_++1+2n$. Indeed, for $n\ge1$ the zeros of $L_n^{(p_+)}$ are eigenvalues of the $n\times n$ Jacobi matrix with diagonal
+  entries $2j+p_++1$ and off-diagonal entries $\sqrt{(j+1)(j+p_++1)}$ ($0\le j<n$). Using $\sqrt{j(j+p_+)}\le j+p_+/2$ and the
+  analogous bound for the next link, every absolute row sum is at most $4j+2p_++2\le4n+2p_+-2<2u$, so no eigenvalue equals $2u$;
+  for $n=0$, $L_0^{(p_+)}=1$. Thus the leading pullback cannot coincide identically with the Laguerre limit in either Bessel
+  case. By real-analyticity on $(0,1)$, the difference between \eqref{eq:u2cov-corner-bessel-limit} (or the leading pullback
+  limit) and \eqref{eq:laguerre-limit-plus} vanishes at most on an isolated subset of $(0,1)$. Sufficiency of
+  $\min(\nu_L,u^{-1})\to 0$ is Theorem~\ref{thm:joint-3j}.
+\end{proof}
+
+\section{Covariant Wigner Basis and Algebraic Second Eikonal for Hahn/\texorpdfstring{$3j$}{3j}}
+\label{sec:covariant-3j}
+
+\subsection{Covariant angular derivative of Wigner \texorpdfstring{$d$}{d}-functions}
+For any offsets $(a,b)$ (with $(a,b)=(M,\sigma)$ for $3j$ and $(a,b)=(n,m)$ for $6j$), put $p_+:=|a-b|$, $p_-:=|a+b|$,
+  $k_0:=\max(|a|,|b|)=\frac{p_++p_-}{2}$, and $W_{ab}(\cos\Theta):=(\sin\frac{\Theta}{2})^{p_+}(\cos\frac{\Theta}{2})^{p_-}$.
+
+\begin{definition}[Covariant Wigner derivative]
+\label{def:covariant-derivative}
+Define the endpoint logarithmic connection $\omega_{ab}:(0,\pi)\to\mathbb{R}$ and covariant angular derivative $\cD_\Theta$ by
+\begin{equation}
+  \begin{gathered}
+  \omega_{ab}(\Theta) := \frac{\dd}{\dd\Theta}\log W_{ab}(\cos\Theta) = \frac{p_+}{2}\cot\frac{\Theta}{2} - \frac{p_-}{2}\tan\frac{\Theta}{2},\\
+  \cD_\Theta d^k_{ab}(\Theta) := \partial_\Theta d^k_{ab}(\Theta) - \omega_{ab}(\Theta)\,d^k_{ab}(\Theta).
+  \end{gathered}
+  \label{eq:covariant-derivative}
+\end{equation}
+\end{definition}
+
+\begin{lemma}[Endpoint vanishing order of $\cD_\Theta d^k_{ab}$]
+\label{lem:covariant-regularity}
+For every rank $k\ge k_0$, writing $d^k_{ab}(\Theta)=W_{ab}(\cos\Theta)\,P_{k-k_0}(\cos\Theta)$ where $P_{k-k_0}(y):=c_k\,\widehat P_{k-k_0}\bigl(\tfrac{1-y}{2}\bigr)$ is a polynomial of degree $k-k_0$ ($\widehat P$ the monic Jacobi polynomial and $c_k$ the constant $k_{3j}$ of
+  \cite[Eq.~(68)]{LewisFixedRank}), one has identically
+\begin{equation}
+  \cD_\Theta d^k_{ab}(\Theta) = W_{ab}(\cos\Theta)\,\partial_\Theta P_{k-k_0}(\cos\Theta) = -\sin\Theta\,W_{ab}(\cos\Theta)\,P'_{k-k_0}(\cos\Theta).
+  \label{eq:covariant-poly-form}
+\end{equation}
+In particular, $\cD_\Theta d^{k_0}_{ab}(\Theta)\equiv 0$, and for all $k>k_0$, $\cD_\Theta d^k_{ab}(\Theta)=O(\Theta^{p_++1})$ as
+  $\Theta\to 0^+$ and $O((\pi-\Theta)^{p_-+1})$ as $\Theta\to\pi^-$, whereas the raw derivative $\partial_\Theta
+  d^k_{ab}(\Theta)$ diverges relative to $W_{ab}(\cos\Theta)$ like $\Theta^{-1}$ and $(\pi-\Theta)^{-1}$ whenever $p_\pm\ge 1$.
+\end{lemma}
+
+\begin{proof}
+Differentiating $d^k_{ab}(\Theta)=W_{ab}(\cos\Theta)P_{k-k_0}(\cos\Theta)$ by the product rule gives $\partial_\Theta
+  d^k_{ab}=\omega_{ab}(\Theta)d^k_{ab}+W_{ab}(\cos\Theta)(-\sin\Theta)P'_{k-k_0}(\cos\Theta)$, which rearranges to
+  \eqref{eq:covariant-poly-form}. Since $P'_{k-k_0}$ is a polynomial of degree $k-k_0-1$ ($0$ for $k=k_0$) and
+  $\sin\Theta=2\sin\frac{\Theta}{2}\cos\frac{\Theta}{2}$, the endpoint orders follow immediately.
+\end{proof}
+
+\subsection{Closed-form algebraic second eikonal and covariant pole cancellation}
+In the main paper~\cite[Proposition~3.15, Eqs.~(46) and~(48)]{LewisGrowingRank},
+  the second-order phase correction is $\Gamma_2^{(3)}(q,x)=\widetilde{\Gamma}^{(3)}(q,x)-\mathfrak c(\Theta_q(x))/q$, where
+  $\mathfrak c(\Theta):=\frac{(M^2+\sigma^2-\frac14)\cos\Theta-2M\sigma}{2\sin\Theta}$ is the continuum Wigner subprincipal coefficient
+  \cite[Eq.~(25)]{LewisGrowingRank} and $\partial_q\widetilde{\Gamma}^{(3)}(q,x)=\Sigma_2^{(3)}(q,x)$ is the discrete Hahn
+  second-eikonal density~\cite[Eq.~(46)]{LewisGrowingRank}. We show that $\widetilde{\Gamma}^{(3)}(q,x)$ integrates in
+  purely algebraic closed form, and that combining $\cD_\Theta d^L_{M\sigma}$ with a rational contact multiplier $\cC_0^{(3)}(x)$
+  removes all boundary poles and matches the fixed-rank $O(N^{-2})$ NLO terms of Ref.~\cite{LewisFixedRank} across all four chambers.
+
+\begin{remark}[Why the second eikonals are algebraic]
+\label{rem:algebraic-eikonal}
+In \cite[Eq.~(46)]{LewisGrowingRank} the amplitude enters only through $a_0^2$,
+  $a_0\cos p=\frac12(x-b_0)$ and $a_0\sin p=\frac12\sqrt D$, so every term of the bracket is a rational function of $q$ whose
+  denominators are powers of $D$ and of $a_0^2$, and $\Sigma_2=\mathcal R(q)/\sqrt D$ with $\mathcal R$ rational. For the Hahn and
+  centered Racah chains $a_0^2$ is a polynomial in $q^2$ and $D$ is linear in $q^2$, so $\int\Sigma_2\,\dd q$ is elementary. It is
+  algebraic, of the three-term forms \eqref{eq:tilde-Gamma-3} and \eqref{eq:tilde-Gamma-6}, because the arcsine and logarithmic
+  parts of the integral have vanishing coefficients, as differentiation of those forms confirms.
+\end{remark}
+
+\begin{theorem}[Algebraic second eikonal and covariant pole cancellation for Hahn/$3j$]
+\label{thm:hahn-u2-cov}
+Fix $(M,\sigma)$, put $\Sigma:=M^2+\sigma^2$, $\tau_\star:=M\sigma$, $L_0:=\max(|M|,|\sigma|)$, $p_\pm:=|M\mp\sigma|$, and define for $x\in(-1,1)$ and $0<q<q_*(x)$:
+\begin{align}
+  \widetilde{\Gamma}^{(3)}(q,x) &:= \frac{(4\Sigma-1)x-8\tau_\star}{8(1-x^2)}\frac{\sqrt{D(q,x)}}{q} +
+    \frac{xq(7-x^2-6q^2)}{24(1-x^2)(1-q^2)\sqrt{D(q,x)}} + \frac{5xq^3}{24(1-x^2)D(q,x)^{3/2}}, \label{eq:tilde-Gamma-3}\\
+  \Gamma_2^{(3)}(q,x) &:= \widetilde{\Gamma}^{(3)}(q,x) - \frac{(\Sigma-\tfrac14)\cos\Theta_q(x)-2\tau_\star}{2q\sin\Theta_q(x)}, \label{eq:Gamma2-3}\\
+  \cC_0^{(3)}(x) &:= \frac{2L_0+1}{48}\left[-1 + \frac{(p_+-1)(2L_0+1)}{1-x} + \frac{(p_--1)(2L_0+1)}{1+x}\right], \label{eq:C0-3}
+\end{align}
+and define the covariant edge-factored second-order pullback on $\cX_N$ by
+\begin{equation}
+  \boxed{\Phi_L^{\mathrm{U2,cov}}(x;h) :=
+    E_N(x)\,W_q(x)\left[\bigl(1+h^2\cC_0^{(3)}(x)\bigr)\,d^L_{M\sigma}\bigl(\Theta_q(x)\bigr) +
+    \frac{h^2}{q}\,\Gamma_2^{(3)}(q,x)\,\cD_\Theta d^L_{M\sigma}\bigl(\Theta_q(x)\bigr)\right],}
+  \label{eq:Phi-3j-U2-cov}
+\end{equation}
+where $q=(L+\frac12)h$ and $W_q(x):=(\sin^2\Theta_q(x)/D(q,x))^{1/4}$. Then:
+\begin{enumerate}[label=(\alph*),leftmargin=2em,itemsep=2pt]
+\item $\partial_q\widetilde{\Gamma}^{(3)}(q,x)=\Sigma_2^{(3)}(q,x)$ identically on $\{D(q,x)>0\}$, and as $\nu=q/\sqrt{1-x^2}\to
+  0^+$, $\Gamma_2^{(3)}(q,x)/q$ extends analytically across $q=0$ with limit
+\begin{equation}
+  \rho_{2,0}^{(3)}(x) := \lim_{q\to 0^+}\frac{\Gamma_2^{(3)}(q,x)}{q} = \frac{x(9-x^2-8\Sigma)+4\tau_\star(x^2+3)}{24(1-x^2)^{3/2}}.
+  \label{eq:rho20-3}
+\end{equation}
+\item In every chamber of $(M,\sigma)$ and for every fixed $L\ge L_0$, expanding \eqref{eq:Phi-3j-U2-cov} in $h^2=N^{-2}$ at
+  fixed $x\in(-1,1)$ cancels all $(1\mp x)^{-2}$ double poles and all $(1\mp x)^{-1}$ simple poles against $E_N(x)$ and agrees
+  identically through $O(N^{-2})$ with the edge-uniform NLO expansion~\cite[Corollary~10.3, Eq.~(261)]{LewisFixedRank}.
+  Consequently, by the Zone-I Cauchy estimate of Theorem~\ref{thm:joint-3j} (\eqref{eq:bessel-toe-bound}), at fixed $L\ge L_0$
+  uniformly across the entire physical grid $\cX_N$ once $N\ge N_0(L,M,\sigma)$ (so that $D(q_L,x)>0$ on $\cX_N$),
+\begin{equation}
+  \bigl|\Phi_L^{M,\sigma}(x;N^{-1}) - \Phi_L^{\mathrm{U2,cov}}(x;N^{-1})\bigr| \le C_{L,M,\sigma}\,N^{-2}u(x)^{-2}\,E_N(x)\,W_{3j}(x).
+  \label{eq:fixed-L-N4}
+\end{equation}
+At interior $x$ ($u(x)\asymp N$) this recovers $O_L(N^{-4})E_N W_{3j}$, whereas at bounded lattice index $u(x)=O(1)$ the
+  unexpanded $O_L(\nu_L^4)=O_L((Nu(x))^{-2})$ terms in $\Theta_q$, $W_q$, and $\frac{h^2}{q}\Gamma_2^{(3)}$ leave an
+  $O_L(N^{-2})E_N W_{3j}$ remainder, which is weaker than the pure fixed-rank $O_L(N^{-4})E_N W_{3j}$ NLO
+  \cite[Corollary~10.3]{LewisFixedRank} at $u(x)=O(1)$ because resumming all powers of $\nu_L^2$ for growing rank trades two powers of $N$
+  for $u(x)^2$ at the outermost nodes.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+For~(a), substituting the Hahn recurrence coefficients $a_0(q)=\frac12\sqrt{1-q^2}$, $a_2(q)=a_0(q)(\frac18-\frac12\Sigma)/q^2$,
+  $b_2(q)=\tau_\star/q^2$~\cite[Eq.~(47)]{LewisGrowingRank}, $g_q=\frac{q}{2D}$, and $p_q=-\frac{qx}{(1-q^2)\sqrt{D}}$ into the main paper's
+  Eq.~(46) gives $\sqrt{D}\,\Sigma_2^{(3)}(q,x)$ as a rational function of $(q,x)$ with
+  denominator $24(1-x^2)(1-q^2)^2 D^2$. Clearing the denominator against $\sqrt{D}\,\partial_q\widetilde{\Gamma}^{(3)}(q,x)$
+  yields an exact polynomial identity equal to $0$ (verified by exact symbolic computation).
+  Expanding $\Theta_q(x)=\theta-\frac{x}{6\sin\theta}q^2+O(q^4)$ ($\theta=\arccos x$) in
+  \eqref{eq:tilde-Gamma-3}--\eqref{eq:Gamma2-3} cancels the $q^{-2}$ pole and gives \eqref{eq:rho20-3} (matching~\cite[Corollary~F.1]{LewisGrowingRank}), fixing the $q$-integration constant of $\widetilde{\Gamma}^{(3)}$ to zero by
+  oddness of $\Gamma_2^{(3)}(\cdot,x)$.
+
+For~(b), put $\kappa=L+\frac12$, $J=L(L+1)=\kappa^2-\frac14$, $\theta=\arccos x$, and $\theta_2(x):=-\frac{x}{6\sin\theta}$. At
+  fixed $x\in(-1,1)$, expanding $\Theta_q(x)=\theta+\kappa^2 h^2\theta_2(x)+O_{L,x}(h^4)$ and $W_q(x)=1+\kappa^2 h^2
+  W_2(x)+O_{L,x}(h^4)$ with $W_2(x)=\frac{2x\sin\theta\,\theta_2(x)+1}{4(1-x^2)}=\frac{3-x^2}{12(1-x^2)}$ gives, via
+  $\partial_\Theta d^L_{M\sigma}(\theta)=\cD_\Theta d^L_{M\sigma}(\theta)+\omega_{M\sigma}(\theta)d^L_{M\sigma}(\theta)$,
+\begin{equation}
+  \begin{aligned}
+  \frac{\Phi_L^{\mathrm{U2,cov}}(x;h)}{E_N(x)} &= d^L_{M\sigma}(\theta) + h^2\Bigl[\bigl(\kappa^2
+    W_2(x)+\kappa^2\theta_2(x)\omega_{M\sigma}(\theta)+\cC_0^{(3)}(x)\bigr)d^L_{M\sigma}(\theta)\\
+  &\qquad + \bigl(\kappa^2\theta_2(x)+\rho_{2,0}^{(3)}(x)\bigr)\cD_\Theta d^L_{M\sigma}(\theta)\Bigr] + O_{L,x}(h^4).
+  \end{aligned}
+\end{equation}
+Meanwhile, \cite[Eq.~(261)]{LewisFixedRank} reads, with the factors $N^{-2}$ of its $e_2^{3j},P_{f_2},Q_{f_2}$ written here as $h^2$ (so that below $e_2^{3j},P_{f_2},Q_{f_2}$ are the $h$-independent coefficients),
+  $\Phi_L^{M,\sigma}/E_N=d^L_{M\sigma}(\theta)+h^2[(Q_{f_2}(x)-e_2^{3j}(x))d^L_{M\sigma}(\theta)+P_{f_2}(x)(-\sin\theta)\partial_x
+  d^L_{M\sigma}(\theta)]+O_L(h^4 W_{3j})$, where $(-\sin\theta)\partial_x d^L_{M\sigma}(\arccos x)=\partial_\theta
+  d^L_{M\sigma}(\theta)=\cD_\Theta d^L_{M\sigma}(\theta)+\omega_{M\sigma}(\theta)d^L_{M\sigma}(\theta)$,
+  $e_2^{3j}(x)=-\frac{p_+(p_+^2-1)}{12(1-x)^2}-\frac{p_-(p_-^2-1)}{12(1+x)^2}$,
+  $P_{f_2}(x)=\frac{2J(x^3-x)-4x\Sigma+2\tau_\star(x^2+3)+4x}{12(1-x^2)^{3/2}}$, and $Q_{f_2}(x)=-\frac{J(x^2-3)+2\tau_\star
+  x}{12(1-x^2)}$. Direct rational algebra gives $\kappa^2\theta_2(x)+\rho_{2,0}^{(3)}(x)=P_{f_2}(x)$ independent of the chamber,
+  and in each of the four chambers
+  $(p_+,p_-,L_0)\in\{(M-\sigma,M+\sigma,M),(\sigma-M,M+\sigma,\sigma),(\sigma-M,-M-\sigma,-M),(M-\sigma,-M-\sigma,-\sigma)\}$,
+  the $(1\mp x)^{-2}$ poles in $-e_2^{3j}(x)$ and $P_{f_2}(x)\omega_{M\sigma}(\theta)$ cancel identically, leaving $\kappa^2
+  W_2+\kappa^2\theta_2\omega_{M\sigma}+\cC_0^{(3)}=Q_{f_2}-e_2^{3j}+P_{f_2}\omega_{M\sigma}$ on $(-1,1)$
+  (verified by exact symbolic computation). This proves $\Delta_L(\tau_v,0)=\partial_t\Delta_L(\tau_v,0)=0$, where $\Delta_L:=(\Phi_L^{M,\sigma}-\Phi_L^{\mathrm{U2,cov}})/(E_NW_{3j})$ as a function of $\tau_v=\frac{1-x}2$ and $t=h^2$ (the function of the same name in the proof of Theorem~\ref{thm:joint-3j}), at every fixed
+  $(L,x)$; the uniform global remainder \eqref{eq:fixed-L-N4} across all $x\in\cX_N$ down to $u(x)=O(1)$ then follows directly
+  from the Zone-I estimate \eqref{eq:bessel-toe-bound} of Theorem~\ref{thm:joint-3j} (whose proof uses from the present theorem
+  only the pointwise $t=0$ vanishing $\Delta_L(\tau_v,0)=\partial_t\Delta_L(\tau_v,0)=0$, so there is no circularity) together with
+  $\nu_L(x)^4=\frac{\kappa^4}{N^4(1-x^2)^2}\le\frac{\kappa^4}{N^2 u(x)^2}$.
+\end{proof}
+
+\begin{remark}[Why the main paper's nonlinear angle shift fails at the hard edge]
+\label{rem:nonlinear-shift-failure}
+In the main paper, the interior second-order pullback is written as $W_q^{[2]}(x)\,d^L_{M\sigma}(\Theta_q^{[2]}(x))$ with
+  $\Theta_q^{[2]}(x)=\Theta_q(x)+\frac{h^2}{q}\Gamma_2^{(3)}(q,x)$. Near the upper boundary $x_n^+=1-\frac{u_+}{N}$ at fixed $L$
+  and fixed $n\ge 0$, $\Theta_q(x_n^+)=\sqrt{2u_+/N}(1+O(N^{-1}))$ and $1-x^2=\frac{2u_+}{N}(1+O(N^{-1}))$, whereas
+  $9-1-8\Sigma+16\tau_\star=8(1-(M-\sigma)^2)=8(1-p_+^2)$ in \eqref{eq:rho20-3} gives
+\begin{equation}
+  \frac{h^2}{q}\Gamma_2^{(3)}(q,x_n^+) = h^2\rho_{2,0}^{(3)}(x_n^+)\bigl(1+O(N^{-1})\bigr) = -\frac{p_+^2-1}{3(2u_+)^{3/2}}\,N^{-1/2}\bigl(1+O(N^{-1})\bigr).
+\end{equation}
+Dividing by $\Theta_q(x_n^+)=\sqrt{2u_+/N}(1+O(N^{-1}))$ gives a non-vanishing $O(1)$ angle ratio as $N\to\infty$:
+\begin{equation}
+  \lim_{N\to\infty}\frac{\Theta_q^{[2]}(x_n^+)}{\Theta_q(x_n^+)} = 1 - \frac{p_+^2-1}{12 u_+^2},
+  \qquad
+  \lim_{N\to\infty}\frac{\Theta_q^{[2]}(x_0^+)}{\Theta_q(x_0^+)} = 1 - \frac{p_+-1}{12(p_++1)}.
+  \label{eq:nonlinear-shift-ratio}
+\end{equation}
+Since $W_q(\Theta)\,d^L_{M\sigma}(\Theta)\propto\Theta^{p_++1/2}$ as $\Theta\to 0^+$, evaluating
+  $W_q^{[2]}d^L_{M\sigma}(\Theta_q^{[2]})$ at $n=0$ distorts the amplitude by the asymptotic factor
+  $\bigl(1-\frac{p_+-1}{12(p_++1)}\bigr)^{(2p_++1)/2}\ne 1$ for all $p_+\ge 2$. For $p_+=3$, this exact asymptotic relative error
+  is $1-(23/24)^{7/2}=0.1384$, matching Test~NC2 ($0.1385$) in Appendix~\ref{sec:numerics}. Linearizing in
+  $(d^L_{M\sigma},\cD_\Theta d^L_{M\sigma})$ keeps the outer factor $W_{3j}(\cos\Theta_q)$ unshifted and eliminates this boundary
+  distortion completely.
+\end{remark}
+
+\section{Joint rank--position uniformity for Hahn/\texorpdfstring{$3j$}{3j}}
+\label{sec:main-theorem-3j}
+
+The main paper's interior two-carrier corner lemma~\cite[Lemma~B.3]{LewisGrowingRank} and adiabatic rank basis
+  \cite[Lemma~3.11]{LewisGrowingRank} require the effective angle $\Theta_0$ to remain in a compact subinterval of $(0,\pi)$ and the
+  rank momentum $p_0=\omega_3(q,x)$ to satisfy $|\sin p_0|\ge c_0>0$. Near the hard edges $x\to\pm 1$, where
+  $\varepsilon:=\sqrt{1-x^2}\to 0$, both fail: $\Theta_q(x)\asymp\varepsilon$ and
+  $\sin\omega_3(q,x)\asymp\varepsilon\sqrt{1-\nu^2}$. Before proving our main theorem, we establish three $\varepsilon$-uniform
+  analytical lemmas that replace these interior inputs in the blown-up edge variables
+  $(\nu,\hat{z},\varepsilon):=(q/\varepsilon,(\kappa\varepsilon)^{-1},\varepsilon)$.
+
+\subsection{\texorpdfstring{$\varepsilon$}{epsilon}-uniform Olver--Bessel expansion, corner residual, and Jost bases}
+
+\begin{lemma}[Uniform Olver--Bessel expansion of Wigner $d$-functions]
+\label{lem:olver-bessel-darboux}
+Fix $(a,b)$ with $k_0:=\max(|a|,|b|)$, $p_+:=|a-b|\in\mathbb{Z}_{\ge 0}$, $p_-:=|a+b|$, $\mu:=p_+^2-\frac14$, and for every
+  admissible rank $k\ge k_0$ ($\kappa:=k+\frac12$) define on $\vartheta\in(0,\frac{2\pi}{3}]$:
+\begin{equation}
+\begin{aligned}
+  w_k(\vartheta) &:= (\sin\vartheta)^{1/2}\sqrt{2k+1}\,d^k_{ab}(\vartheta),\qquad
+  \phi_\kappa(\vartheta) := \sqrt{2}\,(\kappa\vartheta)^{1/2}\,J_{p_+}(\kappa\vartheta),\\
+  \lambda_k &:= \epsilon(a,b)\prod_{r=1}^{p_+}\left(1-\frac{(\min(a,b)+r-\tfrac12)^2}{\kappa^2}\right)^{1/2},
+\end{aligned}
+  \label{eq:wk-olver-defs}
+\end{equation}
+with the empty product equal to $1$ when $p_+=0$ and $\epsilon(a,b)$ as in Theorem~\ref{thm:laguerre-corner} ($(-1)^{a-b}$ if $b\le a$, $1$ otherwise; the main paper's interior sign is $\epsilon_{ab}=(-1)^{p_+}\epsilon(a,b)$). Define recursively on $|\vartheta|<\pi$, starting from $A_0(\vartheta)\equiv 1$ and $B_{-1}(\vartheta)\equiv 0$,
+\begin{equation}
+\begin{aligned}
+  B_m(\vartheta) &:= \frac12\int_0^\vartheta\left[A_m''(s) - W_0(s)A_m(s) + \frac{2\mu}{s}\Bigl(\frac{B_{m-1}(s)}{s}\Bigr)'\right]\dd s,\\
+  A_{m+1}(\vartheta) &:= -\Bigl(p_++\frac12\Bigr)B'_m(0) - \frac12\int_0^\vartheta\bigl[B''_m(s)-W_0(s)B_m(s)\bigr]\,\dd s,
+\end{aligned}
+  \label{eq:olver-AB-recursion}
+\end{equation}
+where $W_0(\vartheta):=\mu(\frac{1}{\sin^2\vartheta}-\frac{1}{\vartheta^2})+\frac{p_-^2-p_+^2}{4\cos^2(\vartheta/2)}$ is even and
+  real-analytic on $|\vartheta|<\pi$. Then $A_m$ is even real-analytic and $B_m$ is odd real-analytic on $|\vartheta|<\pi$, and
+  for every integer $M\ge 0$, setting
+\begin{equation}
+  w_{k,M}(\vartheta) := \lambda_k\left[\phi_\kappa(\vartheta)\sum_{m=0}^M\frac{A_m(\vartheta)}{\kappa^{2m}} +
+    \frac{\phi'_\kappa(\vartheta)}{\kappa^2}\sum_{m=0}^{M-1}\frac{B_m(\vartheta)}{\kappa^{2m}}\right],
+\end{equation}
+one has:
+\begin{enumerate}[label=(\roman*),leftmargin=2em,itemsep=2pt]
+\item Uniformly for all $k\ge k_0$ and all $\vartheta\in(0,\frac{2\pi}{3}]$, $|w_k(\vartheta)-w_{k,M}(\vartheta)|\le
+  C_{M,a,b}\,\vartheta\,\kappa^{-(2M+1)}\,\mathsf{M}_{p_+}(\kappa\vartheta)$, where $\mathsf{M}_{p_+}(u):=\min(1,u)^{p_++1/2}$
+  for $p_+>0$ and $\mathsf{M}_0(u):=\min(1,u)^{1/4}$; in particular $|w_k(\vartheta)|\le
+  C_{a,b}\,\mathsf{M}_{p_+}(\kappa\vartheta)\le C_{a,b}$ on $(0,\frac{2\pi}{3}]$, and $|w'_k(\vartheta)|\le C_{a,b}\kappa$
+  whenever $\kappa\vartheta\ge 1$.
+\item For any compact interval $\hat{J}\Subset(0,\infty)$, any $\varepsilon\in(0,1]$ with
+  $\varepsilon\sup\hat{J}\le\frac{2\pi}{3}$, and all $k\ge k_0$ with $\hat{\kappa}:=\kappa\varepsilon\ge(\inf\hat{J})^{-1}$
+  ($\hat{z}:=\hat{\kappa}^{-1}$),
+\begin{equation}
+  \sup_{\hat{\vartheta}\in\hat{J}}\bigl|\partial_{\hat{\vartheta}}^\ell\bigl(w_k -
+    w_{k,M}\bigr)(\varepsilon\hat{\vartheta})\bigr| \le C_{M,\ell,a,b,\hat{J}}\,\varepsilon^{2M+2}\,\hat{z}^{2M+1-\ell}\qquad
+    (\ell\in\{0,1,2,3\}).
+  \label{eq:olver-rescaled-rem}
+\end{equation}
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+This is a Bessel-type uniform expansion of Jacobi polynomials in the spirit of Olver~\cite[Ch.~12]{OlverASF} and Frenzen--Wong~\cite{FrenzenWong}; we give a self-contained proof with the uniformity needed here.  Since $d^k_{ab}$ solves $(\sin\vartheta\partial_\vartheta)^2
+  d^k_{ab}+[\sin^2\vartheta\,k(k+1)-(a^2+b^2-2ab\cos\vartheta)]d^k_{ab}=0$ and
+  $a^2+b^2-2ab\cos\vartheta=p_+^2\cos^2\frac{\vartheta}{2}+p_-^2\sin^2\frac{\vartheta}{2}$, substituting
+  $w_k=(\sin\vartheta)^{1/2}\sqrt{2\kappa}\,d^k_{ab}$ gives the Liouville--Bessel equation
+\begin{equation}
+  w_k''(\vartheta) + \left(\kappa^2 - \frac{\mu}{\vartheta^2}\right)w_k(\vartheta) = W_0(\vartheta)\,w_k(\vartheta).
+  \label{eq:wk-liouville-bessel}
+\end{equation}
+As $\vartheta\to 0^+$, the Jacobi representation~\cite[Eq.~(68)]{LewisFixedRank} gives
+  $d^k_{ab}(\vartheta)=\epsilon(a,b)\frac{\Lambda_{k,a,b}}{p_+!}(\frac{\vartheta}{2})^{p_+}(1+O_k(\vartheta^2))$ where
+  $\Lambda_{k,a,b}^2=\frac{(k+\max(a,b))!(k-\min(a,b))!}{(k-\max(a,b))!(k+\min(a,b))!}=\prod_{r=1}^{p_+}[\kappa^2-(\min(a,b)+r-\frac12)^2]$,
+  while $\phi_\kappa(\vartheta)=\frac{\sqrt{2}(\kappa\vartheta)^{p_++1/2}}{2^{p_+}p_+!}(1+O_k(\vartheta^2))$; hence
+  $\widetilde{w}_k:=\lambda_k^{-1}w_k$ and $\widetilde{w}_{k,M}:=\lambda_k^{-1}w_{k,M}$ are normalized so that $\widetilde{w}_k$
+  satisfies $\lim_{\vartheta\to 0^+}\widetilde{w}_k(\vartheta)/\phi_\kappa(\vartheta)=1$ (for $k\ge k_0$,
+  $\min(a,b)+r-\frac12\in[-k_0+\frac12,k_0-\frac12]\subset(-\kappa,\kappa)$, so $\lambda_k\ne 0$ and $|\lambda_k|\le 1$).
+  Inductively from \eqref{eq:olver-AB-recursion}, $A_m$ is even real-analytic and $B_m$ is odd real-analytic on $|\vartheta|<\pi$
+  (so $(B_{m-1}(s)/s)'$ is odd and $\frac{2\mu}{s}(B_{m-1}(s)/s)'$ is even real-analytic). Using
+  $\phi_\kappa''=(-\kappa^2+\frac{\mu}{\vartheta^2})\phi_\kappa$ and
+  $\phi_\kappa'''=(-\kappa^2+\frac{\mu}{\vartheta^2})\phi'_\kappa-\frac{2\mu}{\vartheta^3}\phi_\kappa$, the recursion
+  \eqref{eq:olver-AB-recursion} cancels every $\phi'_\kappa$ coefficient and every $\kappa^{-2m}\phi_\kappa$ coefficient for
+  $0\le m\le M-1$ in $(\partial_\vartheta^2+\kappa^2-\frac{\mu}{\vartheta^2}-W_0)\widetilde{w}_{k,M}$ (checked by exact symbolic computation
+  through $M=4$), leaving only
+  $+\kappa^{-2M}\Psi_M(\vartheta)\phi_\kappa(\vartheta)$ with $\Psi_M:=A_M''-W_0 A_M+\frac{2\mu}{\vartheta}(B_{M-1}/\vartheta)'$
+  even real-analytic. Moreover, for each $m\ge 1$, $\lim_{\vartheta\to
+  0^+}[A_m(\vartheta)+B_{m-1}(\vartheta)\phi'_\kappa(\vartheta)/\phi_\kappa(\vartheta)]=A_m(0)+(p_++\frac12)B'_{m-1}(0)=0$, so
+  the normalized remainder $e_{k,M}:=\widetilde{w}_k-\widetilde{w}_{k,M}=O_k(\vartheta^{p_++5/2})$ as $\vartheta\to 0^+$.
+
+Variation of parameters with the Bessel Green's kernel $G_\kappa(\vartheta,s):=\frac{\pi}{2}\sqrt{\vartheta s}[J_{p_+}(\kappa
+  s)Y_{p_+}(\kappa\vartheta)-Y_{p_+}(\kappa s)J_{p_+}(\kappa\vartheta)]$ ($\partial_\vartheta G_\kappa|_{s=\vartheta}=1$) gives
+  on $(0,\frac{2\pi}{3}]$
+\begin{equation}
+  e_{k,M}(\vartheta) = \int_0^\vartheta G_\kappa(\vartheta,s)\bigl[W_0(s)e_{k,M}(s) - \kappa^{-2M}\Psi_M(s)\phi_\kappa(s)\bigr]\,\dd s.
+  \label{eq:olver-volterra}
+\end{equation}
+For completeness, set $u=\kappa\vartheta$, $v=\kappa s\le u$; then $\kappa
+  G_\kappa(\vartheta,s)=\frac{\pi}{2}\sqrt{uv}[J_{p_+}(v)Y_{p_+}(u)-Y_{p_+}(v)J_{p_+}(u)]$. The small-argument bounds
+  $J_p(t)=O(t^p)$ and $Y_p(t)=O(t^{-p})$ for integer $p\ge1$, $J_0(t)=O(1)$, $Y_0(t)=O(1+|\log t|)$, and the large-argument
+  bounds $J_p,Y_p,J'_p,Y'_p=O(t^{-1/2})$, applied separately to $0<v\le u\le1$, $0<v\le1\le u$, and $1\le v\le u$, give
+  $|\phi_\kappa(s)|\le C_{p_+}\mathsf{M}_{p_+}(\kappa s)$ and $|G_\kappa(\vartheta,s)|\mathsf{M}_{p_+}(\kappa
+  s)/\mathsf{M}_{p_+}(\kappa\vartheta)\le C_{p_+}\kappa^{-1}$. In the $p_+=0$ cases the logarithm is controlled by
+  $\sup_{0<t\le1}t^{3/4}(1+|\log t|)<\infty$. The same three regimes, after differentiating the Bessel kernel in $\vartheta$,
+  give $|\partial_\vartheta G_\kappa(\vartheta,s)|\mathsf{M}_{p_+}(\kappa s)\le C_{p_+}$ when $\kappa\vartheta\ge1$. Dividing
+  \eqref{eq:olver-volterra} by $\mathsf{M}_{p_+}(\kappa\vartheta)$ and applying Gr\"onwall's inequality on $[0,\vartheta]$ yields
+  $|e_{k,M}(\vartheta)|/\mathsf{M}_{p_+}(\kappa\vartheta)\le C_{M,a,b}\vartheta\kappa^{-(2M+1)}$, proving~(i) since
+  $|\lambda_k|\le 1$ (and differentiating \eqref{eq:olver-volterra} once using $G_\kappa(\vartheta,\vartheta)=0$ and the kernel
+  derivative bound just proved gives $|e'_{k,M}(\vartheta)|\le C_{M,a,b}\vartheta\kappa^{-2M}$, hence $|w'_k(\vartheta)|\le
+  C_{a,b}\kappa$). For~(ii), substituting $\vartheta=\varepsilon\hat{\vartheta}$ and $\kappa=(\varepsilon\hat{z})^{-1}$ with
+  $\hat{\kappa}\hat{\vartheta}\ge 1$ gives $|e_{k,M}(\varepsilon\hat{\vartheta})|\le
+  C\varepsilon\hat{\vartheta}(\varepsilon\hat{z})^{2M+1}\le C'\varepsilon^{2M+2}\hat{z}^{2M+1}$ ($\ell=0$) and
+  $|\partial_{\hat{\vartheta}}(e_{k,M}(\varepsilon\hat{\vartheta}))|=\varepsilon|e'_{k,M}(\varepsilon\hat{\vartheta})|\le
+  C'\varepsilon^{2M+2}\hat{z}^{2M}$ ($\ell=1$). Differentiating
+  $e_{k,M}''=(-\kappa^2+\frac{\mu}{\vartheta^2}+W_0)e_{k,M}-\kappa^{-2M}\Psi_M\phi_\kappa$ once more and multiplying by
+  $\varepsilon^2$ and $\varepsilon^3$ gives \eqref{eq:olver-rescaled-rem} for $\ell=2,3$.
+\end{proof}
+
+\begin{lemma}[$\varepsilon$-uniform Darboux--Weyl corner residual]
+\label{lem:eps-darboux-corner}
+Fix $(M,\sigma)$ and $\delta\in(0,1)$, and put $\hat{\kappa}_0:=\max(2L_0+2,8)$. For $x\in[\frac34,1)$
+  ($\varepsilon=\sqrt{1-x^2}\in(0,\frac{\sqrt{7}}{4}]$), let
+  $\stackrel{\circ}{U}_k^{[2]}:=\sqrt{2k+1}\,W_{q_k}^{[2]}(x)\,d^k_{M\sigma}(\Theta_{q_k}^{[2]}(x))$ denote the main paper's naturally
+  gauged second-order pullback~\cite[Eq.~(49)]{LewisGrowingRank}, and let
+  $\cR_k(V):=\tilde{c}_{k+1}(h^2)V_{k+1}+\tilde{c}_k(h^2)V_{k-1}-\tilde{v}_k V_k$ be the self-adjoint Hahn rank residual with
+\begin{equation}
+  \tilde{c}_k(t) := \frac{R_k\sqrt{1-k^2 t}}{k\sqrt{4k^2-1}},\qquad R_k := \sqrt{(k^2-M^2)(k^2-\sigma^2)},\qquad \tilde{v}_k := x - \frac{M\sigma}{k(k+1)}.
+  \label{eq:sym-hahn-coeffs}
+\end{equation}
+There exists $U_1=U_1(\delta,M,\sigma)>0$ (independent of any zone constant $C_B$) such that for all $N>L_0$, all
+  $x\in[\frac34,1)$ with $\heff:=(N\varepsilon^2)^{-1}\le U_1^{-1}$, and all ranks $k$ satisfying
+  $\hat{\kappa}_k:=(k+\frac12)\varepsilon\ge\hat{\kappa}_0$ and $\nu_k:=q_k/\varepsilon\le\sqrt{1-\delta}$,
+\begin{equation}
+  \bigl|\cR_k(\stackrel{\circ}{U}^{[2]})\bigr| \le C_{\delta,M,\sigma}\,\varepsilon^{3/2}\bigl(\nu_k\heff^3 + \hat{\kappa}_k^{-8}\bigr).
+  \label{eq:eps-corner-residual}
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Put $\delta':=\min(\delta,\frac12)$ and $\hat{z}_\delta:=\min(\hat{\kappa}_0^{-1},\frac{\delta'}{4})$, and define the compact
+  parameter domain $\Omega_\delta:=([0,\sqrt{1-\delta}]\times[0,\hat{z}_\delta])\cup([0,\frac12]\times[0,\hat{\kappa}_0^{-1}])$.
+  Whenever $\nu_k\le\sqrt{1-\delta}$, $\hat{z}_k:=\hat{\kappa}_k^{-1}\le\hat{\kappa}_0^{-1}$, and $\heff=\nu_k\hat{z}_k\le
+  U_1^{-1}$ with $U_1\ge 2\hat{z}_\delta^{-1}$, either $\hat{z}_k\le\hat{z}_\delta$ or $\nu_k=\heff/\hat{z}_k\le\frac12$, so
+  $(\nu_k,\hat{z}_k)\in\Omega_\delta$; moreover, on $\Omega_\delta$ one has $\nu(1+\eta\hat{z})\le\sqrt{1-\delta'/2}$ and
+  $1+\eta\hat{z}\ge\frac{9}{10}$ for all $|\eta|\le\frac{\sqrt{7}}{4}$.
+
+\emph{Step~1 (Blown-up phase/amplitude and analyticity of the three difference-operator coefficients).}
+Since $W_q^{[2]}(x)=D(q,x)^{-1/4}(\sin\Theta_q^{[2]})^{1/2}$, $D(\nu\varepsilon,x)=\varepsilon^2(1-\nu^2)$, and
+  $h=N^{-1}=\varepsilon^2\nu_k\hat{z}_k$ ($\heff=\nu_k\hat{z}_k$), setting $f_j:=\varepsilon^{1/2}\stackrel{\circ}{U}_j^{[2]}$
+  gives $f_j=(1-\nu_j^2)^{-1/4}w_j(\varepsilon\widehat{\Theta}_j^{[2]})$, where
+  $\varepsilon^{-1}\frac{h^2}{q_j}\Gamma_2^{(3)}(q_j,x)=\nu_j^2\hat{z}_j^2\widehat{\Gamma}_2(\nu_j,\varepsilon)$ (checked
+  by exact symbolic computation) and hence
+\begin{equation}
+  \widehat{\Theta}_j^{[2]} := \varepsilon^{-1}\Theta_{q_j}^{[2]}(x) = \widehat{\Theta}_0(\nu_j,\varepsilon) + \nu_j^2\hat{z}_j^2\,\widehat{\Gamma}_2(\nu_j,\varepsilon),\qquad
+  \widehat{\Gamma}_2(\nu,\varepsilon) := \frac{\varepsilon^3}{q}\,\Gamma_2^{(3)}\bigl(\nu\varepsilon,\sqrt{1-\varepsilon^2}\bigr).
+  \label{eq:Theta-hat-2}
+\end{equation}
+For $\varepsilon>0$, writing
+  $\widehat{\Theta}_0(\nu,\varepsilon)=\int_0^1\frac{\arcsin(\varepsilon\sqrt{Y(\xi,\nu,\varepsilon)})}{\varepsilon}\,\dd\xi$
+  with $Y(\xi,\nu,\varepsilon)=\frac{1-\xi^2\nu^2}{1-\xi^2\nu^2\varepsilon^2}\in[\frac{\delta'}{2},1]$ shows that
+  $\widehat{\Theta}_0(\nu,\varepsilon)$ extends to an even real-analytic function on
+  $[-\sqrt{1-\delta'/2},\sqrt{1-\delta'/2}]\times[-\frac{\sqrt{7}}{4},\frac{\sqrt{7}}{4}]$ satisfying
+  $\widehat{\Theta}_0(\nu,\varepsilon)\in[\frac{\pi}{4},\frac{\pi}{2}]$. Multiplying
+  \eqref{eq:tilde-Gamma-3}--\eqref{eq:Gamma2-3} by $\frac{\varepsilon^3}{q}=\frac{\varepsilon^2}{\nu}$ with
+  $\mathrm{sinc}\,u:=(\sin u)/u$ gives explicitly
+\begin{equation}
+\begin{aligned}
+  \widehat{\Gamma}_2(\nu,\varepsilon) ={}& \frac{\bigl[(4\Sigma-1)\sqrt{1-\varepsilon^2}-8\tau_\star\bigr]\sqrt{1-\nu^2} -
+    \dfrac{(4\Sigma-1)\cos(\varepsilon\widehat{\Theta}_0)-8\tau_\star}{\widehat{\Theta}_0\,\mathrm{sinc}(\varepsilon\widehat{\Theta}_0)}}{8\nu^2}\\
+  &+ \frac{\sqrt{1-\varepsilon^2}(6+\varepsilon^2-6\nu^2\varepsilon^2)}{24(1-\nu^2\varepsilon^2)\sqrt{1-\nu^2}} + \frac{5\sqrt{1-\varepsilon^2}\,\nu^2}{24(1-\nu^2)^{3/2}}.
+\end{aligned}
+\end{equation}
+At $\nu=0$, $\varepsilon\widehat{\Theta}_0(0,\varepsilon)=\arccos\sqrt{1-\varepsilon^2}$, so
+  $\cos(\varepsilon\widehat{\Theta}_0(0,\varepsilon))=\sqrt{1-\varepsilon^2}$ and
+  $\widehat{\Theta}_0(0,\varepsilon)\,\mathrm{sinc}(\varepsilon\widehat{\Theta}_0(0,\varepsilon))=1$; because the numerator of
+  the first term is even in $(\nu,\varepsilon)$ and vanishes identically on $\{\nu=0\}$ while
+  $|\varepsilon\widehat{\Theta}_0|\le\frac{\sqrt{7}\pi}{8}<\frac{\pi}{2}$, $\widehat{\Gamma}_2(\nu,\varepsilon)$ is also even
+  real-analytic on $[-\sqrt{1-\delta'/2},\sqrt{1-\delta'/2}]\times[-\frac{\sqrt{7}}{4},\frac{\sqrt{7}}{4}]$. Now rewrite
+  $\varepsilon^{-3/2}\cR_k(\stackrel{\circ}{U}^{[2]})=\varepsilon^{-2}\cR_k(f)$ in finite-difference form:
+\begin{equation}
+  \varepsilon^{-2}\cR_k(f) = K_2(\nu_k,\hat{z}_k,\varepsilon)\,\frac{f_{k+1}-2f_k+f_{k-1}}{\varepsilon^2} +
+    K_1(\nu_k,\hat{z}_k,\varepsilon)\,\frac{f_{k+1}-f_{k-1}}{\varepsilon} + K_0(\nu_k,\hat{z}_k,\varepsilon)\,f_k,
+  \label{eq:rescaled-residual-decomp}
+\end{equation}
+with $K_2:=\frac12(\tilde{c}_{k+1}+\tilde{c}_k)$, $K_1:=(\tilde{c}_{k+1}-\tilde{c}_k)/(2\varepsilon)$, and
+  $K_0:=(\tilde{c}_{k+1}+\tilde{c}_k-\tilde{v}_k)/\varepsilon^2$. For $\varsigma\in\{+\frac12,-\frac12\}$
+  ($j=\kappa_k+\varsigma\in\{k+1,k\}$), setting
+  $u_\varsigma(\varepsilon\hat{z}_k):=\frac{\hat{z}_k}{1+\varsigma\varepsilon\hat{z}_k}$ so $j^{-1}=\varepsilon u_\varsigma$ and
+  $jh=\varepsilon\nu_k(1+\varsigma\varepsilon\hat{z}_k)$ turns \eqref{eq:sym-hahn-coeffs} into
+  $\tilde{c}_{\kappa_k+\varsigma}(h^2)=\frac12[(1-M^2\varepsilon^2 u_\varsigma^2)(1-\sigma^2\varepsilon^2
+  u_\varsigma^2)/(1-\frac14\varepsilon^2
+  u_\varsigma^2)]^{1/2}[1-\varepsilon^2\nu_k^2(1+\varsigma\varepsilon\hat{z}_k)^2]^{1/2}=\frac12+\varepsilon^2\gamma_\varsigma(\nu_k,\hat{z}_k,\varepsilon)$,
+  with $\gamma_{\pm 1/2}$ real-analytic on $\Omega_\delta\times[-\frac{\sqrt{7}}{4},\frac{\sqrt{7}}{4}]$. Meanwhile
+  $x=\sqrt{1-\varepsilon^2}=1-\frac{\varepsilon^2}{1+\sqrt{1-\varepsilon^2}}$ and
+  $k(k+1)=\kappa_k^2-\frac14=\frac{1-\frac14\varepsilon^2\hat{z}_k^2}{\varepsilon^2\hat{z}_k^2}$ give
+  $\tilde{v}_k=1-\varepsilon^2\bigl(\frac{1}{1+\sqrt{1-\varepsilon^2}}+\frac{M\sigma\hat{z}_k^2}{1-\frac14\varepsilon^2\hat{z}_k^2}\bigr)$.
+  The leading constants $\frac12+\frac12-1=0$ cancel identically in $K_0$, leaving
+  $K_2=\frac12+\frac12\varepsilon^2(\gamma_{+1/2}+\gamma_{-1/2})$, $K_1=\frac12\varepsilon(\gamma_{+1/2}-\gamma_{-1/2})$, and
+  $K_0=\gamma_{+1/2}+\gamma_{-1/2}+\frac{1}{1+\sqrt{1-\varepsilon^2}}+\frac{M\sigma\hat{z}^2}{1-\frac14\varepsilon^2\hat{z}^2}$,
+  all real-analytic on $\Omega_\delta\times[-\frac{\sqrt{7}}{4},\frac{\sqrt{7}}{4}]$ down to $\varepsilon=\hat{z}=0$ (verified
+  by exact symbolic computation).
+
+\emph{Step~2 (Uniform $O(\hat{z}_k^8)$ bounds for the Olver $M=4$ and Hankel $R=8$ difference remainders).}
+Take $U_1(\delta,M,\sigma)\ge 2\hat{z}_\delta^{-1}$ large enough that $\heff^2\sup|\widehat{\Gamma}_2|\le\frac14$; then across
+  the continuum rank shift $j=k+\xi$ ($\xi\in[-1,1]$), $\widehat{\Theta}_{k+\xi}^{[2]}\in[\frac12,2]$,
+  $\varepsilon\widehat{\Theta}_{k+\xi}^{[2]}\in(0,\frac{2\pi}{3}]$, and
+  $z(\xi):=\hat{\kappa}_{k+\xi}\widehat{\Theta}_{k+\xi}^{[2]}\ge\frac12(\hat{\kappa}_0-1)\ge\frac72$. Splitting
+  $f_j=f_j^{\mathrm{Olv}}+r_j^{\mathrm{Olv}}$ at $j\in\{k-1,k,k+1\}$ with
+  $f_j^{\mathrm{Olv}}:=(1-\nu_j^2)^{-1/4}w_{j,4}(\varepsilon\widehat{\Theta}_j^{[2]})$, Lemma~\ref{lem:olver-bessel-darboux}(ii)
+  ($M=4$, $\ell=0$) gives $|r_j^{\mathrm{Olv}}|\le C_{\delta,M,\sigma}\varepsilon^{10}\hat{z}_k^9$, so dividing by
+  $\varepsilon^2$ and $\varepsilon$ in \eqref{eq:rescaled-residual-decomp} yields $|\varepsilon^{-2}\cR_k(r^{\mathrm{Olv}})|\le
+  C'_{\delta,M,\sigma}\varepsilon^8\hat{z}_k^9\le C''_{\delta,M,\sigma}\hat{z}_k^8$ uniformly in $\varepsilon$. Next, in the
+  Olver truncation use $\phi'_\kappa(\vartheta)/\kappa^2=\kappa^{-1}\sqrt{2}\,z^{1/2}[J'_{p_+}(z)+J_{p_+}(z)/(2z)]$ with
+  $z=\kappa\vartheta$, and insert into $w_{k+\xi,4}(\varepsilon\widehat{\Theta}_{k+\xi}^{[2]})$ Hankel's finite expansion
+  (\cite{DLMF}, \S10.17(i)--(ii)) on $z\ge\frac72$,
+\begin{equation}
+  \begin{gathered}
+  \sqrt{2}\,z^{1/2}J_{p_+}(z) = \sum_{\sigma=\pm}\mathrm{e}^{\ii\sigma z}\!\left[\sum_{s=0}^7\frac{d_{p_+,s}^\sigma}{z^s}+H_{8,0}^\sigma(z)\right],\\
+  \sqrt{2}\,z^{1/2}J'_{p_+}(z) = \sum_{\sigma=\pm}\mathrm{e}^{\ii\sigma z}\!\left[\sum_{s=0}^7\frac{\tilde{d}_{p_+,s}^\sigma}{z^s}+H_{8,1}^\sigma(z)\right],
+  \end{gathered}
+\end{equation}
+where the complex-argument Hankel remainder estimate (\cite{DLMF}, \S10.17(iv), equations (10.17.13)--(10.17.15)) gives
+  $|H_{8,\iota}^\sigma(z)|\le C_{p_+}z^{-8}$ for real $z\ge\frac72$. For the derivative $J'_{p_+}$ use
+  $H_{p_+}^{(a)\prime}=(H_{p_+-1}^{(a)}-H_{p_++1}^{(a)})/2$ ($a=1,2$), so the same complex remainder bound applies after
+  collecting its order-$7$ coefficients. The demodulated Hankel remainders are holomorphic in a sector about the positive axis,
+  and the disk $|w-z|\le z/2$ lies in $|\mathrm{ph}\,w|\le\pi/6$; the complex bound and Cauchy's estimate therefore give
+  $|\partial_z^\ell H_{8,\iota}^\sigma(z)|\le C_{p_+,\ell}z^{-8-\ell}$ for $0\le\ell\le2$ (enlarging the constants on the bounded
+  interval $z\ge\frac72$ if needed). We also use the degree-$7$ Taylor split
+  $\lambda_{k+\xi}=\lambda^{\mathrm{poly}}(\varepsilon\hat{z}_{k+\xi})+\lambda^{\mathrm{rem}}(\varepsilon\hat{z}_{k+\xi})$
+  ($|\partial_w^\ell\lambda^{\mathrm{rem}}(w)|\le C_{M,\sigma}|w|^{8-\ell}$ for $0\le\ell\le2$ and $|w|\le[2(L_0+1)]^{-1}$).
+  Indeed, the factors of $\lambda(w)=\epsilon(M,\sigma)\prod_{r=1}^{p_+}(1-c_r^2w^2)^{1/2}$ have $|c_r|\le L_0-\frac12$;
+  $\lambda$ is analytic on $|w|<(L_0+1)^{-1}$, while for all $|\xi|\le1$ one has
+  $|w|=\varepsilon\hat{z}_{k+\xi}\le(\sqrt7/4)/(\hat{\kappa}_0-\sqrt7/4)\le[2(L_0+1)]^{-1}$. The restricted disk is essential
+  when the fixed offsets are large; a uniform disk $|w|\le1/7$ would be false for arbitrary $(M,\sigma)$.
+
+These two finite decompositions give
+  $f_{k+\xi}^{\mathrm{Olv}}=f^{\mathrm{main}}(\xi)+\sum_{\sigma=\pm}g^{\sigma,\mathrm{rem}}(\xi)$, where
+  $g^{\sigma,\mathrm{rem}}(\xi)=\mathrm{e}^{\ii\sigma z(\xi)}\mathcal{H}_8^\sigma(\xi)$ collects all $H_{8,\iota}^\sigma$ and
+  $\lambda^{\mathrm{rem}}$ terms. Crucially, at fixed $(h,x)$, the continuum shift $\xi\in[-1,1]$ enters only via
+  $\eta:=\xi\varepsilon\in[-\varepsilon,\varepsilon]$:
+\begin{equation}
+  \hat{z}_{k+\xi} = \frac{\hat{z}_k}{1+\eta\hat{z}_k},\qquad
+  \nu_{k+\xi} = \nu_k(1+\eta\hat{z}_k),\qquad
+  z(\xi) = \frac{\widehat{\Theta}_0(\nu_k,\varepsilon)}{\hat{z}_k} + \widetilde{\Psi}(\xi\varepsilon;\,\nu_k,\hat{z}_k,\varepsilon),
+  \label{eq:xi-shift-structure}
+\end{equation}
+where, using $\widehat{S}(\nu,\varepsilon):=\nu\widehat{\Theta}_0(\nu,\varepsilon)$,
+  $\partial_\nu\widehat{S}(\nu,\varepsilon)=\widehat{\omega}_3(\nu,\varepsilon):=\frac{\arcsin\!\bigl(\varepsilon\sqrt{(1-\nu^2)/(1-\nu^2\varepsilon^2)}\bigr)}{\varepsilon}$
+  (agreeing with $\varepsilon^{-1}\arccos\sqrt{(1-\varepsilon^2)/(1-\nu^2\varepsilon^2)}$ for $\varepsilon>0$ and extending
+  evenly and real-analytically through $\varepsilon=0$), and $\nu_{k+\xi}^2\hat{z}_{k+\xi}=\nu_k^2\hat{z}_k(1+\eta\hat{z}_k)$,
+\begin{equation}
+  \widetilde{\Psi}(\eta;\,\nu,\hat{z},\varepsilon) :=
+    \eta\int_0^1\widehat{\omega}_3\bigl(\nu(1+u\eta\hat{z}),\varepsilon\bigr)\,\dd u +
+    \nu^2\hat{z}(1+\eta\hat{z})\,\widehat{\Gamma}_2\bigl(\nu(1+\eta\hat{z}),\varepsilon\bigr).
+\end{equation}
+Because $\widehat{\Theta}_0(\nu_k,\varepsilon)/\hat{z}_k$ is independent of $\xi$ and
+  $\widetilde{\Psi}(\eta;\nu,\hat{z},\varepsilon)$ is free of $\hat{z}^{-1}$ and jointly real-analytic on
+  $[-\frac{\sqrt{7}}{4},\frac{\sqrt{7}}{4}]\times\Omega_\delta\times[-\frac{\sqrt{7}}{4},\frac{\sqrt{7}}{4}]$, differentiating
+  \eqref{eq:xi-shift-structure} gives $|z'(\xi)|\le C_\delta\varepsilon$ and $|z''(\xi)|\le C_\delta\varepsilon^2$.
+
+To justify derivatives of the remainder amplitude, write $\eta=\varepsilon\xi$, so $\partial_\eta\nu_{k+\xi}=\nu_k\hat{z}_k$,
+  $\partial_\eta\hat{z}_{k+\xi}=O(\hat{z}_k^2)$,
+  $\partial_\eta(\varepsilon\widehat{\Theta}_{k+\xi}^{[2]})=O(\varepsilon\hat{z}_k)$, and $\partial_\eta z(\xi)=O(1)$,
+  $\partial_\eta^2z(\xi)=O(\hat{z}_k)$. The analytic multipliers in the Olver truncation have uniformly bounded
+  $\eta$-derivatives of order $\ell\le2$ with an additional factor $O(\hat{z}_k^\ell)$, while the Hankel remainders obey
+  $\partial_z^\ell H_{8,\iota}^\sigma=O(z^{-8-\ell})$ and $z^{-1}=O(\hat{z}_k)$; the degree-$7$ remainder of $\lambda$ obeys the
+  same shifted-order bounds by the preceding disk estimate. Thus $|\partial_\eta^\ell\mathcal{H}_8^\sigma|\le
+  C_{\delta,M,\sigma}\hat{z}_k^{8+\ell}$ and $|\partial_\xi^\ell\mathcal{H}_8^\sigma(\xi)|\le
+  C_{\delta,M,\sigma}\varepsilon^\ell\hat{z}_k^{8+\ell}$ ($0\le\ell\le2$). Hence $|(g^{\sigma,\mathrm{rem}})'(\xi)|\le
+  C'_{\delta,M,\sigma}\varepsilon\hat{z}_k^8$ and $|(g^{\sigma,\mathrm{rem}})''(\xi)|\le
+  C'_{\delta,M,\sigma}\varepsilon^2\hat{z}_k^8$ on $[-1,1]$, so the exact integral identities
+  $\varepsilon^{-2}[g(1)-2g(0)+g(-1)]=\varepsilon^{-2}\int_{-1}^1(1-|\xi|)g''(\xi)\,\dd\xi$ and
+  $\varepsilon^{-1}[g(1)-g(-1)]=\varepsilon^{-1}\int_{-1}^1 g'(\xi)\,\dd\xi$ cancel $\varepsilon^{-2}$ and $\varepsilon^{-1}$ in
+  \eqref{eq:rescaled-residual-decomp} and give $|\varepsilon^{-2}\cR_k(g^{\sigma,\mathrm{rem}})|\le
+  C''_{\delta,M,\sigma}\hat{z}_k^8$ uniformly in $\varepsilon$.
+
+\emph{Step~3 (Joint real-analyticity of $\widehat{C}_r^\sigma(\nu,\varepsilon)$ down to $\varepsilon=0$ and $\nu^4$ vanishing).}
+In the finite sum $f^{\mathrm{main}}(\xi)$, write $\mathrm{e}^{\ii\sigma
+  z(\xi)}=\mathrm{e}^{\ii\sigma\widehat{\Theta}_0(\nu_k,\varepsilon)/\hat{z}_k}\mathrm{e}^{\ii\sigma\widetilde{\Psi}(\xi\varepsilon;\nu_k,\hat{z}_k,\varepsilon)}$
+  and
+  $z(\xi)^{-s}=\hat{z}_k^s(1+\eta\hat{z}_k)^{-s}[\widehat{\Theta}_0(\nu_k(1+\eta\hat{z}_k),\varepsilon)+\nu_k^2\hat{z}_k^2\widehat{\Gamma}_2(\nu_k(1+\eta\hat{z}_k),\varepsilon)]^{-s}$
+  ($0\le s\le 7$). Since $\widehat{\Theta}_0\ge\frac{\pi}{4}$ on $\Omega_\delta$, every factor multiplying
+  $\mathrm{e}^{\ii\sigma\widehat{\Theta}_0(\nu_k,\varepsilon)/\hat{z}_k}$ depends on $\xi$ solely through $\eta=\xi\varepsilon$,
+  giving
+  $f^{\mathrm{main}}(\xi)=\sum_{\sigma=\pm}\mathrm{e}^{\ii\sigma\widehat{\Theta}_0(\nu_k,\varepsilon)/\hat{z}_k}G^\sigma(\xi\varepsilon;\nu_k,\hat{z}_k,\varepsilon)$
+  with $G^\sigma(\eta;\nu,\hat{z},\varepsilon)$ jointly real-analytic on a neighborhood of
+  $[-\frac{\sqrt{7}}{4},\frac{\sqrt{7}}{4}]\times\Omega_\delta\times[0,\frac{\sqrt{7}}{4}]$. Substituting $f^{\mathrm{main}}$
+  into \eqref{eq:rescaled-residual-decomp} and rewriting the $\eta=\pm\varepsilon$ differences via
+  $\int_{-1}^1(1-|s|)(\partial_\eta^2 G^\sigma)(s\varepsilon;\nu,\hat{z},\varepsilon)\,\dd s$ and $\int_{-1}^1(\partial_\eta
+  G^\sigma)(s\varepsilon;\nu,\hat{z},\varepsilon)\,\dd s$ produces
+  $\varepsilon^{-2}\cR_k(f^{\mathrm{main}})=\sum_{\sigma=\pm}\mathrm{e}^{\ii\sigma\widehat{\Theta}_0(\nu_k,\varepsilon)/\hat{z}_k}\mathcal{M}^\sigma(\nu_k,\hat{z}_k,\varepsilon)$
+  with $\mathcal{M}^\sigma(\nu,\hat{z},\varepsilon)$ jointly real-analytic on a neighborhood of
+  $\Omega_\delta\times[0,\frac{\sqrt{7}}{4}]$ down to $\varepsilon=\hat{z}=\nu=0$. Taylor-expanding
+  $\mathcal{M}^\sigma(\nu,\hat{z},\varepsilon)$ in $\hat{z}$ at $\hat{z}=0$ to order $7$ and absorbing the uniform $O(\hat{z}^8)$
+  Taylor, Olver, and Hankel remainders into $E_8^\sigma$ yields
+\begin{equation}
+  \begin{gathered}
+  \varepsilon^{-3/2}\cR_k(\stackrel{\circ}{U}^{[2]}) =
+    \sum_{\sigma=\pm}\mathrm{e}^{\ii\sigma\widehat{\Theta}_0(\nu_k,\varepsilon)/\hat{z}_k}\left[\sum_{r=0}^7\hat{z}_k^r\,\widehat{C}_r^\sigma(\nu_k,\varepsilon)
+    + E_8^\sigma(\nu_k,\hat{z}_k,\varepsilon)\right],\\
+  \widehat{C}_r^\sigma(\nu,\varepsilon) := \frac{1}{r!}\partial_{\hat{z}}^r\mathcal{M}^\sigma(\nu,0,\varepsilon),
+  \end{gathered}
+  \label{eq:eps-two-carrier-series}
+\end{equation}
+where each $\widehat{C}_r^\sigma(\nu,\varepsilon)$ ($0\le r\le 7$) is real-analytic on
+  $[0,\sqrt{1-\delta}]\times[0,\frac{\sqrt{7}}{4}]$ up to and including $\varepsilon=0$, and
+  $|E_8^\sigma(\nu_k,\hat{z}_k,\varepsilon)|\le C_{\delta,M,\sigma}\hat{z}_k^8$ uniformly in
+  $\varepsilon\in(0,\frac{\sqrt{7}}{4}]$. For each fixed $\varepsilon\in(0,\frac{\sqrt{7}}{4}]$
+  ($x=\sqrt{1-\varepsilon^2}\in[\frac34,1)$) and $\nu\in(0,\sqrt{1-\delta}]$,
+  $2\Theta_0(\nu\varepsilon,x)=2\varepsilon\widehat{\Theta}_0(\nu,\varepsilon)\in(0,\frac{\sqrt{7}\pi}{4})\subset(0,2\pi)$, so
+  asymptotic independence of $\mathrm{e}^{\pm\ii\Theta_0/z}$ as $z=\varepsilon\hat{z}\to 0^+$ identifies
+  $\widehat{C}_r^\sigma(\nu,\varepsilon)=\varepsilon^{r-3/2}C_r^\sigma(\nu\varepsilon;x)$ with the interior coefficients
+  $C_r^\sigma(q;x)$ of the main paper's Lemma~B.3~\cite[Eq.~(221)]{LewisGrowingRank}. By the fixed-ratio
+  cubic-residual lemma, fixed-rank second-order contact, and matched corner remainder of the main paper~\cite{LewisGrowingRank},
+  $C_0^\sigma=C_1^\sigma=C_2^\sigma\equiv 0$ and $\partial_q^m C_r^\sigma(0;x)=0$ ($3\le r\le 7$, $0\le m\le 3$) for every
+  $x\in(-1,1)$. Hence $\widehat{C}_0^\sigma=\widehat{C}_1^\sigma=\widehat{C}_2^\sigma\equiv 0$ and
+  $\partial_\nu^m\widehat{C}_r^\sigma(0,\varepsilon)=0$ ($3\le r\le 7$, $0\le m\le 3$) on $(0,\frac{\sqrt{7}}{4}]$, and by
+  continuity down to $\varepsilon=0$. Since
+  $\sup_{[0,\sqrt{1-\delta}]\times[0,\sqrt{7}/4]}|\partial_\nu^4\widehat{C}_r^\sigma|\le C'_{\delta,M,\sigma}<\infty$, Taylor's
+  theorem gives $|\widehat{C}_r^\sigma(\nu,\varepsilon)|\le\frac{1}{24}C'_{\delta,M,\sigma}\nu^4$ uniformly in $\varepsilon$, and
+  \eqref{eq:eps-two-carrier-series} yields $\varepsilon^{-3/2}|\cR_k(\stackrel{\circ}{U}^{[2]})|\le
+  C_{\delta,M,\sigma}(\nu_k^4\hat{z}_k^3+\hat{z}_k^8)=C_{\delta,M,\sigma}(\nu_k\heff^3+\hat{\kappa}_k^{-8})$.
+\end{proof}
+
+\begin{lemma}[$\varepsilon$-uniform $t=0$ and discrete WKB Jost fundamental matrices]
+\label{lem:eps-wkb-jost}
+Fix $(M,\sigma)$ and $\delta\in(0,1)$, and let $T_k(t)=\bigl(\begin{smallmatrix}\tilde{v}_k/\tilde{c}_{k+1}(t) &
+  -\tilde{c}_k(t)/\tilde{c}_{k+1}(t)\\ 1 & 0\end{smallmatrix}\bigr)$ be the one-step transfer matrix of
+  \eqref{eq:sym-hahn-coeffs} for $x\in[\frac34,1)$ ($\varepsilon=\sqrt{1-x^2}\in(0,\frac{\sqrt{7}}{4}]$, $\theta=\arccos x$).
+  There exist $C_B=C_B(M,\sigma)\ge\hat{\kappa}_0=\max(2L_0+2,8)$ (depending only on $(M,\sigma)$) and
+  $U_2=U_2(\delta,M,\sigma)\ge(2C_B)^{7/2}$ such that:
+\begin{enumerate}[label=(\alph*),leftmargin=2em,itemsep=2pt]
+\item \textbf{Exact $t=0$ Wigner Jost basis.} Put $j_B:=\lceil C_B/\varepsilon\rceil$ and
+  $P_j^{\mathrm{pw}}:=\varepsilon^{-1/2}\bigl(\begin{smallmatrix}\mathrm{e}^{\ii\kappa_j\theta} &
+  \mathrm{e}^{-\ii\kappa_j\theta}\\ \mathrm{e}^{\ii(\kappa_j-1)\theta} &
+  \mathrm{e}^{-\ii(\kappa_j-1)\theta}\end{smallmatrix}\bigr)$. Initializing
+  $P_{j_B}^{(0)}:=(2\tilde{c}_{j_B}(0))^{-1/2}P_{j_B}^{\mathrm{pw}}$ and defining $P_{j+1}^{(0)}:=T_j(0)P_j^{(0)}$ for all $j\ge
+  j_B$ yields an exact $t=0$ fundamental matrix satisfying $\det P_j^{(0)}=\frac{\ii}{\tilde{c}_j(0)}$, $\|P_j^{(0)}\|\le
+  C_{M,\sigma}\varepsilon^{-1/2}$, $\|(P_j^{(0)})^{-1}\|\le C_{M,\sigma}\varepsilon^{-1/2}$ uniformly for all $j\ge j_B$, and
+  writing $P_{j_B}^{(0)}=\bigl(\begin{smallmatrix}\widehat{u}_{j_B}^+ & \widehat{u}_{j_B}^-\\ \widehat{u}_{j_B-1}^+ &
+  \widehat{u}_{j_B-1}^-\end{smallmatrix}\bigr)$, $|\widehat{u}_{j_B}^\pm-\widehat{u}_{j_B-1}^\pm|\le
+  C_{M,\sigma}\varepsilon^{1/2}$.
+\item \textbf{Exact $t=h^2$ discrete WKB Jost basis.} Assume $\heff=(N\varepsilon^2)^{-1}\le U_2^{-1}$, put
+  $K_*:=\lceil\heff^{-2/7}/\varepsilon-\frac12\rceil$ (so $K_*\ge j_B$ since $\heff^{-2/7}\ge 2C_B$), and for $K_*\le k\le L$
+  (with $\nu_L\le\sqrt{1-\delta}$) set $z_k^\pm(h):=D(q_k,x)^{-1/4}\mathrm{e}^{\pm\ii N S(q_k,x)}$ and
+  $P_k(h):=\bigl(\begin{smallmatrix}z_k^+(h) & z_k^-(h)\\ z_{k-1}^+(h) & z_{k-1}^-(h)\end{smallmatrix}\bigr)$. Then $|\det
+  P_k(h)|\ge 2\sqrt{\delta}$, $\|P_k(h)\|\le C_\delta D(q_k,x)^{-1/4}\le C'_\delta\varepsilon^{-1/2}$, $\|P_k(h)^{-1}\|\le
+  C_\delta\varepsilon^{-1/2}$, $\|P_{K_*}(h)^{-1}P_{K_*}^{(0)}\|\le C_{\delta,M,\sigma}$, and the exact fundamental matrix
+  $\mathcal{F}_k^{(N)}=P_k(h)C_k$ initialized by $\mathcal{F}_{K_*}^{(N)}=P_{K_*}(h)$ ($C_{K_*}=I$) satisfies $\sup_{K_*\le k\le
+  L}(\|C_k\|+\|C_k^{-1}\|)\le 4$ uniformly as $\varepsilon\to 0$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+For~(a), $\det
+  P_j^{\mathrm{pw}}=\varepsilon^{-1}(\mathrm{e}^{\ii\theta}-\mathrm{e}^{-\ii\theta})=\frac{2\ii\sin\theta}{\varepsilon}=2\ii$, so
+  $\|P_j^{\mathrm{pw}}\|\le 2\varepsilon^{-1/2}$ and $\|(P_j^{\mathrm{pw}})^{-1}\|\le\varepsilon^{-1/2}$. At $j=j_B$,
+  $|\widehat{u}_{j_B}^\pm-\widehat{u}_{j_B-1}^\pm|=(2\tilde{c}_{j_B}(0))^{-1/2}\varepsilon^{-1/2}|\mathrm{e}^{\pm\ii\theta}-1|\le
+  C\varepsilon^{-1/2}\theta\le 2C\varepsilon^{1/2}$, and $\det
+  P_j^{(0)}=(\prod_{m=j_B}^{j-1}\frac{\tilde{c}_m(0)}{\tilde{c}_{m+1}(0)})\frac{2\ii}{2\tilde{c}_{j_B}(0)}=\frac{\ii}{\tilde{c}_j(0)}$.
+  Since
+  $\frac12(\mathrm{e}^{\pm\ii(\kappa_j+1)\theta}+\mathrm{e}^{\pm\ii(\kappa_j-1)\theta})-x\mathrm{e}^{\pm\ii\kappa_j\theta}=0$ and
+  $|\tilde{c}_j(0)-\frac12|+|\tilde{v}_j-x|\le C_{M,\sigma}j^{-2}$, the scalar defect of
+  $\varepsilon^{-1/2}\mathrm{e}^{\pm\ii\kappa_j\theta}$ is $O(j^{-2}\varepsilon^{-1/2})$. Hence
+  $E_j^{(0)}:=(P_{j+1}^{\mathrm{pw}})^{-1}T_j(0)P_j^{\mathrm{pw}}-I$ satisfies $\|E_j^{(0)}\|\le
+  C'_{M,\sigma}j^{-2}\varepsilon^{-1}$, so $\sum_{j=j_B}^\infty\|E_j^{(0)}\|\le 2C'_{M,\sigma}/(\varepsilon j_B)\le
+  2C'_{M,\sigma}/C_B\le\frac14$ for $C_B\ge 8C'_{M,\sigma}$, bounding $C_j^{(0)}:=(P_j^{\mathrm{pw}})^{-1}P_j^{(0)}$ and
+  $(C_j^{(0)})^{-1}$ uniformly for all $j\ge j_B$.
+
+For~(b), by the mean-value theorem $N[S(q_k,x)-S(q_{k-1},x)]=\omega_3(q_*,x)$ for some $q_*\in[q_{k-1},q_k]$, so
+  $\sin\omega_3(q_*,x)=\frac{\sqrt{\varepsilon^2-q_*^2}}{\sqrt{1-q_*^2}}\ge\sqrt{\delta}\,\varepsilon$ while
+  $D(q_k,x)^{-1/4}D(q_{k-1},x)^{-1/4}\ge\varepsilon^{-1}$, giving $|\det P_k(h)|\ge 2\sqrt{\delta}$ and $\|P_k(h)^{-1}\|\le
+  C_\delta\varepsilon^{-1/2}$. At $k=K_*$, writing $P_{K_*}^{(0)}=P_{K_*}^{\mathrm{pw}}C_{K_*}^{(0)}$ and using
+  $|z_{K_*}^\pm(h)-z_{K_*-1}^\pm(h)|\le C_\delta\varepsilon^{1/2}$ and
+  $\varepsilon^{-1/2}|\mathrm{e}^{\pm\ii\kappa_{K_*}\theta}-\mathrm{e}^{\pm\ii(\kappa_{K_*}-1)\theta}|\le 2\varepsilon^{1/2}$ in
+  Cramer's rule cancels $\varepsilon^{-1/2}\cdot\varepsilon^{1/2}=1$ in every entry of $P_{K_*}(h)^{-1}P_{K_*}^{\mathrm{pw}}$,
+  giving $\|P_{K_*}(h)^{-1}P_{K_*}^{(0)}\|\le C_{\delta,M,\sigma}$. Finally, decompose the scalar defect
+  $r_k^\pm:=\tilde{c}_{k+1}(h^2)z_{k+1}^\pm(h)+\tilde{c}_k(h^2)z_{k-1}^\pm(h)-\tilde{v}_k z_k^\pm(h)$ into its principal part
+  $a_0((k+1)h)z_{k+1}^\pm+a_0(kh)z_{k-1}^\pm-x z_k^\pm$ ($a_0(s)=\frac12\sqrt{1-s^2}$) plus the
+  $O(\kappa_k^{-2})=O(\varepsilon^2\hat{\kappa}_k^{-2})$ perturbation of $\tilde{c},\tilde{v}$. In the principal part, the
+  $\heff^0$ and $\heff^1$ terms vanish identically by $2a_0(q_k)\cos\omega_3(q_k,x)=x$ and
+  $a_0(q)\sin\omega_3(q,x)=\frac12\sqrt{D(q,x)}$ \cite[Eqs.~(179)--(180)]{LewisGrowingRank};
+  since $\partial_\zeta^\ell[(1-(\nu_k+\zeta\varepsilon\heff)^2)^{-1/4}]=O_\delta((\varepsilon\heff)^\ell)$ and $\partial_\zeta[N
+  S(q_k+\zeta h,x)]=\varepsilon\widehat{\omega}_3(\nu_k+\zeta\varepsilon\heff,\varepsilon)$ has $\zeta$-derivatives
+  $O_\delta(\varepsilon),O_\delta(\varepsilon^2\heff),O_\delta(\varepsilon^3\heff^2)$, the second-order Taylor remainder in $\heff$ of
+  $\varepsilon^{1/2}r_{k,\mathrm{prin}}^\pm$ is $O_\delta(\varepsilon^2\heff^2)$ (the phase $e^{\pm\ii\zeta\omega_3(q_k,x)}$, $\zeta=\pm1$, of the $\heff^0$ term is kept exact; only the rest $N[S(q_k+\zeta h,x)-S(q_k,x)]-\zeta\omega_3(q_k,x)$ of the exponent is expanded). Adding the coefficient perturbation
+  $O_\delta(\varepsilon^{3/2}\hat{\kappa}_k^{-2})$ gives $|r_k^\pm|\le
+  C_{\delta,M,\sigma}\varepsilon^{3/2}(\heff^2+\hat{\kappa}_k^{-2})$, hence $\|E_k(h)\|=\|P_{k+1}(h)^{-1}T_k(h^2)P_k(h)-I\|\le
+  C'_{\delta,M,\sigma}\varepsilon(\heff^2+\hat{\kappa}_k^{-2})$. Summing over $K_*\le k\le L-1$ with
+  $(L-K_*)\varepsilon\le\hat{\kappa}_L\le\heff^{-1}$ and $\sum_{k\ge K_*}\varepsilon\hat{\kappa}_k^{-2}\le
+  2\hat{K}_*^{-1}=2\heff^{2/7}$ gives $\sum_{k=K_*}^{L-1}\|E_k(h)\|\le C''_{\delta,M,\sigma}(\heff+\heff^{2/7})\le\frac14$ for
+  $U_2(\delta,M,\sigma)$ large, proving $\sup_{K_*\le k\le L}(\|C_k\|+\|C_k^{-1}\|)\le 4$.
+\end{proof}
+
+\subsection{Statement and proof of the joint uniformity theorem}
+
+\begin{theorem}[Joint rank--position uniformity for Hahn/$3j$]
+\label{thm:joint-3j}
+Fix offsets $(M,\sigma)$ and a turning-point margin $\delta\in(0,1)$. There exists a constant $C_{\delta,M,\sigma}>0$ such that
+  for all $N>L_0$, all physical lattice points $x\in\cX_N$, and all ranks $L_0\le L<N$ satisfying
+  $\nu_L(x)=\frac{L+1/2}{N\sqrt{1-x^2}}\le\sqrt{1-\delta}$,
+\begin{equation}
+  \boxed{D(q_L,x)^{1/4}\sqrt{2L+1}\,\bigl|\Phi_L^{M,\sigma}(x;N^{-1}) - \Phi_L^{\mathrm{U2,cov}}(x;N^{-1})\bigr| \le \frac{C_{\delta,M,\sigma}}{u(x)^2},}
+  \label{eq:joint-3j-bound}
+\end{equation}
+where $u(x)=N(1-|x|)\ge 1$. Moreover, in the Bessel-toe regime $\kappa_L\sqrt{1-x^2}\le C_B$ ($C_B>0$ arbitrary,
+  $\kappa_L=L+\frac12$), one has the sharper envelope-weighted bound
+\begin{equation}
+  \bigl|\Phi_L^{M,\sigma}(x;N^{-1}) - \Phi_L^{\mathrm{U2,cov}}(x;N^{-1})\bigr| \le C(\delta,C_B,M,\sigma)\,\nu_L(x)^4\,\kappa_L^{p_\pm}\,E_N(x)\,W_{3j}(x),
+  \label{eq:bessel-toe-bound}
+\end{equation}
+with $p_+$ for $x\ge 0$ and $p_-$ for $x\le 0$. In particular, the absolute envelope-scaled error \eqref{eq:joint-3j-bound} tends
+  to $0$ whenever $u(x)\to\infty$, and the relative envelope error in \eqref{eq:bessel-toe-bound} tends to $0$ down to the hard
+  boundary $n_\pm=0$ whenever $\nu_L(x)\to 0$.
+\end{theorem}
+
+\begin{remark}[Absolute normalization of \eqref{eq:joint-3j-bound} versus relative accuracy of \eqref{eq:bessel-toe-bound}]
+\label{rem:abs-vs-rel}
+Estimate \eqref{eq:joint-3j-bound} is an \emph{absolute} bound in the natural semiclassical normalization
+  $D(q_L,x)^{1/4}\sqrt{2L+1}\,\Phi_L$, where oscillatory WKB waves have $O(1)$ amplitude. In the rapid-decay Bessel toe
+  $\hat{\kappa}_L=\kappa_L\sqrt{1-x^2}\ll 1$ near $x\to\pm 1$ for $p_\pm\ge 2$, the normalized symbol itself satisfies
+  $D^{1/4}\sqrt{2L+1}|\Phi_L^{M,\sigma}|\asymp\hat{\kappa}_L^{p_\pm+1/2}/p_\pm!$, which can be much smaller than $u(x)^{-2}$
+  (e.g.\ at fixed $L$, $\hat{\kappa}_L^{p_\pm+1/2}\asymp(u(x)/N)^{(2p_\pm+1)/4}\ll u(x)^{-2}$ for large $N$), making
+  \eqref{eq:joint-3j-bound} trivial as a relative bound there; only \eqref{eq:bessel-toe-bound} supplies genuine $O(\nu_L(x)^4)$
+  relative accuracy relative to the exact boundary envelope $\kappa_L^{p_\pm}E_N(x)W_{3j}(x)$ down to $n_\pm=0$. Numerically
+  (Appendix~\ref{sec:numerics}, Test~\texttt{3j~C1a}), $\sup u(x)^2 D^{1/4}\sqrt{2L+1}|\Delta\Phi_L|\approx 1.99$ for
+  $(M,\sigma)=(0,0)$ and $\approx 1.95$ for $(2,-1)$ across $N\le 32000$ at $\nu_L\le 0.82$, and as $\delta\downarrow 0$ toward
+  the Airy turning locus $\nu_L=1$ the constant $C_{\delta,M,\sigma}$ grows empirically like $\delta^{-3}$.
+\end{remark}
+
+\begin{proof}[Proof of Theorem~\ref{thm:joint-3j}]
+By exact $x\mapsto -x$ reflection symmetry (\cite[Eq.~(17)]{LewisFixedRank}, sending $(M,\sigma)\mapsto(-M,\sigma)$, $p_+\leftrightarrow p_-$,
+  $\Theta_q\mapsto\pi-\Theta_q$, and multiplying both $\Phi_L^{M,\sigma}$ and $\Phi_L^{\mathrm{U2,cov}}$ by $(-1)^{L-\sigma}$), it
+  suffices to consider $x\in\cX_N\cap[0,1)$, where $u(x)=u_+(x)=N(1-x)\ge p_++1$.
+
+First consider the interior region $x\in[0,\frac34]$, where $\varepsilon=\sqrt{1-x^2}\in[\frac{\sqrt{7}}{4},1]$ and
+  $u(x)\ge\frac14 N$. The main paper's interior all-rank theorem~\cite[Corollary~4.4]{LewisGrowingRank} gives
+  $D(q_L,x)^{1/4}\sqrt{2L+1}|\Phi_L^{M,\sigma}-W_{q_L}^{[2]}d^L_{M\sigma}(\Theta_{q_L}^{[2]})|\le C_{\delta,M,\sigma}N^{-2}$
+  uniformly for $L_0\le L<N$ with $\nu_L(x)\le\sqrt{1-\delta}$. On $x\in[0,\frac34]$, $E_N(x)=1+O(N^{-2})$,
+  $|h^2\cC_0^{(3)}(x)|\le CN^{-2}$, $|\delta\Theta_L|=|\frac{h^2}{q_L}\Gamma_2^{(3)}(q_L,x)|\le C_\delta N^{-2}$, and
+  $\kappa_L|\delta\Theta_L|\le C_\delta\nu_L N^{-1}$; since
+  $\sqrt{2L+1}W_{q_L}(\vartheta)d^L_{M\sigma}(\vartheta)=D(q_L,x)^{-1/4}w_L(\vartheta)$ with $|w_L(\vartheta)|\le C$ and
+  $|w''_L(\vartheta)|\le C_\delta(\kappa_L^2+1)$ on $[\frac14,\frac{2\pi}{3}]$ (which contains every $\vartheta$ needed for $x\in[0,\frac34]$ and large $N$) by Lemma~\ref{lem:olver-bessel-darboux}(i),
+  two-term Taylor expansion of $w_L(\Theta_{q_L}+\delta\Theta_L)$ shows
+  $D^{1/4}\sqrt{2L+1}|W_{q_L}^{[2]}d^L_{M\sigma}(\Theta_{q_L}^{[2]})-\Phi_L^{\mathrm{U2,cov}}|\le C'_{\delta,M,\sigma}N^{-2}$,
+  proving \eqref{eq:joint-3j-bound} on $[0,\frac34]$ (while if $\kappa_L\varepsilon\le C_B$ on $[0,\frac34]$, then
+  $L\le\frac{4}{\sqrt{7}}C_B$ is bounded and Zone~I below applies verbatim on $[0,1)$).
+
+Assume henceforth that $x\in[\frac34,1)$, so $\varepsilon=\sqrt{1-x^2}\in(0,\frac{\sqrt{7}}{4}]$,
+  $\tau_v=\frac{1-x}{2}\in(0,\frac18]$, $\hat{\kappa}_k=(k+\frac12)\varepsilon$, and
+  $\heff=(N\varepsilon^2)^{-1}\in[\frac{1}{2u(x)},\frac{4}{7u(x)}]$. To avoid any circularity among zone constants, we fix them
+  in strictly acyclic order:
+\begin{enumerate}[label=(\arabic*),leftmargin=2em,itemsep=1pt]
+\item Step~1 below establishes the Zone-I estimate \eqref{eq:bessel-toe-bound} (and hence \eqref{eq:joint-3j-bound} on
+  $\hat{\kappa}_L\le B$) for \emph{every} given threshold $B>0$ and \emph{all} $x\in\cX_N\cap[0,1)$, with constant
+  $C(\delta,B,M,\sigma)$; setting $B=C_B$ directly discharges \eqref{eq:bessel-toe-bound} for arbitrary $C_B>0$.
+\item For \eqref{eq:joint-3j-bound}, fix $C_B=C_B(M,\sigma)\ge\hat{\kappa}_0=\max(2L_0+2,8)$ from
+  Lemma~\ref{lem:eps-wkb-jost}(a), and then set
+  $U_0=U_0(\delta,M,\sigma):=\max\bigl(U_1(\delta,M,\sigma),\,U_2(\delta,M,\sigma),\,(64c_0^{-1})^{7/8},\,\widetilde{C}_{M,\sigma}^{1/2}\bigr)$
+  using $U_1(\delta,M,\sigma)$ from Lemma~\ref{lem:eps-darboux-corner} and $U_2(\delta,M,\sigma)\ge(2C_B)^{7/2}$ from
+  Lemma~\ref{lem:eps-wkb-jost}(b) (with $c_0:=\frac{1}{16}$ and $\widetilde{C}_{M,\sigma}$ bounding
+  $\varepsilon^4|\widetilde{c}(x)|$ in Step~3).
+\item Whenever $\heff>U_0^{-1}$ (in particular whenever $u(x)\le\frac12 U_0$), $\nu_L(x)\le\sqrt{1-\delta}$ implies
+  $\hat{\kappa}_L=\nu_L(x)/\heff<U_0$, so Step~1 applied with $B:=U_0(\delta,M,\sigma)$ proves \eqref{eq:joint-3j-bound}. When
+  $\heff\le U_0^{-1}$, we have $\hat{K}_*:=\heff^{-2/7}\ge 2C_B$, and we cover every rank $L<j_B:=\lceil C_B/\varepsilon\rceil$
+  (as well as the handoff rank $L=j_B$, where $\hat{\kappa}_{j_B}<2C_B$) by Step~1 with $B:=2C_B(M,\sigma)$; ranks $j_B\le L$
+  with $\hat{\kappa}_L\le\hat{K}_*$ are covered by Step~2, and $\hat{K}_*<\hat{\kappa}_L\le\sqrt{1-\delta}\,\heff^{-1}$ by
+  Step~3.
+\end{enumerate}
+
+\medskip
+\noindent\textbf{Step 1: Zone~I ($\hat{\kappa}_L\le B$ for arbitrary $B>0$, all $x\in\cX_N\cap[0,1)$) and explicit bounded-$u$ sup estimate.}
+Put $d=L-L_0$ and write the square-root-free carrier~\cite[Lemmas~5.4 and~5.5, Eqs.~(76) and~(52)]{LewisFixedRank} as
+\begin{equation}
+\begin{gathered}
+  \widetilde{H}_L(\tau_v,t) := \frac{\Phi_L^{M,\sigma}}{E_N(x)W_{3j}(x)} = \Pi_L(t)^{-1/2}\,\widetilde{P}_L(\tau_v;t),\\
+  \widetilde{H}_L^{\mathrm{U2,cov}}(\tau_v,t) := \frac{\Phi_L^{\mathrm{U2,cov}}}{E_N(x)W_{3j}(x)},\qquad t=h^2.
+\end{gathered}
+\end{equation}
+Comparing the leading $\tau_v^d$ coefficient and $h=0,\tau_v=0$ value of $\widetilde{P}_L(\tau_v;h^2)=k_{3j}q_d(\tau_v;h^2)$ against the
+  Hahn polynomial $Q_d(u;p_+,p_-,D)=\sum_{k=0}^d\frac{(-d)_k(d+2L_0+1)_k(-u)_k}{(p_++1)_k(-D)_k k!}$ at
+  $u=\frac{\tau_v}{h}-\frac{p_++1}{2}$ and $D=h^{-1}-L_0-1$ gives the exact polynomial identity
+\begin{equation}
+  \widetilde{P}_L(\tau_v;h^2) =
+    \frac{\epsilon(M,\sigma)}{p_+!}\,\Lambda_{L,M,\sigma}\left(\prod_{i=L_0+1}^L(1-ih)\right)Q_d\!\left(\frac{\tau_v}{h}-\frac{p_++1}{2};\,p_+,p_-,\,h^{-1}-L_0-1\right),
+  \label{eq:Ptilde-Hahn-exact}
+\end{equation}
+where $\Lambda_{L,M,\sigma}=\prod_{r=1}^{p_+}[\kappa_L^2-(\min(M,\sigma)+r-\frac12)^2]^{1/2}\le\kappa_L^{p_+}$. Similarly, by
+  the Jacobi formula~\cite[Eq.~(68)]{LewisFixedRank} and Lemma~\ref{lem:covariant-regularity}
+  (\eqref{eq:covariant-poly-form}), $d^L_{M\sigma}(\Theta_q)=W_{3j}(\cos\Theta_q)P_d(\cos\Theta_q)$ with
+  $P_d(\cos\Theta_q)=\frac{\epsilon(M,\sigma)}{p_+!}\Lambda_{L,M,\sigma}\,{}_2F_1(-d,d+2L_0+1;p_++1;\zeta)$ and $\cD_\Theta
+  d^L_{M\sigma}(\Theta_q)=\frac12\sin\Theta_q\,W_{3j}(\cos\Theta_q)\frac{\epsilon(M,\sigma)}{p_+!}\Lambda_{L,M,\sigma}\partial_\zeta\,{}_2F_1$
+  at $\zeta:=\sin^2(\Theta_q/2)$.
+
+First, at any physical point with $\hat{\kappa}_L\le B$ and $\nu_L(x)\le\sqrt{1-\delta}$, we establish an explicit sup bound
+  valid down to $u(x)=p_++1$: for $N\le\frac{2(L_0+1)}{\delta}$ there are finitely many triples $(N,L,x)$, while for
+  $N>\frac{2(L_0+1)}{\delta}$ we have $1-j^2 h^2\ge\delta$ ($\Pi_L(h^2)^{-1/2}\le\mathrm{e}^{B/(2\delta)}$),
+  $0<\prod_{i=L_0+1}^L(1-ih)\le 1$, and $N-L_0-k\ge c_\delta N$ for $0\le k\le\min(d,n_+)$, so
+  $|-n_+|_k/|-D|_k\le(\tau_v/c_\delta)^k$ and
+  $|Q_d|\le\sum_{k=0}^d\frac{(\kappa_L^2\tau_v/c_\delta)^k}{(k!)^2}\le\mathrm{e}^{C_\delta B^2}$, giving $|\Phi_L^{M,\sigma}|\le
+  C_1(\delta,B,M,\sigma)\kappa_L^{p_+}E_N(x)W_{3j}(x)$. On the pullback side, real $\Theta_{q_L}(x)\in[\theta,\frac{\pi}{2}]$
+  satisfies $\Theta_{q_L}(x)\asymp_\delta\varepsilon$, so $W_{q_L}(x)\le C_\delta$, $W_{3j}(\cos\Theta_{q_L})/W_{3j}(x)\le
+  C_\delta^{p_+}$, $|h^2\cC_0^{(3)}(x)|\le C_{M,\sigma}$, $|\frac{h^2}{q_L}\Gamma_2^{(3)}(q_L,x)\sin\Theta_{q_L}|\le
+  C_{\delta,M,\sigma}\heff^2\le C_{\delta,M,\sigma}$, and summing the ${}_2F_1$ series at $\zeta=\sin^2(\Theta_{q_L}/2)\le
+  C_\delta\varepsilon^2$ ($\kappa_L^2\zeta\le C_\delta B^2$) bounds $|P_d(\cos\Theta_{q_L})|\le
+  C(\delta,B,M,\sigma)\kappa_L^{p_+}$ and $|\sin\Theta_{q_L}\,\cD_\Theta d^L_{M\sigma}(\Theta_{q_L})|\le
+  C(\delta,B,M,\sigma)\kappa_L^{p_++2}\varepsilon^2 W_{3j}(x)\le C'(\delta,B,M,\sigma)\kappa_L^{p_+}W_{3j}(x)$, yielding the
+  explicit sup bound
+\begin{equation}
+  \bigl|\Phi_L^{M,\sigma}(x;N^{-1})\bigr| + \bigl|\Phi_L^{\mathrm{U2,cov}}(x;N^{-1})\bigr| \le
+    C_0(\delta,B,M,\sigma)\,\kappa_L^{p_+}\,E_N(x)\,W_{3j}(x)\qquad (\hat{\kappa}_L\le B).
+  \label{eq:zone-I-explicit-sup}
+\end{equation}
+Fix $c_0:=\frac{1}{16}$ and put $r_I(L):=c_0\varepsilon^2/\kappa_L^2$. If $\nu_L(x)^2>\frac12 c_0$, then $\nu_L(x)^4>\frac14
+  c_0^2$, so \eqref{eq:zone-I-explicit-sup} immediately implies \eqref{eq:bessel-toe-bound} with $C_B=B$ (and since
+  $\hat{\kappa}_L\le B$ with $\nu_L>\sqrt{c_0/2}$ forces $u(x)\le\sqrt{2/c_0}\,B$, multiplying \eqref{eq:zone-I-explicit-sup} by
+  $D^{1/4}\sqrt{2L+1}\le\sqrt{2}\hat{\kappa}_L^{1/2}$ and using $\kappa_L^{p_+}W_{3j}(x)\le\hat{\kappa}_L^{p_+}$ gives
+  $D^{1/4}\sqrt{2L+1}(|\Phi_L^{M,\sigma}|+|\Phi_L^{\mathrm{U2,cov}}|)\le\sqrt{2}C_0 B^{p_++1/2}\le
+  C'(\delta,B,M,\sigma)u(x)^{-2}$, which with $B=U_0$ also discharges \eqref{eq:joint-3j-bound} on $\heff>U_0^{-1}$).
+
+Assume now $\nu_L(x)^2\le\frac12 c_0$, so the physical point $t=N^{-2}$ satisfies $0<t\le\frac12 r_I(L)$. Complexify $t=h^2$ on the disk $|t|\le r_I(L)$ at fixed $(L,\tau_v)$:
+\begin{enumerate}[leftmargin=2em,itemsep=2pt]
+\item Since $\kappa_L^2|t|\le c_0\varepsilon^2\le\frac{1}{16}$, $|\Pi_L(t)^{-1/2}|\le\exp(\sum_{j\le L}j^2|t|)\le\mathrm{e}^{c_0
+  B}$, and in \eqref{eq:Ptilde-Hahn-exact}, $|\prod_{i=L_0+1}^L(1-ih)|\le\exp(\kappa_L^2|h|)\le\mathrm{e}^{\sqrt{c_0}B}$. Writing
+  $Q_d=\sum_{k=0}^d T_k(\tau_v,h)$, since $|(L_0+1+k)h|\le(\kappa_L+\tfrac12)\sqrt{r_I(L)}\le2\kappa_L\sqrt{r_I(L)}=2\sqrt{c_0}\varepsilon\le\frac12$ (so $|(k-D)h|\ge\frac12$), we have
+  $|T_{k+1}/T_k|\le\frac{4\kappa_L^2}{k+1}\frac{\tau_v+(k+L_0+1)|h|}{k+1}\le\frac{4\kappa_L^2(\tau_v+(L_0+1)|h|)}{k+1}$, hence
+  $\sum_{k=0}^d|T_k|\le\exp(4\kappa_L^2\tau_v+4(L_0+1)\kappa_L^2|h|)\le\exp(2B^2+4(L_0+1)B\sqrt{c_0})$ and
+  $|\widetilde{H}_L(\tau_v,t)|\le C(B,M,\sigma)\kappa_L^{p_+}$ on $|t|\le r_I(L)$.
+\item For complex $q=\kappa_L\sqrt{t}$ on $|t|\le r_I(L)$ ($|q|^2\le\frac{1}{16}\varepsilon^2$), $w(s):=x/\sqrt{1-s^2}$ ($s=\xi
+  q$, $\xi\in[0,1]$) satisfies $|(1-w(s))-(1-x)|\le\frac{2c_0}{1-c_0}(1-x)<\frac14(1-x)$ and $|(1+w(s))-(1+x)|<\frac14(1+x)$, so
+  $\Theta_q(x)=\int_0^1\arccos w(\xi q)\,\dd\xi$ is even in $q$ (hence holomorphic in $t$) on $|t|\le r_I(L)$ with
+  $|\Theta_q(x)/\theta-1|\le\frac13$ and $|\zeta|=|\sin^2(\Theta_q/2)|\le 2\varepsilon^2$. Consequently $W_q(x)$,
+  $W_{3j}(\cos\Theta_q)/W_{3j}(x)$, $t\cC_0^{(3)}(x)=O(c_0/\kappa_L^2)$, and
+  $\frac{t}{q}\Gamma_2^{(3)}(q,x)\sin\Theta_q=O(|t|/\varepsilon^2)=O(c_0/\kappa_L^2)$ are all holomorphic and bounded on $|t|\le
+  r_I(L)$. Summing the ${}_2F_1$ series at $|\kappa_L^2\zeta|\le 2B^2$ gives $|P_d(\cos\Theta_q)|\le C(B,M,\sigma)\kappa_L^{p_+}$
+  and $|\partial_\zeta\,{}_2F_1|\le C(B,M,\sigma)\kappa_L^2$ (whose $\kappa_L^2$ factor cancels $O(c_0/\kappa_L^2)$ from
+  $\frac{t}{q}\Gamma_2^{(3)}\sin\Theta_q$), proving that $\widetilde{H}_L^{\mathrm{U2,cov}}(\tau_v,t)$ is holomorphic on $|t|\le
+  r_I(L)$ with $\sup_{|t|\le r_I(L)}|\widetilde{H}_L^{\mathrm{U2,cov}}(\tau_v,t)|\le C(B,M,\sigma)\kappa_L^{p_+}$.
+\end{enumerate}
+By Theorem~\ref{thm:hahn-u2-cov}(b), $\Delta_L(\tau_v,t):=\widetilde{H}_L(\tau_v,t)-\widetilde{H}_L^{\mathrm{U2,cov}}(\tau_v,t)$
+  satisfies $\Delta_L(\tau_v,0)=\partial_t\Delta_L(\tau_v,0)=0$, so Cauchy's estimate at $t=h^2\le\frac12 r_I(L)$ gives
+  $|\Delta_L(\tau_v,h^2)|\le 2C(B,M,\sigma)\kappa_L^{p_+}(h^2/r_I(L))^2=2c_0^{-2}C(B,M,\sigma)\nu_L(x)^4\kappa_L^{p_+}$, proving
+  \eqref{eq:bessel-toe-bound} for $C_B=B$. Multiplying by $D^{1/4}\sqrt{2L+1}\,E_N W_{3j}\le\sqrt{2}\hat{\kappa}_L^{p_++1/2}$ and
+  using $\nu_L^4=\hat{\kappa}_L^4\heff^4$ gives $D^{1/4}\sqrt{2L+1}|\Phi_L^{M,\sigma}-\Phi_L^{\mathrm{U2,cov}}|\le
+  C'(B,M,\sigma)u(x)^{-4}\le C'(B,M,\sigma)u(x)^{-2}$.
+
+\medskip
+\noindent\textbf{Step 2: Zone~IIa ($k\ge j_B$, $\hat{\kappa}_k\le\hat{K}_*+1$, $\hat{K}_*:=\heff^{-2/7}$, $x\in[\frac34,1)$, $\heff\le U_0^{-1}$).}
+Pass to the self-adjoint gauge $\widehat{\Phi}_j(t):=\sqrt{2j+1}\,\Phi_j^{M,\sigma}/E_N(x)$,
+  $\widehat{U}_j(t):=(\widehat{\Phi}_j(t),\widehat{\Phi}_{j-1}(t))^{\mathsf{T}}$, so
+  $\widehat{U}_{j+1}(t)=T_j(t)\widehat{U}_j(t)$ with $T_j(t)$ from Lemma~\ref{lem:eps-wkb-jost}. Put $j_B:=\lceil
+  C_B/\varepsilon\rceil$ (so $\kappa_{j_B}<\frac{2C_B}{\varepsilon}$), and for fixed target rank $k\ge j_B$ with
+  $\hat{\kappa}_k\le\hat{K}_*+1\le 2\hat{K}_*$ (including $k=K_*=\lceil\hat{K}_*/\varepsilon-\frac12\rceil$), work on the complex
+  disk $|t|\le r_{II}(k):=\frac{c_0\varepsilon}{4\kappa_k^3}$. Since $\kappa_k\ge\frac{C_B}{\varepsilon}$, we have
+\begin{equation}
+  r_{II}(k) = \frac{c_0\varepsilon}{4\kappa_k^3} \le \frac{c_0\varepsilon^4}{4C_B^3} < C_B^{-1}\frac{c_0\varepsilon^2}{\kappa_{j_B}^2} = C_B^{-1}r_I(j_B) \le \frac18 r_I(j_B),
+\end{equation}
+and at the physical point $t=h^2$, $h^2/r_{II}(k)=4\hat{\kappa}_k^3\heff^2/c_0\le 32c_0^{-1}\heff^{8/7}\le\frac12$ since
+  $\heff\le U_0^{-1}$. Let $P_j^{(0)}$ ($j\ge j_B$) be the exact $t=0$ Jost fundamental matrix of
+  Lemma~\ref{lem:eps-wkb-jost}(a).
+\begin{enumerate}[leftmargin=2em,itemsep=2pt]
+\item \emph{Complexified transfer product on $|t|\le r_{II}(k)$:} Since $P_{j+1}^{(0)}=T_j(0)P_j^{(0)}$ and $\|T_j(t)-T_j(0)\|\le
+  Cj^2|t|$ on $k^2|t|\le\frac{c_0}{4C_B}<\frac12$, Lemma~\ref{lem:eps-wkb-jost}(a) gives
+  $\sum_{j=j_B}^{k-1}\|(P_{j+1}^{(0)})^{-1}(T_j(t)-T_j(0))P_j^{(0)}\|\le C\varepsilon^{-1}k^3|t|\le C'c_0$, so
+  $M(k,j_B;t):=(P_k^{(0)})^{-1}T_{k-1}(t)\cdots T_{j_B}(t)P_{j_B}^{(0)}$ satisfies $\|M(k,j_B;t)\|\le\mathrm{e}^{C'c_0}$ on
+  $|t|\le r_{II}(k)$.
+\item \emph{Contiguous Hahn bound at $j_B$ on $|t|\le\frac18 r_I(j_B)$:} Step~1 gives
+  $|\widehat{\Phi}_{j_B}(t)|+|\widehat{\Phi}_{j_B-1}(t)|\le C(C_B,M,\sigma)\varepsilon^{-1/2}$. To bound
+  $\widehat{\Phi}_{j_B}(t)-\widehat{\Phi}_{j_B-1}(t)$ in \eqref{eq:Ptilde-Hahn-exact} at $d=j_B-L_0$ ($\kappa_{j_B}\asymp
+  C_B/\varepsilon$), observe that
+  $\frac{\sqrt{2\kappa_{j_B}}\Lambda_{j_B,M,\sigma}}{\sqrt{2\kappa_{j_B-1}}\Lambda_{j_B-1,M,\sigma}}-1=O(\kappa_{j_B}^{-1})=O_{C_B}(\varepsilon)$,
+  $(1-j_B^2 t)^{-1/2}-1=O(c_0\varepsilon^2)$, and $(1-j_B h)-1=-j_B h=O(\sqrt{c_0}\varepsilon)$. For
+  $Q_d(u)-Q_{d-1}(u)=\sum_{m=1}^d(T_m^{(d)}-T_m^{(d-1)})$ ($T_d^{(d-1)}:=0$), only the factor
+  $(-d)_m(d+2L_0+1)_m=(-1)^m\prod_{r=0}^{m-1}(d-r)(d+2L_0+1+r)$ depends on $d$; since
+  $(d-r)(d+2L_0+1+r)-(d-1-r)(d+2L_0+r)=2(d+L_0)\le 2\kappa_{j_B}$ and each factor is bounded by $2\kappa_{j_B}^2$, telescoping
+  the $m$-fold product gives $|(-d)_m(d+2L_0+1)_m-(-(d-1))_m(d+2L_0)_m|\le m\kappa_{j_B}^{-1}(2\kappa_{j_B}^2)^m$, whence
+  $|Q_d(u)-Q_{d-1}(u)|\le\kappa_{j_B}^{-1}\sum_{m=1}^d\frac{m}{(m!)^2}[8\kappa_{j_B}^2(\tau_v+(L_0+1)|h|)]^m\le
+  C(C_B,M,\sigma)\varepsilon$. Multiplying by $\kappa_{j_B}^{p_++1/2}W_{3j}(x)\le(2C_B)^{p_++1/2}\varepsilon^{-1/2}$ yields
+  $|\widehat{\Phi}_{j_B}(t)-\widehat{\Phi}_{j_B-1}(t)|\le C(C_B,M,\sigma)\varepsilon^{1/2}$. Rewriting Cramer's numerator for
+  $(P_{j_B}^{(0)})^{-1}\widehat{U}_{j_B}(t)$ as
+  $\widehat{u}_{j_B-1}^\mp(\widehat{\Phi}_{j_B}-\widehat{\Phi}_{j_B-1})-(\widehat{u}_{j_B}^\mp-\widehat{u}_{j_B-1}^\mp)\widehat{\Phi}_{j_B-1}$
+  and using $|\widehat{u}_{j_B}^\mp-\widehat{u}_{j_B-1}^\mp|\le C\varepsilon^{1/2}$ from Lemma~\ref{lem:eps-wkb-jost}(a) cancels
+  $\varepsilon^{-1/2}\cdot\varepsilon^{1/2}=1$, giving $\|(P_{j_B}^{(0)})^{-1}\widehat{U}_{j_B}(t)\|\le C(C_B,M,\sigma)$ and
+  hence $\|(P_k^{(0)})^{-1}\widehat{U}_k(t)\|\le C(C_B,M,\sigma)$ on $|t|\le r_{II}(k)$.
+\item \emph{Complex-angle Gr\"onwall and Wigner-ladder bound for $\widehat{U}_k^{\mathrm{U2,cov}}(t)$ on $|t|\le r_{II}(k)$:} On
+  $|t|\le r_{II}(k)$, $|q_j|^2\le\kappa_k^2 r_{II}(k)=\frac{c_0\varepsilon}{4\kappa_k}\le\frac{c_0\varepsilon^2}{4C_B}$
+  ($j\in\{k,k-1\}$), so $\Theta_{q_j}(x)$ is holomorphic in $t$ with $|\Theta_{q_j}(x)-\theta|\le
+  C|q_j|^2/\varepsilon\le\frac{Cc_0}{\kappa_k}\le\frac{\varepsilon}{4}$. Along the complex segment
+  $\gamma(s):=\theta+s(\Theta_{q_j}(x)-\theta)$ ($s\in[0,1]$), $\operatorname{Re}\gamma(s)\in[\frac34\theta,\frac54\theta]$ and
+  $|V_{M\sigma}(\gamma(s))|\le C_{M,\sigma}\varepsilon^{-2}\le C_{M,\sigma}\kappa_j^2$ in \eqref{eq:wk-liouville-bessel}, so the
+  scaled energy $\mathcal{E}(s):=|w_j(\gamma(s))|^2+\kappa_j^{-2}|w'_j(\gamma(s))|^2$ satisfies $\mathcal{E}'(s)\le
+  C'_{M,\sigma}\kappa_j|\Theta_{q_j}-\theta|\mathcal{E}(s)\le C''_{M,\sigma}c_0\mathcal{E}(s)$ with $\mathcal{E}(0)\le
+  C_{M,\sigma}$ by Lemma~\ref{lem:olver-bessel-darboux}(i). Gr\"onwall's inequality gives $|w_j(\Theta_{q_j})|\le C_{M,\sigma}$
+  and $|w'_j(\Theta_{q_j})|\le C_{M,\sigma}\kappa_j$ ($j\in\{k,k-1\}$), while analytically continuing the Wigner lowering
+  identity $\frac{R_k}{k}d^{k-1}_{M\sigma}(\vartheta)-k\cos\vartheta\,d^k_{M\sigma}(\vartheta)=-\sin\vartheta\,\partial_\vartheta
+  d^k_{M\sigma}(\vartheta)-\frac{M\sigma}{k}d^k_{M\sigma}(\vartheta)$ (\cite[proof of
+  Proposition~3.17]{LewisGrowingRank})---and its $\vartheta$-derivative gives $|w_k(\vartheta)-w_{k-1}(\vartheta)|\le
+  C_{M,\sigma}\varepsilon$ and $|w'_k(\vartheta)-w'_{k-1}(\vartheta)|\le C_{M,\sigma}\varepsilon\kappa_k$ along
+  $[\theta,\Theta_{q_k}]$. Together with $|\Theta_{q_k}-\Theta_{q_{k-1}}|\le C\kappa_k|t|/\varepsilon\le Cc_0\kappa_k^{-2}$ and
+  $|\frac{t}{q_j}\Gamma_2^{(3)}(q_j,x)|\le Cr_{II}(k)\varepsilon^{-3}=\frac{Cc_0}{4\kappa_k^3\varepsilon^2}$, the normalized
+  components $\widehat{v}_j(t):=\sqrt{2j+1}\,\Phi_j^{\mathrm{U2,cov}}(t)/E_N(x)$, with the unscaled vector
+  $\widehat{U}_k^{\mathrm{U2,cov}}(t):=E_N(x)(\widehat{v}_k(t),\widehat{v}_{k-1}(t))^{\mathsf T}$, satisfy $|\widehat{v}_j(t)|\le
+  C\varepsilon^{-1/2}$ and $|\widehat{v}_k(t)-\widehat{v}_{k-1}(t)|\le C\varepsilon^{1/2}$, so Cramer's difference identity again
+  cancels $\varepsilon^{-1/2}\cdot\varepsilon^{1/2}=1$ in
+  $(P_k^{\mathrm{pw}})^{-1}(\widehat{v}_k,\widehat{v}_{k-1})^{\mathsf{T}}$ and yields
+  $\|(P_k^{(0)})^{-1}\widehat{U}_k^{\mathrm{U2,cov}}(t)/E_N(x)\|\le C(C_B,M,\sigma)$ on $|t|\le r_{II}(k)$.
+\end{enumerate}
+By Theorem~\ref{thm:hahn-u2-cov}(b), $W_k(t):=(P_k^{(0)})^{-1}(\widehat{U}_k(t)-\widehat{U}_k^{\mathrm{U2,cov}}(t)/E_N(x))$ is
+  holomorphic on $|t|\le r_{II}(k)$ with $W_k(0)=W'_k(0)=0$ and $\sup_{|t|\le r_{II}(k)}\|W_k(t)\|\le C(C_B,M,\sigma)$. Cauchy's
+  estimate at $t=h^2\le\frac12 r_{II}(k)$ gives
+\begin{equation}
+  \bigl\|W_k(h^2)\bigr\| \le 2C(C_B,M,\sigma)\!\left(\frac{h^2}{r_{II}(k)}\right)^2 =
+    32c_0^{-2}C(C_B,M,\sigma)\,\hat{\kappa}_k^6\heff^4\qquad (C_B\le\hat{\kappa}_k\le\hat{K}_*+1).
+  \label{eq:zone-IIa-vector-bound}
+\end{equation}
+Multiplying by $E_N(x)P_k^{(0)}$ ($\|P_k^{(0)}\|\le C\varepsilon^{-1/2}$) and $D(q_k,x)^{1/4}\le\varepsilon^{1/2}$ proves
+  \eqref{eq:joint-3j-bound} across Zone~IIa, with $\|W_{K_*}(h^2)\|\le C\heff^{16/7}\ll\heff^2$ at $k=K_*$.
+
+\medskip
+\noindent\textbf{Step 3: Zone~IIb ($\hat{K}_*<\hat{\kappa}_k\le\sqrt{1-\delta}\,\heff^{-1}$, $x\in[\frac34,1)$, $\heff\le U_0^{-1}$).}
+For $k\ge K_*-1$ ($K_*=\lceil\heff^{-2/7}/\varepsilon-\frac12\rceil$), compare the exact recurrence against the $k$-independent
+  scalar multiple of $E_N(x)\stackrel{\circ}{U}_k^{[2]}$:
+\begin{equation}
+  \widehat{V}_k^{\mathrm{IIb}} := \bigl(1 + h^2\widetilde{c}(x)\bigr)E_N(x)\stackrel{\circ}{U}_k^{[2]},\qquad
+  \widetilde{c}(x) := \cC_0^{(3)}(x) - \Bigl(\frac12\cot\theta + \omega_{M\sigma}(\theta)\Bigr)\rho_{2,0}^{(3)}(x).
+\end{equation}
+Since $|\widetilde{c}(x)|\le C_{M,\sigma}\varepsilon^{-4}$, $|h^2\widetilde{c}(x)|\le C_{M,\sigma}\heff^2\le 1$, and because
+  $1+h^2\widetilde{c}(x)$ is independent of $k$, Lemma~\ref{lem:eps-darboux-corner} gives $|\cR_k(\widehat{V}^{\mathrm{IIb}})|\le
+  2C_{\delta,M,\sigma}E_N(x)\varepsilon^{3/2}(\nu_k\heff^3+\hat{\kappa}_k^{-8})$. Moreover, writing
+  $\delta\Theta_k:=\frac{h^2}{q_k}\Gamma_2^{(3)}(q_k,x)$ ($|\delta\Theta_k|\le C_\delta\varepsilon\heff^2$,
+  $\kappa_k|\delta\Theta_k|\le C_\delta\nu_k\heff$) and using
+  $\sqrt{2k+1}W_{q_k}(\vartheta)d^k_{M\sigma}(\vartheta)=D(q_k,x)^{-1/4}w_k(\vartheta)$, two-term Taylor expansion
+  $w_k(\Theta_{q_k}+\delta\Theta_k)-w_k(\Theta_{q_k})-\delta\Theta_k w'_k(\Theta_{q_k})=\int_0^1(1-s)(\delta\Theta_k)^2
+  w''_k(\Theta_{q_k}+s\delta\Theta_k)\,\dd s$ (with $|w''_k(\vartheta)|\le C_\delta\kappa_k^2$ by \eqref{eq:wk-liouville-bessel}
+  and Lemma~\ref{lem:olver-bessel-darboux}(i)) plus
+  $(\frac12\cot\Theta_{q_k}+\omega_{M\sigma}(\Theta_{q_k}))\delta\Theta_k-h^2(\frac12\cot\theta+\omega_{M\sigma}(\theta))\rho_{2,0}^{(3)}(x)=O_\delta(\nu_k^2\heff^2)$
+  gives
+\begin{equation}
+  D(q_k,x)^{1/4}\bigl|\widehat{V}_k^{\mathrm{IIb}} - \sqrt{2k+1}\,\Phi_k^{\mathrm{U2,cov}}\bigr| \le
+    C_{\delta,M,\sigma}\bigl(\nu_k^2\heff^2 + \nu_k\heff^3\bigr) \le 2C_{\delta,M,\sigma}\,\heff^2\qquad (K_*-1\le k\le L),
+  \label{eq:pointwise-V-U2cov}
+\end{equation}
+and applying $|w_{K_*}(\vartheta)-w_{K_*-1}(\vartheta)|\le C_{\delta,M,\sigma}\varepsilon$ to the same integral formula at
+  $k\in\{K_*,K_*-1\}$ bounds the difference
+  $|(\widehat{V}_{K_*}^{\mathrm{IIb}}-\sqrt{2K_*+1}\Phi_{K_*}^{\mathrm{U2,cov}})-(\widehat{V}_{K_*-1}^{\mathrm{IIb}}-\sqrt{2K_*-1}\Phi_{K_*-1}^{\mathrm{U2,cov}})|\le
+  C_{\delta,M,\sigma}\varepsilon^{1/2}\heff^2$.
+
+Propagate the error 2-vector $\widehat{\Delta}_k:=(\widehat{\delta}_k,\widehat{\delta}_{k-1})^{\mathsf{T}}$
+  ($\widehat{\delta}_j:=\sqrt{2j+1}\Phi_j^{M,\sigma}-\widehat{V}_j^{\mathrm{IIb}}$) from $k=K_*$ to $L$ in the exact discrete WKB
+  Jost basis $\mathcal{F}_k^{(N)}=P_k(h)C_k$ of Lemma~\ref{lem:eps-wkb-jost}(b):
+\begin{equation}
+  C_L^{-1}P_L(h)^{-1}\widehat{\Delta}_L = P_{K_*}(h)^{-1}\widehat{\Delta}_{K_*} -
+    \sum_{k=K_*}^{L-1}C_{k+1}^{-1}P_{k+1}(h)^{-1}\begin{pmatrix}\cR_k(\widehat{V}^{\mathrm{IIb}})/\tilde{c}_{k+1}(h^2)\\
+    0\end{pmatrix}.
+\end{equation}
+At $k=K_*$, decomposing
+  $\widehat{\Delta}_{K_*}=E_N(x)P_{K_*}^{(0)}W_{K_*}(h^2)+(\widehat{U}_{K_*}^{\mathrm{U2,cov}}-\widehat{V}_{K_*}^{\mathrm{IIb},\mathrm{vec}})$
+  and using $\|P_{K_*}(h)^{-1}P_{K_*}^{(0)}\|\le C_{\delta,M,\sigma}$, \eqref{eq:zone-IIa-vector-bound}, and Cramer's difference
+  cancellation on the second term gives $\|P_{K_*}(h)^{-1}\widehat{\Delta}_{K_*}\|\le C_{\delta,M,\sigma}\heff^2$. Across $K_*\le
+  k\le L-1$, since $\|C_{k+1}^{-1}\|\le 4$, $\|P_{k+1}(h)^{-1}\|\le C_\delta\varepsilon^{-1/2}$, and
+  $\tilde{c}_{k+1}(h^2)\ge\frac14\sqrt{\delta}$, Lemma~\ref{lem:eps-darboux-corner} bounds the variation-of-constants sum by
+\begin{equation}
+  C'_{\delta,M,\sigma}\sum_{k=K_*}^{L-1}\varepsilon^{-1/2}\cdot\varepsilon^{3/2}\bigl(\nu_k\heff^3+\hat{\kappa}_k^{-8}\bigr) \le
+    C''_{\delta,M,\sigma}\bigl(\nu_L(x)^2\heff^2 + \hat{K}_*^{-7}\bigr) \le 2C''_{\delta,M,\sigma}\,\heff^2,
+\end{equation}
+using $\Delta\hat{\kappa}_k=\varepsilon$, $\Delta\nu_k=\varepsilon\heff$, and $\hat{K}_*^{-7}=\heff^2$. Multiplying by
+  $P_L(h)C_L$ ($\|P_L(h)C_L\|\le 4C_\delta D(q_L,x)^{-1/4}$) and combining with \eqref{eq:pointwise-V-U2cov} yields
+  $D(q_L,x)^{1/4}\sqrt{2L+1}|\Phi_L^{M,\sigma}-\Phi_L^{\mathrm{U2,cov}}|\le C'''_{\delta,M,\sigma}\heff^2\le
+  C_{\delta,M,\sigma}u(x)^{-2}$, completing the proof.
+\end{proof}
+
+\section{Centered Racah and one-small \texorpdfstring{$6j$}{6j} symbols}
+\label{sec:racah-6j}
+
+We now extend the algebraic eikonal, covariant pole cancellation, and boundary/corner analysis to the centered Racah / one-small
+  $6j$ family $\Phi_f(A,B,C)$ in the coordinates \eqref{eq:6j-turn}--\eqref{eq:6j-edge-factor}.
+
+\subsection{Three-term algebraic second eikonal, covariant pullback, and isosceles \texorpdfstring{$O(S^{-4})$}{O(S\^{}-4)} super-convergence}
+Despite the quartic factor $(4\alpha^2-\rho^2)(4\beta^2-\rho^2)$ in the Racah rank recurrence, the second eikonal
+  $\widetilde{\Gamma}^{(6)}(\rho,x)$ also integrates in a purely algebraic three-term form with zero elliptic integrals.
+
+\begin{theorem}[Algebraic second eikonal, all-chamber NLO, and isosceles super-convergence for $6j$]
+\label{thm:racah-u2-cov}
+Fix admissible $(m,n)$, put $\Sigma:=m^2+n^2$, $\tau_\star:=mn$, $f_0:=\max(|m|,|n|)$, $p_{\min}:=|m-n|$, $p_{\max}:=|m+n|$, and
+  with $\alpha=A/S=\frac{1+\delta}{2}$, $\beta=B/S=\frac{1-\delta}{2}$, $\gamma=C/S=\sqrt{\alpha^2+\beta^2-2\alpha\beta x}$,
+  $s:=\rho^2$, define for $0<\rho<\rho_*(x)$:
+\begin{align}
+  A_1(x) &:= \frac{(4\Sigma-1)x-8\tau_\star}{8(1-x^2)},\qquad
+  A_3(\alpha,\beta,x) := -\frac{5(\alpha-\beta x)(\beta-\alpha x)\gamma^2}{384\alpha^4\beta^4(1-x^2)}, \label{eq:A1-A3}\\
+  A_2(\rho;\alpha,\beta,x) &:= \frac{\begin{aligned}
+    &16\alpha^2\beta^2(\alpha^2+\beta^2)x(x^2-7) + 16\alpha^3\beta^3(7x^2+5)\\
+    &\quad + s\bigl[24(\alpha^4+\beta^4)x - 16\alpha\beta(\alpha^2+\beta^2)(2x^2+1) - 8\alpha^2\beta^2 x(x^2-7)\bigr]\\
+    &\quad + s^2\bigl[-6(\alpha^2+\beta^2)x + 3\alpha\beta(3x^2+1)\bigr]
+  \end{aligned}}{-96\alpha^2\beta^2(4\alpha^2-s)(4\beta^2-s)(1-x^2)}, \label{eq:A2}\\
+  \widetilde{\Gamma}^{(6)}(\rho,x) &:= A_1(x)\frac{\sqrt{D_6(\rho,x)}}{\rho} +
+    A_2(\rho;\alpha,\beta,x)\frac{\rho}{\sqrt{D_6(\rho,x)}} + A_3(\alpha,\beta,x)\frac{\rho^3}{D_6(\rho,x)^{3/2}},
+    \label{eq:tilde-Gamma-6}\\
+  \Gamma_2^{(6)}(\rho,x) &:= \widetilde{\Gamma}^{(6)}(\rho,x) - \frac{(\Sigma-\tfrac14)\cos\Theta_6(\rho,x)-2\tau_\star}{2\rho\sin\Theta_6(\rho,x)}, \label{eq:Gamma2-6}\\
+  \cC_0^{(6)}(\delta,x) &:= \frac{2f_0+1}{24(1-\delta^2)^2}\left[-(1+\delta^2) + \frac{2\delta^2(p_{\min}-1)(2f_0+1)}{1-x} +
+    \frac{2(p_{\max}-1)(2f_0+1)}{1+x}\right], \label{eq:C0-6}
+\end{align}
+where $\Theta_6(\rho,x):=S_6(\rho,x)/\rho$ from \eqref{eq:S6-closed} and
+  $W_6(\rho,x):=(\sin^2\Theta_6(\rho,x)/D_6(\rho,x))^{1/4}$. Define the covariant edge-factored $6j$ pullback by
+\begin{equation}
+  \boxed{\begin{aligned}\Phi_f^{\mathrm{U2,cov}}(A,B,C) :=
+    E_{A,B}(C)\,W_6(\rho_f,x)\Bigl[&\bigl(1+S^{-2}\cC_0^{(6)}(\delta,x)\bigr)\,d^f_{nm}\bigl(\Theta_6(\rho_f,x)\bigr)\\ &+
+    \frac{S^{-2}}{\rho_f}\,\Gamma_2^{(6)}(\rho_f,x)\,\cD_\Theta d^f_{nm}\bigl(\Theta_6(\rho_f,x)\bigr)\Bigr].\end{aligned}}
+  \label{eq:Phi-6j-U2-cov}
+\end{equation}
+Then:
+\begin{enumerate}[label=(\alph*),leftmargin=2em,itemsep=2pt]
+\item \textbf{Exact antiderivative and Hahn degeneration.} $\partial_\rho\widetilde{\Gamma}^{(6)}(\rho,x)=\Sigma_2^{(6)}(\rho,x)$
+  identically on $\{D_6(\rho,x)>0\}$, $\Gamma_2^{(6)}(\rho,x)/\rho$ extends analytically across $\rho=0$, and under the Hahn
+  limit $\alpha=\frac{1}{2\Lambda}$, $\beta=1-\frac{1}{2\Lambda}$, $\rho=q/\Lambda$ as $\Lambda\to\infty$,
+  $\Lambda^{-1}\widetilde{\Gamma}^{(6)}(q/\Lambda,x)\to\widetilde{\Gamma}^{(3)}(q,x)$ and
+  $\Lambda^{-2}\cC_0^{(6)}(\delta,x)\to\cC_0^{(3)}(x)$.
+\item \textbf{All-chamber fixed-rank NLO and interior all-rank uniformity.} Fix $0<\lambda<1$ and
+  $\delta_0=\frac{1-\lambda}{1+\lambda}$. In every chamber of $(m,n)$ and at fixed $f\ge f_0$ and
+  $(x,\delta)\in(-1,1)\times[-\delta_0,\delta_0]$, expanding \eqref{eq:Phi-6j-U2-cov} in $S^{-2}=(A+B)^{-2}$ cancels all $(1\mp
+  x)^{-2}$ and $(1\mp x)^{-1}$ poles against $E_{A,B}(C)$ and matches
+  \cite[Corollary~10.3, Eq.~(262)]{LewisFixedRank} identically through $O(S^{-2})$ (with fixed-rank remainder
+  $O_{f,\delta,m,n}(S^{-2}u_6(A,B,C)^{-2})E_{A,B}(C)W_{6j}(x)$ at any fixed separated
+  $\delta\in[-\delta_0,\delta_0]\setminus\{0\}$). Moreover, on any compact interior subset
+  $(x,\delta)\in[-1+\eta,1-\eta]\times[-\delta_0,\delta_0]$, uniformly for all $f_0\le f<2\min(A,B)$ with
+  $\nu_6(\rho_f,x)\le\sqrt{1-\delta_{\mathrm{turn}}}$, $D_6^{1/4}\sqrt{2f+1}|\Phi_f-\Phi_f^{\mathrm{U2,cov}}|\le
+  C_{\eta,\delta_0,\delta_{\mathrm{turn}},m,n}S^{-2}$.
+\item \textbf{Isosceles $O(S^{-4})$ super-convergence away from $x=-1$, down to $C_{\min}$ (versus $O(S^{-2})$ at $C_{\max}$).} On the
+  exact isosceles slice $A=B$ ($\delta=0$) at fixed rank $f\ge f_0$, for every fixed $\eta\in(0,\frac12]$ there is $S_\eta$ such that for
+  $S\ge S_\eta$, uniformly for all physical $C\in\{C_{\min}+r:r\ge 0\}$ with
+  $x=1-\frac{2C^2}{S^2}\ge -1+2\eta$ (i.e.\ $0<\frac{C^2}{S^2}\le 1-\eta$, including $C=C_{\min}=\frac{p_{\min}+1}{2}$
+  where $1-x\asymp S^{-2}$),
+\begin{equation}
+  \bigl|\Phi_f(A,A,C) - \Phi_f^{\mathrm{U2,cov}}(A,A,C)\bigr| \le C_{f,m,n,\eta}\,S^{-4}\,E_{A,A}(C)\,W_{6j}(x).
+  \label{eq:isosceles-S4}
+\end{equation}
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+Part~(a) and the all-chamber algebraic identity of Part~(b) follow by clearing denominators in
+  $D_6^{5/2}(\partial_\rho\widetilde{\Gamma}^{(6)}-\Sigma_2^{(6)})$ and expanding \eqref{eq:Phi-6j-U2-cov} to $O(S^{-2})$ against
+  \cite[Eq.~(262)]{LewisFixedRank} across all four $(m,n)$ chambers (verified by exact symbolic computation; at fixed separated $\delta\ne 0$, $\rho_*(x)\asymp_\delta\sqrt{1-x^2}$ and
+  Cauchy's estimate on $|t|\le c_0(\delta)(1-x^2)/\kappa_f^2$ gives the $O_{f,\delta}(S^{-2}u_6^{-2})$ remainder just as in
+  Theorem~\ref{thm:hahn-u2-cov}(b)). On compact interior $(x,\delta)$, $E_{A,B}(C)=1+e_2^{6j}(\delta,x)S^{-2}+O(S^{-4})$ ($e_2^{6j}(\delta,x):=S^{2}e_2^{6j}$ in terms of the homogeneous $e_2^{6j}$ of Ref.~\cite{LewisFixedRank}) and
+  two-term Taylor expansion of the main paper's interior second-order formula $W_6^{[2]}d^f_{nm}(\Theta_6^{[2]})$
+  \cite[Corollary~5.3]{LewisGrowingRank} (stated there for $\Psi_f$ and $d^f_{mn}$, which differ from $\Phi_f$ and $d^f_{nm}$ by the same sign $(-1)^{m-n}$) matches \eqref{eq:Phi-6j-U2-cov} up to $O(S^{-2})$, proving interior all-rank
+  uniformity.
+
+For Part~(c), set $A=B$ ($\delta=0$, $\alpha=\beta=\frac12$), fix $\eta\in(0,\frac12]$ and restrict to $x\ge -1+2\eta$, so
+  $\tau_v:=\frac{1-x}{2}=\frac{C^2}{S^2}\in(0,1-\eta]$ and $t:=S^{-2}$ ($\rho_f=\kappa_f\sqrt{t}$, $s=\rho_f^2=\kappa_f^2 t$).
+  Let $T_\eta:=[0,1-\eta]$ and $s_\eta\in(0,\frac\eta2]$ be fixed below; $S\ge S_\eta:=2\kappa_f/\sqrt{s_\eta}$ gives $s\le s_\eta/4$.
+  At $\delta=0$:
+\begin{enumerate}[leftmargin=2em,itemsep=2pt]
+\item In \eqref{eq:C0-6}, the $(1-x)^{-1}$ pole $2\delta^2(p_{\min}-1)(2f_0+1)/(1-x)$ vanishes identically at $\delta=0$, leaving
+  $\cC_0^{(6)}(0,1-2\tau_v)=\frac{2f_0+1}{24}[-1+\frac{(p_{\max}-1)(2f_0+1)}{1-\tau_v}]$ (since $1+x=2(1-\tau_v)$), which is real-analytic on
+  $T_\eta$ ($1-\tau_v\ge\eta$).
+\item Since $\alpha=\beta=\frac12$ and $\gamma=\sqrt{\tau_v}$, we have $\rho_*(1-2\tau_v)=\sqrt{1-\tau_v}\ge\sqrt\eta$
+  on $T_\eta$ (whereas as $\tau_v\to 1^-$, i.e.\ $x\to -1^+$, $\rho_*(1-2\tau_v)=\sqrt{1-\tau_v}\to 0$ pinches;
+  that edge is not covered by Part~(c)). Thus on $T_\eta$, $D_6(\rho,1-2\tau_v)=4\tau_v(1-\tau_v-s)$
+  satisfies $D_6/\tau_v=4(1-\tau_v-s)\ge 2\eta$ for $s\in[0,\frac\eta2]$.
+\item Substituting $\alpha=\beta=\frac12$, $\alpha-\beta x=\beta-\alpha x=\tau_v$, $\gamma=\sqrt{\tau_v}$, and
+  $\sin\phi=\sqrt{s/(1-\tau_v)}$ into \eqref{eq:S6-closed} gives $\omega_6(\rho,1-2\tau_v)=2\arcsin\sqrt{\frac{\tau_v}{1-s}}$,
+  $2\gamma\phi=2\sqrt{\tau_v}\arcsin\sqrt{\frac{s}{1-\tau_v}}$, and
+  $-2(\alpha+\beta)\atanTwo(\tau_v\sin\phi,\gamma\cos\phi)=-2\arctan\sqrt{\frac{\tau_v s}{1-\tau_v-s}}$. Using $\arcsin
+  u=u\,{}_2F_1(\frac12,\frac12;\frac32;u^2)$ and $\arctan u=u\,{}_2F_1(\frac12,1;\frac32;-u^2)$ shows that
+  $\widehat{\Theta}_6(\tau_v,s):=\Theta_6(\sqrt{s},1-2\tau_v)/\sqrt{\tau_v}$ is positive and real-analytic on
+  $T_\eta\times[0,\frac\eta2]$ (the arguments satisfy $\frac{\tau_v}{1-s}\le\frac{1-\eta}{1-\eta/2}<1$ and $\frac{s}{1-\tau_v}\le\frac12$; with $\widehat{\Theta}_6(0,s)=\frac{2\arcsin\sqrt{s}}{\sqrt{s}}>0$). Next, substituting
+  $\alpha=\beta=\frac12$ and $x=1-2\tau_v$ into \eqref{eq:A1-A3}--\eqref{eq:A2} factors out $\tau_v$ identically from both
+  numerators and denominators (verified by exact symbolic computation):
+\begin{equation}
+  \begin{gathered}
+  A_2\Bigl(\rho;\tfrac12,\tfrac12,1-2\tau_v\Bigr) = \frac{(3-13\tau_v+4\tau_v^2)-(6-22\tau_v+4\tau_v^2)s+3(1-3\tau_v)s^2}{24(1-\tau_v)(1-s)^2},\\
+  A_3\Bigl(\tfrac12,\tfrac12,1-2\tau_v\Bigr) = -\frac{5\tau_v^2}{6(1-\tau_v)},
+  \end{gathered}
+\end{equation}
+both real-analytic on $T_\eta\times[0,\frac\eta2]$. Finally, write
+  $\frac{\sin\Theta_6}{\rho}\Gamma_2^{(6)}(\rho,1-2\tau_v)=\frac{F_1(\tau_v,s)-F_2(\tau_v,s)}{s}+\sin\Theta_6(A_2/\sqrt{D_6}+A_3
+  s/D_6^{3/2})$, where $F_1(\tau_v,s):=A_1(1-2\tau_v)\sin\Theta_6\sqrt{D_6}$ and
+  $F_2(\tau_v,s):=\frac12[(\Sigma-\frac14)\cos\Theta_6-2\tau_\star]$. Because
+  $\sin(\sqrt{\tau_v}\widehat{\Theta}_6)=\sqrt{\tau_v}\widehat{\Theta}_6\,\mathrm{sinc}(\sqrt{\tau_v}\widehat{\Theta}_6)$ and
+  $\sqrt{D_6}=2\sqrt{\tau_v}\sqrt{1-\tau_v-s}$, their product supplies a factor of $\tau_v$ that cancels
+  $1-x^2=4\tau_v(1-\tau_v)$ in $A_1(1-2\tau_v)$, making $F_1$ and $F_2$ real-analytic on $T_\eta\times[0,\frac\eta2]$; at
+  $s=0$, $\Theta_6(0,1-2\tau_v)=\arccos(1-2\tau_v)$ gives $\sin\Theta_6\sqrt{D_6}|_{s=0}=4\tau_v(1-\tau_v)$, so
+  $F_1(\tau_v,0)=\frac{(4\Sigma-1)(1-2\tau_v)-8\tau_\star}{8}=F_2(\tau_v,0)$ identically in $\tau_v$, proving that $(F_1-F_2)/s$
+  is real-analytic on $T_\eta\times[0,\frac\eta2]$. By Lemma~\ref{lem:covariant-regularity} (\eqref{eq:covariant-poly-form}),
+  $\cD_\Theta d^f_{nm}(\Theta_6)=-\sin\Theta_6\,W_{6j}(\cos\Theta_6)P'_{f-f_0}(\cos\Theta_6)$ provides the needed $\sin\Theta_6$
+  factor, while $W_6(\rho_f,1-2\tau_v)W_{6j}(\cos\Theta_6)/W_{6j}(1-2\tau_v)$ is positive and real-analytic on
+  $T_\eta\times[0,s_\eta]$, where $s_\eta\in(0,\frac\eta2]$ is chosen by continuity so that $\Theta_6\le\pi-\frac12\arccos(1-2\eta)$ there
+  (at $s=0$, $\Theta_6=\arccos(1-2\tau_v)\le\pi-\arccos(1-2\eta)$).
+\end{enumerate}
+Hence $\Phi_f^{\mathrm{U2,cov}}(A,A,C)/(E_{A,A}(C)W_{6j}(x))$ extends to a real-analytic function of $(\tau_v,t)$ on
+  $T_\eta\times(-\rho_0,\rho_0)$, $\rho_0:=s_\eta/\kappa_f^2$ (every function above is a convergent hypergeometric series or rational
+  function in $s$, analytic on a neighbourhood of $[0,s_\eta]$ that contains small negative $s$). Since the carrier
+  $\Phi_f(A,A,C)/(E_{A,A}(C)W_{6j}(x))$ is real-analytic in $(\tau_v,t)\in[0,1]\times(-f^{-2},f^{-2})$ and $\rho_0\le\frac{1}{4\kappa_f^2}<f^{-2}$,
+  it is real-analytic on $T_\eta\times(-\rho_0,\rho_0)$ (\cite[Theorem~10.1(b)]{LewisFixedRank}) and agrees with $\Phi_f^{\mathrm{U2,cov}}/(E_{A,A}W_{6j})$
+  through $O(t)$ by Part~(b), Taylor's theorem on the compact set $T_\eta\times[0,\rho_0/4]$, which contains every $(\tau_v,t)$ with $S\ge S_\eta$, yields
+  $|\Phi_f-\Phi_f^{\mathrm{U2,cov}}|\le C_{f,m,n,\eta}t^2 E_{A,A}W_{6j}=C_{f,m,n,\eta}S^{-4}E_{A,A}W_{6j}$ uniformly down to $C=C_{\min}$.
+\end{proof}
+
+\begin{remark}[The isosceles upper edge]
+\label{rem:isosceles-upper-edge}
+Part~(c) covers every fixed range $x\ge -1+2\eta$, with a constant depending on $\eta$. Near the opposite edge
+  $C\to C_{\max}=2A-\frac{p_{\max}+1}{2}$ ($x\to -1^+$) the
+  turning curve $\rho_*(x)=\sqrt{(1+x)/2}$ pinches to zero, the analyticity argument of the proof fails, and no $O(S^{-4})$
+  improvement is claimed there. Numerically the fixed-rank error at $C=C_{\max}$ decays only like $S^{-2}$ (Test~\texttt{6j~C3b},
+  Appendix~\ref{sec:numerics}).
+\end{remark}
+
+\subsection{Tetrahedral corner duality and the growing-rank \texorpdfstring{$6j$}{6j} conjecture}
+In Ref.~\cite[Section~10, the remark ``The lower corner'' following Corollary~10.5]{LewisFixedRank} it
+  was noted that while fixed-rank edge uniformity holds through $|A-B|=o(A+B)$, ``a rank growing with the large lengths is not
+  covered.'' We resolve the exact asymptotics of the macroscopic-rank near-isosceles corner ($|A-B|=O(1)$, $C=O(1)$,
+  $\rho_f\in(0,1-\delta_0]$) via tetrahedral symmetry and formulate the global joint-uniformity conjecture for $6j$.
+
+\begin{proposition}[Tetrahedral duality at the macroscopic-rank near-isosceles corner]
+\label{prop:tetrahedral-corner}
+For all admissible angular momenta $(a,b,c,m,n,f)$, exchanging the upper and lower entries in columns $2$ and $3$ of the Wigner $6j$ symbol gives the exact identity
+\begin{equation}
+  \sixj{a}{b}{c}{b+m}{a+n}{f} = \sixj{a}{a+n}{f}{b+m}{b}{c}.
+  \label{eq:tetrahedral-swap}
+\end{equation}
+Consequently, in the macroscopic-rank near-isosceles lower corner where $S=A+B\to\infty$ with $\Delta:=A-B=O(1)$,
+  $C=c+\frac12=O(1)$ fixed, and $\rho=(f+\frac12)/S\in[\rho_0,1-\delta_0]$ ($0<\rho_0<1-\delta_0<1$), putting $\tilde{a}:=a$,
+  $\tilde{b}:=a+n$, $\tilde{c}:=f$, $\tilde{m}:=b-a+m-n=-\Delta+\frac{m-n}{2}=O(1)$, and
+  $\tilde{n}:=b-a=-\Delta+\frac{n-m}{2}=O(1)$, the right-hand side of \eqref{eq:tetrahedral-swap} is a one-small $6j$ symbol of
+  \emph{fixed small rank $c$} at strict interior dual cosine
+  $\tilde{x}=\frac{\tilde{A}^2+\tilde{B}^2-\tilde{C}^2}{2\tilde{A}\tilde{B}}=1-2\rho^2+O(S^{-1})\in(-1,1)$. Applying
+  \cite[Corollary~10.3]{LewisFixedRank} to the dual symbol yields an explicit $O(S^{-2})$ Wigner-$d^c_{\tilde{n}\tilde{m}}(\arccos\tilde{x})$
+  approximation (and $O(S^{-4})$ via Corollary~10.3's NLO term) down to $C=C_{\min}$.
+\end{proposition}
+
+\begin{proof}
+Identity \eqref{eq:tetrahedral-swap} is the standard tetrahedral invariance of $\sixj{j_1}{j_2}{j_3}{l_1}{l_2}{l_3}$ under
+  simultaneously exchanging the upper and lower entries in columns $2$ and $3$ ($\binom{j_2}{l_2}\mapsto\binom{l_2}{j_2}$,
+  $\binom{j_3}{l_3}\mapsto\binom{l_3}{j_3}$), which preserves all four coupled triads $(a,b,c)$, $(a,a+n,f)$, $(b+m,b,f)$, and
+  $(b+m,a+n,c)$. With $\tilde{a}=a$, $\tilde{b}=a+n$, $\tilde{c}=f$, the bottom row reads
+  $(\tilde{b}+\tilde{m},\tilde{a}+\tilde{n},c)$ with $\tilde{m}=b+m-(a+n)$ and $\tilde{n}=b-a$. Since
+  $\tilde{A}=\tilde{a}+\frac{\tilde{n}+1}{2}=\frac{a+b+1}{2}=\frac{S}{2}-\frac{m+n}{4}$,
+  $\tilde{B}=\tilde{b}+\frac{\tilde{m}+1}{2}=\frac{a+b+m+n+1}{2}=\frac{S}{2}+\frac{m+n}{4}$, and $\tilde{C}=f+\frac12=\rho S$,
+  one has $\tilde{A}/\tilde{B}=1+O(S^{-1})$ and $\tilde{x}=1-2\rho^2+O(S^{-1})$, which lies in a compact subinterval of $(-1,1)$
+  for $\rho\in[\rho_0,1-\delta_0]$. The phase $\xi=a+b+c+f+n$ of \cite[Eq.~(115)]{LewisFixedRank} is unchanged by the swap, while its
+  centered normalization changes by
+\begin{equation}
+\begin{gathered}
+\Phi_f(A,B,C)=\sqrt{\frac{AB}{\tilde A\tilde B}}\,\widetilde\Phi_c(\tilde A,\tilde B,\tilde C),\\
+\sqrt{\frac{AB}{\tilde A\tilde B}}=
+\sqrt{\frac{S^2-\Delta^2}{S^2-(m+n)^2/4}}
+=1+\frac{(m+n)^2/4-\Delta^2}{2S^2}+O(S^{-4}).
+\end{gathered}
+\end{equation}
+Thus \cite[Corollary~10.3]{LewisFixedRank} applies to the fixed-rank dual symbol; its leading term gives the stated $O(S^{-2})$
+  approximation, and retaining both the dual NLO term and this normalization correction gives the $O(S^{-4})$ approximation.
+\end{proof}
+
+\begin{remark}[Behavior of the direct rank-$f$ pullback \eqref{eq:Phi-6j-U2-cov} in the macroscopic-rank corner]
+\label{rem:direct-rank-f-corner}
+In the macroscopic-rank isosceles limit $A=B\to\infty$ with $C=O(1)$ and $\rho_f\to\rho\in(0,1)$, \eqref{eq:S6-closed} gives
+  $(f+\frac12)\Theta_6(\rho_f,x)=2C\arcsin\rho+O(S^{-1})$, so $d^f_{nm}(\Theta_6(\rho_f,x))$ converges to a Bessel combination
+  approximating the dual finite-rank polynomial $d^c_{\tilde{n}\tilde{m}}(2\arcsin\rho)$. Heuristically this leaves a bounded
+  $O(C^{-2})=O(u_6^{-2})$ Bessel-versus-polynomial-$d^c$ discrepancy at fixed $C=O(1)$ that decays like $C^{-2}$ as $C$ grows; in
+  Test~\texttt{6j~C5} ($A=B=500\to 2000$, $\rho=0.35$, $C\in[C_{\min},15]$),
+  $\max_C(D_6^{1/4}\sqrt{2f+1}|\Phi_f-\Phi_f^{\mathrm{U2,cov}}|\,C^2)=0.0432\to 0.0431$ is completely stable in $S$.
+\end{remark}
+
+\begin{conjecture}[Global joint rank--position uniformity for centered Racah/$6j$]
+\label{conj:joint-6j}
+Fix admissible $(m,n)$, ratio bound $0<\lambda<1$ ($|\delta|\le\delta_0=\frac{1-\lambda}{1+\lambda}$), and turning margin
+  $\delta_{\mathrm{turn}}\in(0,1)$. Uniformly for all physical $(A,B,C)$ with $\lambda\le A/B\le\lambda^{-1}$ and all ranks
+  $f_0\le f<2\min(A,B)$ satisfying $\nu_6(\rho_f,x)\le\sqrt{1-\delta_{\mathrm{turn}}}$,
+\begin{equation}
+  D_6(\rho_f,x)^{1/4}\sqrt{2f+1}\,\bigl|\Phi_f(A,B,C) - \Phi_f^{\mathrm{U2,cov}}(A,B,C)\bigr| \le \frac{C_{\lambda,\delta_{\mathrm{turn}},m,n}}{u_6(A,B,C)^2}.
+  \label{eq:conj-6j-bound}
+\end{equation}
+\end{conjecture}
+
+\begin{remark}[Status of Conjecture~\ref{conj:joint-6j}: what is proved vs.\ what remains open]
+At separated $A\ne B$ ($|\delta|\ge\delta_{\min}>0$), the three-zone architecture of
+  Lemmas~\ref{lem:olver-bessel-darboux}--\ref{lem:eps-wkb-jost} and Theorem~\ref{thm:joint-3j} is expected to adapt once a Racah ${}_4F_3(1)$
+  hypergeometric bound replaces Zone~I's Hahn ${}_3F_2(1)$ bound; the genuinely new analytical problem is uniform control across
+  the two-scale corner transition $(\delta,\gamma)\to(0,0)$ where
+  $\rho_*(x)=\frac{(1-\delta^2)\sqrt{1-x^2}}{2\sqrt{\delta^2+(1-\delta^2)(1-x)/2}}$ transitions from pinching ($\delta\ne
+  0,\tau\to 0$) to non-pinching ($\delta=0,\tau\to 0$). In Appendix~\ref{sec:numerics}
+  (Tests~\texttt{6j~C2}--\texttt{C5}), \eqref{eq:conj-6j-bound} is tested across
+  dense multi-$S$ 2D $(C,f)$ scans at $S\approx 500,2000,8000,32000$ ($\sup=0.4493\to 0.4831\to 0.4911\to 0.4999$ for $(0,0)$;
+  $0.8547\to 1.0057\to 0.9983\to 1.0074$ for $(2,-1)$; $0.5304\to 0.5601\to 0.5658\to 0.5701$ for $(\frac32,-\frac12)$), along
+  the growing-rank corridor $\nu_6=0.60$ at $S\approx 1000\to 4000$ ($\max=0.1307\to 0.1308$), and in the macroscopic-rank
+  isosceles corner $A=B=500\to 2000,\rho=0.35$ ($\max=0.0432\to 0.0431$).
+\end{remark}
+
+\section{Results, limitations, and open questions}
+\label{sec:proved-vs-open}
+
+Theorems~\ref{thm:joint-3j}, \ref{thm:laguerre-corner}, \ref{thm:hahn-u2-cov} and~\ref{thm:racah-u2-cov},
+  Proposition~\ref{prop:tetrahedral-corner} and the lemmas they use are proved. Symbolic computation checks specific algebraic
+  steps only; the analytic remainder estimates do not follow from computation. Remark~\ref{rem:direct-rank-f-corner} and the
+  benchmarks of Appendix~\ref{sec:numerics} are numerical evidence, and the growing-rank Racah bound is
+  Conjecture~\ref{conj:joint-6j}.
+
+Four questions remain open.
+\begin{enumerate}[leftmargin=2em,itemsep=2pt]
+\item \emph{Global Laguerre--Whittaker + Airy synthesis across $0\le L<N$}.
+  Theorem~\ref{thm:joint-3j} covers $\nu_L(x)\le\sqrt{1-\delta}$, while the main paper~\cite[Theorem~4.6]{LewisGrowingRank} covers the
+  turning curve $\nu_L(x)\approx 1$ at interior $x$ ($u(x)\to\infty$), and Theorem~\ref{thm:laguerre-corner} covers $u(x)=O(1)$
+  at $\lambda_N=O(1)$. Unifying all three into a single comparison function across the entire rectangle
+  $(x,L)\in\cX_N\times[L_0,N-1]$ requires a confluent Whittaker/Laguerre comparison family whose two turning points coalesce as
+  $u(x)\to O(1)$.
+\item \emph{Joint $O(u(x)^{-3})$ phase exactness via smooth Bessel-toe cutoff}. At fixed interior
+  $x$, the main paper's nonlinear shift $\Theta_q^{[2]}$ achieves $O(N^{-3})$ oscillatory error~\cite[Corollary~4.4]{LewisGrowingRank}
+  because absorbing $\Gamma_2/q$ into the argument resums secular phase drift, whereas at $x\to\pm 1$
+  Remark~\ref{rem:nonlinear-shift-failure} proves an unattenuated shift fails at $O(1)$. Introducing a smooth cutoff
+  $\chi(\kappa_L\Theta_q)$ that activates the nonlinear phase shift only for $\kappa_L\Theta_q\gtrsim 1$ while keeping the
+  covariant linear form for $\kappa_L\Theta_q\lesssim 1$ is a natural candidate for $O(u(x)^{-3})$ joint accuracy.
+\item \emph{Analytical Zone-IIb / $\delta\to 0$ proof of Conjecture~\ref{conj:joint-6j}}.
+  Completing the ${}_4F_3(1)$ complex-disk Zone-I estimate and uniform WKB propagation across the blown-up
+  $(\delta,\gamma)\to(0,0)$ corner for centered Racah/$6j$.
+\item \emph{$q$-deformed ($U_q(\mathfrak{su}_2)$) joint edge--rank uniformity}. Extending the
+  covariant $q$-Wigner / Askey--Wilson derivative and $q$-Pochhammer edge factor to quantum $6j$ symbols.
+\end{enumerate}
+
+\appendix
+\section{Computational checks and negative controls}
+\label{sec:numerics}
+
+The symbolic checks and multi-scale numerical scans are performed by four standalone Python programs (using \texttt{numpy},
+  \texttt{scipy} and \texttt{sympy}), two for each family: a symbolic program (Part~A, exact identities; Part~B, comparison of
+  the recurrences with exact Wigner symbols) and a numerical benchmark program (positive benchmarks and negative controls). The
+  test identifiers below (\texttt{3j~C1a}, \texttt{NC2}, \dots) are those printed by the programs.
+
+\subsection{Exact symbolic checks, forward-recurrence cross-checks, and multi-scale 2D scans}
+Part~A of the two symbolic programs verifies selected algebraic identities in \texttt{sympy}, including the Olver recursion
+  through $M=4$ and the algebraic structure entering Lemma~\ref{lem:eps-darboux-corner}; it does not certify the analytic uniform
+  remainder estimates. Part~B numerically cross-checks the square-root-free forward recurrences against
+  \texttt{sympy.physics.wigner.wigner\_3j} (max discrepancy $9.992\times 10^{-16}$ across integer/half-integer chambers and
+  boundary points) and \texttt{wigner\_6j} (max discrepancy $3.331\times 10^{-16}$, plus exact zero difference on the tetrahedral
+  corner swap \eqref{eq:tetrahedral-swap}). The two numerical benchmark programs (numerical evidence)
+  run dense multi-scale scans across $N\in\{500,2000,8000,32000\}$ ($3j$) and $S\approx 500,2000,8000,32000$ ($6j$) using the
+  exact edge distance $u(x)=N(1-|x|)$ and $u_6(A,B,C)$ across all $u\ge 1$, testing bounded scaled errors on those finite grids
+  and recording successive $4\times$-scale increments; these observations do not prove a uniform bound
+  (Table~\ref{tab:positive-benchmarks}).
+
+\begin{table}[htbp]
+\centering
+\small
+\renewcommand{\arraystretch}{1.18}
+\begin{tabular}{@{}p{0.10\textwidth}p{0.33\textwidth}p{0.51\textwidth}@{}}
+\toprule
+\textbf{Log ID} & \textbf{Regime} & \textbf{Measured result} \\
+\midrule
+\texttt{3j C1a} & Dense multi-$N$ 2D sup ($N=500,2000,8000,32000$, $\nu_L\le 0.82$, all $u\ge 1$) & $(0,0)$: $1.8108\to 1.9002\to
+  1.9694\to 1.9885$ (inc.\ $0.0894,0.0693,0.0190$); $(2,-1)$: $1.9331\to 1.9451\to 1.9481\to 1.9488$; $(\frac32,-\frac12)$:
+  $1.3683\to 1.4731\to 1.5065\to 1.5173$ \\
+\texttt{3j C1b} & Dense scan at $N=600$ ($u\ge 9$, $\nu_L\le 0.82$) & $\sup\bigl(D^{1/4}\sqrt{2L+1}|\Delta\Phi|\,u(x)^2\bigr)=1.9357$ (ceiling $\le 1.9885$) \\
+\texttt{3j C2} & Hard edge $n=0$ ($N=160\to 640\to 2560$) & $4\times$-$N$ ratios $17.58,16.37$ ($0,0$), $15.47,15.86$ ($2,-1$),
+  $15.34,15.83$ ($\frac32,-\frac12$) $\approx 16=O(N^{-2})$ \\
+\texttt{3j C3} & Hilb/Bessel toe ($L\sim 2N^{1/3}$, $8\times$-$N$) & Errors $8.56\times 10^{-4}\to 3.77\times 10^{-5}\to
+  2.19\times 10^{-6}$ (ratios $22.67,17.24\approx 16=O(\nu_L^4)$) \\
+\texttt{3j C4} & Zone~IIb $\varepsilon$-uniform residual ($N=500\to 32000$, $\varepsilon=0.31\to 0.039$) &
+  $|\cR_k|/[\varepsilon^{3/2}(\nu_k\heff^3+\hat{\kappa}_k^{-8})]\to 2.81$ ($\nu=0.30$), $3.152$ ($\nu=0.50$), $4.288$
+  ($\nu=0.80$) \\
+\texttt{3j C5} & Interior proportional rank ($q\approx 0.35$) & $9$-pt envelope $4.45\times 10^{-5}\to 2.49\times 10^{-6}\to
+  1.52\times 10^{-7}$ (ratios $17.89,16.40\approx 16$) \\
+\texttt{3j C6a} & Laguerre corner ($n=1,p_+=3,\lambda\approx 1.2$) & $|\Phi_L-\text{Lag}|=7.30\times 10^{-4}\to 1.82\times
+  10^{-4}\to 4.53\times 10^{-5}$ ($4\times$-$N$ ratios $4.02,4.01\approx 4$) \\
+\texttt{3j C6b} & Cor.~\ref{cor:sharpness} Bessel limit ($z_*=5.376562$) &
+  $|\Phi_L^{\mathrm{U2,cov}}-\text{lim}(\nu_{L_N})|=8.69\times 10^{-4}\to 2.17\times 10^{-4}\to 5.43\times 10^{-5}$ (ratios
+  $4.00,4.00\approx 4$) \\
+\midrule
+\texttt{6j C1} & Exact $\atanTwo$ turning perimeter laws & Turning-point error $<10^{-12}$ (obtuse \& acute); interior quad $<10^{-7}$ \\
+\texttt{6j C2} & Dense multi-$S$ 2D sup ($S\approx 500,2000,8000,32000$, $A:B\approx 3:2$, $\nu_6\le 0.82$) & $(0,0)$: $0.4493\to
+  0.4831\to 0.4911\to 0.4999$; $(2,-1)$: $0.8547\to 1.0057\to 0.9983\to 1.0074$; $(\frac32,-\frac12)$: $0.5304\to 0.5601\to
+  0.5658\to 0.5701$ \\
+\texttt{6j C3a} & Separated edges $r=0$ ($A:B\approx 3:2$) & $4\times$-$S$ ratios: $C_{\min}$ $15.37,15.86$; $C_{\max}$ $13.68,15.46$ ($\approx 16=O(S^{-2})$) \\
+\texttt{6j C3b} & Isosceles $A=B$: $C_{\min}$ ($x\ge 0$) vs.\ $C_{\max}$ ($x\to -1$) & $C_{\min}$: $4\times$-$S$ ratio
+  $=257.8\approx 256=O(S^{-4})$; $C_{\max}$: ratios $=13.37,15.42\approx 16=O(S^{-2})$ \\
+\texttt{6j C3c} & Isosceles $A=B$ at fixed $x=-\frac{17}{32}$, $-\frac{161}{200}$ ($A=80\to 640$) & $2\times$-$S$ ratios
+  $16.12,16.03,16.01$ and $14.14,15.56,15.89$ ($\approx 16=O(S^{-4})$) \\
+\texttt{6j C4} & Growing-rank corridor $\nu_6=0.60$ ($S\approx 1000\to 4000$) & $\max\bigl(D_6^{1/4}\sqrt{2f+1}|\Delta\Phi_f|\,u_6^2\bigr)=0.1307\to 0.1308$ \\
+\texttt{6j C5} & Macroscopic isosceles corner ($A=B=500\to 2000$) & $\rho=0.35$, $C\in[C_{\min},15]$: $\max_C\bigl(D_6^{1/4}\sqrt{2f+1}|\Delta\Phi_f|\,C^2\bigr)=0.0432\to 0.0431$ \\
+\bottomrule
+\end{tabular}
+\caption{Positive convergence benchmarks (numerical evidence), from the captured output of the numerical benchmark programs.}
+\label{tab:positive-benchmarks}
+\end{table}
+
+\subsection{Mandatory negative controls}
+To illustrate the roles of the edge factor $E$, the covariant derivative $\cD_\Theta$, the contact multiplier $\cC_0$, and the
+  domain restriction $\min(\nu,u^{-1})\to 0$, both numerical benchmark programs run five negative controls
+  (Table~\ref{tab:negative-controls}).
+
+\begin{table}[htbp]
+\centering
+\small
+\renewcommand{\arraystretch}{1.18}
+\begin{tabular}{@{}p{0.09\textwidth}p{0.33\textwidth}p{0.52\textwidth}@{}}
+\toprule
+\textbf{Control} & \textbf{Ablated Ingredient} & \textbf{Observed failure mode} \\
+\midrule
+\texttt{NC1} & Omit Pochhammer edge factor $E$ at boundary $n=0$ / $C_{\min}$ ($p=3$) & Non-vanishing $O(1)$ relative error:
+  $0.1547=\frac{2}{\sqrt{3}}-1$ for $3j$ and separated $6j$; $0.3333=\frac{4}{3}-1=\frac13$ for isosceles $6j$ ($A=B=640,C=2$,
+  since \emph{both} $R_3(2)$ factors are active). \\
+\texttt{NC2} & Main-paper nonlinear angle shift $E W^{[2]}d(\Theta^{[2]})$ at $n=0$ / $C_{\min}$ & Non-convergent $O(1)$ relative
+  error: $0.1389\to 0.1385$ ($3j$) and $0.1385\to 0.1384$ ($6j$), matching Remark~\ref{rem:nonlinear-shift-failure}'s exact limit
+  $1-(23/24)^{7/2}=0.1384$. \\
+\texttt{NC3a} & Replace covariant $\cD_\Theta d$ by raw $\partial_\Theta d$ & Uncancelled $(1-x)^{-2}$ double pole causes $O(1)$
+  boundary failure: $4\times$-scale error ratio $=0.97$ ($3j$) and $0.99$ ($6j$) instead of $16$. \\
+\texttt{NC3b} & Omit rational contact $\cC_0$ & Uncancelled $(1-x)^{-1}$ simple pole degrades $O(h^2)$ to $O(h)$: $4\times$-scale
+  error ratio $=3.91$ ($3j$) and $3.92$ ($6j$) instead of $16$. \\
+\texttt{NC4} & Violate $\min(\nu,u^{-1})\to 0$ at $n=0$, $\nu=0.75$ as scale grows & Coalescent Laguerre corner leaves persistent
+  $O(1)$ relative discrepancy: $0.0413\to 0.0423\to 0.0428$ ($3j$, $N=800\to 12800$, exact limit $0.0434$) and $0.0420\to 0.0428$
+  (separated $6j$, $S=801.5\to 3201.5$). \\
+\bottomrule
+\end{tabular}
+\caption{Negative controls (numerical evidence), from the captured output of the numerical benchmark programs.}
+\label{tab:negative-controls}
+\end{table}
+
+\section*{Reproducibility}
+The companion GitHub repository accompanying the main paper will host this supplement, the four verification programs of Appendix~\ref{sec:numerics},
+  their captured outputs, and the verification programs of the main paper. Its public URL will be supplied with the release.
+  Exact symbolic identities, comparisons with Wigner symbols, and numerical convergence scans are identified separately in
+  Appendix~\ref{sec:numerics}; no finite test certifies the universal constants in Theorem~\ref{thm:joint-3j}.
+
+\section*{Use of AI}
+All results, documents and scripts were generated by AI agents (Claude Opus and Sonnet 5.5, OpenAI's GPT 6.1 sol and Gemini 4 Argon/Carbon)
+with human supervision and many cross-checks, including exact symbolic and high-precision numerical regression checks of the stated formulas.
+I thank DeepMind and Anthropic for access to their scientist programs.
+
+\section*{Acknowledgements}
+We acknowledge support by the UK STFC grant ST/T000473/1.
+
+\begin{thebibliography}{9}
+\footnotesize
+\bibitem{OlverASF}
+F.~W.~J.~Olver, \emph{Asymptotics and Special Functions}, Academic Press, New York, 1974; reprinted A K Peters, Wellesley, MA, 1997.
+
+\bibitem{FrenzenWong}
+C.~L.~Frenzen and R.~Wong, \emph{A uniform asymptotic expansion of the Jacobi polynomials with error bounds}, Canad. J. Math.
+  \textbf{37} (1985), 979--1007; \url{https://doi.org/10.4153/CJM-1985-053-1}.
+
+\bibitem{LewisFixedRank}
+A.~Lewis, \emph{Even Asymptotic Expansions and Uniform Hard-Edge Approximations for Wigner $3j$ and $6j$ Symbols at Fixed Rank},
+Hexagon 2611.00533v1 (2026); \url{https://hexagonmath.org/2611.00533v1}.
+
+\bibitem{LewisGrowingRank}
+A.~Lewis, \emph{Semiclassical Asymptotics of Wigner $3j$ and $6j$ Symbols at Growing Rank: Phase Horizons and Turning Connections} (2026).
+
+\bibitem{LinWong2013}
+Y.~Lin and R.~Wong, \emph{Global asymptotics of the Hahn polynomials}, Analysis and Applications \textbf{11} (2013), no.~3,
+  Article 1350018; \url{https://doi.org/10.1142/S0219530513500188}.
+
+\bibitem{WangWong2016}
+X.-S.~Wang and R.~Wong, \emph{Asymptotics of Racah polynomials with varying parameters}, Journal of Mathematical Analysis and
+  Applications \textbf{436} (2016), 1149--1164; \url{https://doi.org/10.1016/j.jmaa.2015.12.035}.
+
+\bibitem{WangWong2018}
+X.-S.~Wang and R.~Wong, \emph{Asymptotics of Racah polynomials with fixed parameters}, Proceedings of the American Mathematical
+  Society \textbf{146} (2018), 1083--1096; \url{https://doi.org/10.1090/proc/13771}.
+
+\bibitem{KLS2010}
+R.~Koekoek, P.~A.~Lesky, and R.~F.~Swarttouw, \emph{Hypergeometric Orthogonal Polynomials and Their $q$-Analogues}, Springer Monographs in Mathematics, Springer, 2010.
+
+\bibitem{DLMF}
+\emph{NIST Digital Library of Mathematical Functions}, \texttt{https://dlmf.nist.gov/} (accessed November 2026), F.~W.~J.~Olver,
+  A.~B.~Olde Daalhuis, D.~W.~Lozier, B.~I.~Schneider, R.~F.~Boisvert, C.~W.~Clark, B.~R.~Miller, B.~V.~Saunders, H.~S.~Cohl,
+  M.~A.~McClain (eds.). Used only through \S10.17, asymptotic expansions of Bessel and Hankel functions for large argument:
+  Hankel's expansions (i), expansions of derivatives (ii), error bounds for real (iii) and complex (iv) argument and order. DLMF
+  sources (i) to F.~W.~J.~Olver, \emph{Asymptotics and Special Functions}, pp.~237--242, and (iii) to G.~N.~Watson, \emph{A
+  Treatise on the Theory of Bessel Functions}, 2nd ed., 1944, pp.~205--206, and Olver, \emph{loc.\ cit.}, pp.~268--269
+  (A~K~Peters reprint, 1997, of the 1974 Academic Press edition).
+
+\end{thebibliography}
+
+\end{document}
