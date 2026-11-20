@@ -7,7 +7,7 @@ Turning Connections* by Antony Lewis, the sequel to
 *Even Asymptotic Expansions and Uniform Hard-Edge Approximations for Wigner 3j and 6j Symbols at Fixed Rank* (the fixed-rank companion paper, Hexagon 2611.00533v1, <https://hexagonmath.org/2611.00533v1>). It holds
 
 * the technical supplement *Joint Rank–Position Uniformity for Weyl–Midpoint Wigner 3j Symbols*, which proves, for the
-  fixed-offset Hahn/3j chain, a natural-gauge error bound `O([N(1-|x|)]^-2)` at every physical position and every rank below a
+  fixed-offset Hahn/3j chain, an error bound `O([N(1-|x|)]^-2)` in the natural gauge weighted by `D^{1/4}` at every physical position and every rank below a
   fixed turning ratio (Theorem 5.4), with Racah/6j extensions; no theorem of the paper depends on it;
 * the verification programs cited by the paper and by the supplement, with their captured output.
 

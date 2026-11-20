@@ -64,7 +64,7 @@ The fixed-rank Weyl-midpoint asymptotics of Wigner $3j$ and one-small $6j$ symbo
  \le C_{\delta,M,\sigma}\,[N(1-|x|)]^{-2}
 \end{equation}
 at all physical positions and admissible ranks with $q_L/\sqrt{1-x^2}\le\sqrt{1-\delta}$. This is an \emph{absolute}
-  natural-gauge estimate, including at zeros. An $O(\nu_L^4)$ Bessel-toe estimate and a spectral Laguerre corner limit
+  estimate in the $D^{1/4}$-weighted natural gauge, including at zeros. An $O(\nu_L^4)$ Bessel-toe estimate and a spectral Laguerre corner limit
   delineate the near-edge accuracy and its sharpness.
 
 For centered Racah/$6j$ symbols we obtain algebraic actions and second eikonals, fixed-rank second-order matching, an
@@ -97,7 +97,7 @@ For bounded-width $SU(2)$ recoupling kernels centered at their unique affine Reg
 Neither result implies the other. When $x\to\pm 1$ at scale $1-|x|\asymp h$ (bounded lattice index $n=O(1)$ from the boundary),
   omitting a nontrivial factor $E$ (when $p_\pm\ge2$ at the approached edge) incurs an $O(1)$ relative error even at
   minimal rank. Conversely, simply multiplying the main paper's second-order
-  formula $W_q^{[2]}d^k_{ab}(\Theta^{[2]})$ by $E$ can fail at $O(1)$ near the hard edges (in particular for $p_+\ge2$): as
+  formula $W_q^{[2]}d^k_{ab}(\Theta^{[2]})$ by $E$ can fail at $O(1)$ near the hard edges (for every $p_+\ne1$): as
   $x\to 1$,
   $\Theta(q,x)\asymp\sqrt{1-x}$ vanishes while $h^2\Gamma_2/q\asymp h^2(1-x)^{-3/2}$, so at $1-x\asymp h$ the shift
   $h^2\Gamma_2/q$ is comparable to $\Theta$ itself and perturbs the singular envelope $(\sin\frac{\Theta}{2})^{p_+}$ inside
@@ -110,7 +110,7 @@ In this supplement we construct a unified, quadrature-free approximation $\Phi^{
   and tetrahedral-corner results to the centered Racah/$6j$ chain.
 
 The central estimate of this supplement is Theorem~\ref{thm:joint-3j}. Its rank--position domain is the entire physical Hahn lattice under the fixed
-  turning-margin condition $\nu_L(x)\le\sqrt{1-\delta}$, and its error is an \emph{absolute} natural-gauge bound: no relative
+  turning-margin condition $\nu_L(x)\le\sqrt{1-\delta}$, and its error is an \emph{absolute} bound in the $D^{1/4}$-weighted natural gauge: no relative
   estimate is asserted at a zero of the Wigner symbol. The Bessel-toe and Laguerre limits clarify why both the edge factor and
   the restriction on the simultaneous rank--edge limit matter. For Racah, the proved results concern algebraic and fixed-rank
   structure and special corners; Conjecture~\ref{conj:joint-6j} states the unresolved growing-rank counterpart.
@@ -384,7 +384,7 @@ where $g_0(\nu):=\frac{z_*}{2u\nu}=\frac{\nu\sqrt{1-\nu^2}+\arcsin\nu}{2\nu}$ an
   $\nu\in(0,1)$ outside an at most discrete set of isolated roots (for example, at $n=0$, $p_+=3$, $\nu=0.75$, one has $u=4$,
   $z_*=5.376562$, and asymptotic relative discrepancy $0.0434$: Appendix~\ref{sec:numerics}, Tests~\texttt{3j~C6b}
   and~\texttt{NC4}). Consequently, within $\nu_L(x)\le\sqrt{1-\delta}$, the condition $\min(\nu_L(x),u(x)^{-1})\to 0$ is
-  sufficient for the absolute error in the natural gauge to vanish (by \eqref{eq:joint-3j-bound} when $u(x)\to\infty$
+  sufficient for the absolute error in the $D^{1/4}$-weighted natural gauge to vanish (by \eqref{eq:joint-3j-bound} when $u(x)\to\infty$
   and by the comparison-envelope estimate \eqref{eq:bessel-toe-bound} when $\nu_L(x)\to0$ at bounded $u(x)$), and along any
   sequence with bounded $u(x)=u$ and $\nu_L(x)\to\nu\in(0,\sqrt{1-\delta}]$ it is also necessary except possibly at isolated
   values of $\nu\in(0,1)$.
@@ -586,7 +586,7 @@ Dividing by $\Theta_q(x_n^+)=\sqrt{2u_+/N}(1+O(N^{-1}))$ gives a non-vanishing $
 \end{equation}
 Since $W_q(\Theta)\,d^L_{M\sigma}(\Theta)\propto\Theta^{p_++1/2}$ as $\Theta\to 0^+$, evaluating
   $W_q^{[2]}d^L_{M\sigma}(\Theta_q^{[2]})$ at $n=0$ distorts the amplitude by the asymptotic factor
-  $\bigl(1-\frac{p_+-1}{12(p_++1)}\bigr)^{(2p_++1)/2}\ne 1$ for all $p_+\ge 2$. For $p_+=3$, this exact asymptotic relative error
+  $\bigl(1-\frac{p_+-1}{12(p_++1)}\bigr)^{(2p_++1)/2}\ne 1$ for every $p_+\ne 1$ (it is $(13/12)^{1/2}$ at $p_+=0$). For $p_+=3$, this exact asymptotic relative error
   is $1-(23/24)^{7/2}=0.1384$, matching Test~NC2 ($0.1385$) in Appendix~\ref{sec:numerics}. Linearizing in
   $(d^L_{M\sigma},\cD_\Theta d^L_{M\sigma})$ keeps the outer factor $W_{3j}(\cos\Theta_q)$ unshifted and eliminates this boundary
   distortion completely.
@@ -641,7 +641,7 @@ with the empty product equal to $1$ when $p_+=0$ and $\epsilon(a,b)$ as in Theor
 \end{equation}
 where $W_0(\vartheta):=\mu(\frac{1}{\sin^2\vartheta}-\frac{1}{\vartheta^2})+\frac{p_-^2-p_+^2}{4\cos^2(\vartheta/2)}$ is even and
   real-analytic on $|\vartheta|<\pi$. Then $A_m$ is even real-analytic and $B_m$ is odd real-analytic on $|\vartheta|<\pi$, and
-  for every integer $M\ge 0$, setting
+  for every integer $0\le M\le 4$ (the range used below), setting
 \begin{equation}
   w_{k,M}(\vartheta) := \lambda_k\left[\phi_\kappa(\vartheta)\sum_{m=0}^M\frac{A_m(\vartheta)}{\kappa^{2m}} +
     \frac{\phi'_\kappa(\vartheta)}{\kappa^2}\sum_{m=0}^{M-1}\frac{B_m(\vartheta)}{\kappa^{2m}}\right],
@@ -915,7 +915,7 @@ where each $\widehat{C}_r^\sigma(\nu,\varepsilon)$ ($0\le r\le 7$) is real-analy
   $2\Theta_0(\nu\varepsilon,x)=2\varepsilon\widehat{\Theta}_0(\nu,\varepsilon)\in(0,\frac{\sqrt{7}\pi}{4})\subset(0,2\pi)$, so
   asymptotic independence of $\mathrm{e}^{\pm\ii\Theta_0/z}$ as $z=\varepsilon\hat{z}\to 0^+$ identifies
   $\widehat{C}_r^\sigma(\nu,\varepsilon)=\varepsilon^{r-3/2}C_r^\sigma(\nu\varepsilon;x)$ with the interior coefficients
-  $C_r^\sigma(q;x)$ of the main paper's Lemma~B.3~\cite[Eq.~(221)]{LewisGrowingRank}. By the fixed-ratio
+  $C_r^\sigma(q;x)$ of the main paper's Lemma~B.3~\cite[Eq.~(236)]{LewisGrowingRank}. By the fixed-ratio
   cubic-residual lemma, fixed-rank second-order contact, and matched corner remainder of the main paper~\cite{LewisGrowingRank},
   $C_0^\sigma=C_1^\sigma=C_2^\sigma\equiv 0$ and $\partial_q^m C_r^\sigma(0;x)=0$ ($3\le r\le 7$, $0\le m\le 3$) for every
   $x\in(-1,1)$. Hence $\widehat{C}_0^\sigma=\widehat{C}_1^\sigma=\widehat{C}_2^\sigma\equiv 0$ and
@@ -984,7 +984,7 @@ For~(b), by the mean-value theorem $N[S(q_k,x)-S(q_{k-1},x)]=\omega_3(q_*,x)$ fo
   $a_0((k+1)h)z_{k+1}^\pm+a_0(kh)z_{k-1}^\pm-x z_k^\pm$ ($a_0(s)=\frac12\sqrt{1-s^2}$) plus the
   $O(\kappa_k^{-2})=O(\varepsilon^2\hat{\kappa}_k^{-2})$ perturbation of $\tilde{c},\tilde{v}$. In the principal part, the
   $\heff^0$ and $\heff^1$ terms vanish identically by $2a_0(q_k)\cos\omega_3(q_k,x)=x$ and
-  $a_0(q)\sin\omega_3(q,x)=\frac12\sqrt{D(q,x)}$ \cite[Eqs.~(179)--(180)]{LewisGrowingRank};
+  $a_0(q)\sin\omega_3(q,x)=\frac12\sqrt{D(q,x)}$ \cite[Eqs.~(183)--(184)]{LewisGrowingRank};
   since $\partial_\zeta^\ell[(1-(\nu_k+\zeta\varepsilon\heff)^2)^{-1/4}]=O_\delta((\varepsilon\heff)^\ell)$ and $\partial_\zeta[N
   S(q_k+\zeta h,x)]=\varepsilon\widehat{\omega}_3(\nu_k+\zeta\varepsilon\heff,\varepsilon)$ has $\zeta$-derivatives
   $O_\delta(\varepsilon),O_\delta(\varepsilon^2\heff),O_\delta(\varepsilon^3\heff^2)$, the second-order Taylor remainder in $\heff$ of
@@ -1014,7 +1014,7 @@ where $u(x)=N(1-|x|)\ge 1$. Moreover, in the Bessel-toe regime $\kappa_L\sqrt{1-
   \bigl|\Phi_L^{M,\sigma}(x;N^{-1}) - \Phi_L^{\mathrm{U2,cov}}(x;N^{-1})\bigr| \le C(\delta,C_B,M,\sigma)\,\nu_L(x)^4\,\kappa_L^{p_\pm}\,E_N(x)\,W_{3j}(x),
   \label{eq:bessel-toe-bound}
 \end{equation}
-with $p_+$ for $x\ge 0$ and $p_-$ for $x\le 0$. In particular, the absolute error in the natural gauge \eqref{eq:joint-3j-bound} tends
+with $p_+$ for $x\ge 0$ and $p_-$ for $x\le 0$. In particular, the absolute error in the $D^{1/4}$-weighted natural gauge \eqref{eq:joint-3j-bound} tends
   to $0$ whenever $u(x)\to\infty$. In the Bessel toe, \eqref{eq:bessel-toe-bound} gives $O(\nu_L(x)^4)$ error relative
   to the nonzero comparison envelope $\kappa_L^{p_\pm}E_N(x)W_{3j}(x)$, down to $n_\pm=0$ as $\nu_L(x)\to0$;
   it does not assert pointwise relative accuracy at zeros of the exact symbol.
@@ -1023,7 +1023,7 @@ with $p_+$ for $x\ge 0$ and $p_-$ for $x\le 0$. In particular, the absolute erro
 \begin{remark}[Absolute normalization of \eqref{eq:joint-3j-bound} versus relative accuracy of \eqref{eq:bessel-toe-bound}]
 \label{rem:abs-vs-rel}
 Estimate \eqref{eq:joint-3j-bound} is an \emph{absolute} bound in the natural semiclassical normalization
-  $D(q_L,x)^{1/4}\sqrt{2L+1}\,\Phi_L$, where oscillatory WKB waves have $O(1)$ amplitude. In the rapid-decay Bessel toe
+  $D(q_L,x)^{1/4}\sqrt{2L+1}\,\Phi_L$ (the main paper's natural gauge $\sqrt{2L+1}\,\Phi_L$ weighted by $D^{1/4}$; without the weight the bound is $O(D^{-1/4}u(x)^{-2})$), where oscillatory WKB waves have $O(1)$ amplitude. In the rapid-decay Bessel toe
   $\hat{\kappa}_L=\kappa_L\sqrt{1-x^2}\ll 1$ near $x\to\pm 1$ for $p_\pm\ge 2$, the normalized symbol itself satisfies
   $D^{1/4}\sqrt{2L+1}|\Phi_L^{M,\sigma}|\asymp\hat{\kappa}_L^{p_\pm+1/2}/p_\pm!$, which can be much smaller than $u(x)^{-2}$
   (e.g.\ at fixed $L$, $\hat{\kappa}_L^{p_\pm+1/2}\asymp(u(x)/N)^{(2p_\pm+1)/4}\ll u(x)^{-2}$ for large $N$), making
@@ -1106,11 +1106,16 @@ First, at any physical point with $\hat{\kappa}_L\le B$ and $\nu_L(x)\le\sqrt{1-
   $|Q_d|\le\sum_{k=0}^d\frac{(\kappa_L^2\tau_v/c_\delta)^k}{(k!)^2}\le\mathrm{e}^{C_\delta B^2}$, giving $|\Phi_L^{M,\sigma}|\le
   C_1(\delta,B,M,\sigma)\kappa_L^{p_+}E_N(x)W_{3j}(x)$. On the pullback side, real $\Theta_{q_L}(x)\in[\theta,\frac{\pi}{2}]$
   satisfies $\Theta_{q_L}(x)\asymp_\delta\varepsilon$, so $W_{q_L}(x)\le C_\delta$, $W_{3j}(\cos\Theta_{q_L})/W_{3j}(x)\le
-  C_\delta^{p_+}$, $|h^2\cC_0^{(3)}(x)|\le C_{M,\sigma}$, $|\frac{h^2}{q_L}\Gamma_2^{(3)}(q_L,x)\sin\Theta_{q_L}|\le
-  C_{\delta,M,\sigma}\heff^2\le C_{\delta,M,\sigma}$, and summing the ${}_2F_1$ series at $\zeta=\sin^2(\Theta_{q_L}/2)\le
+  C_\delta^{p_+}$, $|h^2\cC_0^{(3)}(x)|\le C_{M,\sigma}$, and
+\begin{equation}
+  \Bigl|\frac{h^2}{q_L}\Gamma_2^{(3)}(q_L,x)\Bigr|\le C_{\delta,M,\sigma}\,\varepsilon\,\heff^2
+  \qquad\bigl(\text{equivalently }\bigl|\tfrac{h^2}{q_L}\Gamma_2^{(3)}\sin\Theta_{q_L}\bigr|\le C\varepsilon^2\heff^2\bigr),
+  \label{eq:zone-I-gamma2-sharp}
+\end{equation}
+  because $\varepsilon^{-1}\frac{h^2}{q_L}\Gamma_2^{(3)}(q_L,x)=\heff^2\,\widehat\Gamma_2(\nu_L,\varepsilon)$ with $\widehat\Gamma_2$ the function of \eqref{eq:Theta-hat-2}, which is bounded on the compact set $[0,\sqrt{1-\delta'/2}]\times[0,\frac{\sqrt7}{4}]\ni(\nu_L,\varepsilon)$ (Step~1 of the proof of Lemma~\ref{lem:eps-darboux-corner}, which precedes this theorem; $\delta'=\min(\delta,\frac12)$).  Summing the ${}_2F_1$ series at $\zeta=\sin^2(\Theta_{q_L}/2)\le
   C_\delta\varepsilon^2$ ($\kappa_L^2\zeta\le C_\delta B^2$) bounds $|P_d(\cos\Theta_{q_L})|\le
   C(\delta,B,M,\sigma)\kappa_L^{p_+}$ and $|\sin\Theta_{q_L}\,\cD_\Theta d^L_{M\sigma}(\Theta_{q_L})|\le
-  C(\delta,B,M,\sigma)\kappa_L^{p_++2}\varepsilon^2 W_{3j}(x)\le C'(\delta,B,M,\sigma)\kappa_L^{p_+}W_{3j}(x)$, yielding the
+  C(\delta,B,M,\sigma)\kappa_L^{p_++2}\varepsilon^2 W_{3j}(x)$.  The correction term of $\Phi^{\mathrm{U2,cov}}_L$ is the product $\frac{h^2}{q_L}\Gamma_2^{(3)}\cD_\Theta d^L_{M\sigma}=\bigl[\frac{h^2}{q_L}\Gamma_2^{(3)}/\sin\Theta_{q_L}\bigr]\bigl[\sin\Theta_{q_L}\cD_\Theta d^L_{M\sigma}\bigr]$, and \eqref{eq:zone-I-gamma2-sharp} with $\sin\Theta_{q_L}\asymp_\delta\varepsilon$ makes the first factor $O(\heff^2)$.  Hence, with $\heff\le\frac47$ and $\kappa_L^2\varepsilon^2=\hat\kappa_L^2\le B^2$, the correction term is at most $C\heff^2\kappa_L^{p_++2}\varepsilon^2W_{3j}(x)\le C'(\delta,B,M,\sigma)\kappa_L^{p_+}W_{3j}(x)$, yielding the
   explicit sup bound
 \begin{equation}
   \bigl|\Phi_L^{M,\sigma}(x;N^{-1})\bigr| + \bigl|\Phi_L^{\mathrm{U2,cov}}(x;N^{-1})\bigr| \le
@@ -1325,8 +1330,8 @@ Then:
   $(x,\delta)\in(-1,1)\times[-\delta_0,\delta_0]$, expanding \eqref{eq:Phi-6j-U2-cov} in $S^{-2}=(A+B)^{-2}$ cancels all $(1\mp
   x)^{-2}$ and $(1\mp x)^{-1}$ poles against $E_{A,B}(C)$ and matches
   \cite[Corollary~10.3, Eq.~(262)]{LewisFixedRank} identically through $O(S^{-2})$ (with fixed-rank remainder
-  $O_{f,\delta,m,n}(S^{-2}u_6(A,B,C)^{-2})E_{A,B}(C)W_{6j}(x)$ at any fixed separated
-  $\delta\in[-\delta_0,\delta_0]\setminus\{0\}$). Moreover, on any compact interior subset
+  $O_{f,\delta,m,n}(S^{-2}u_6(A,B,C)^{-2})E_{A,B}(C)W_{6j}(x)$ as $S\to\infty$, uniformly on
+  $\delta_{\min}\le|\delta|\le\delta_0$ for each $\delta_{\min}>0$). Moreover, on any compact interior subset
   $(x,\delta)\in[-1+\eta,1-\eta]\times[-\delta_0,\delta_0]$, uniformly for all $f_0\le f<2\min(A,B)$ with
   $\nu_6(\rho_f,x)\le\sqrt{1-\delta_{\mathrm{turn}}}$, $D_6^{1/4}\sqrt{2f+1}|\Phi_f-\Phi_f^{\mathrm{U2,cov}}|\le
   C_{\eta,\delta_0,\delta_{\mathrm{turn}},m,n}S^{-2}$.
@@ -1345,12 +1350,43 @@ Then:
 \begin{proof}
 Part~(a) and the all-chamber algebraic identity of Part~(b) follow by clearing denominators in
   $D_6^{5/2}(\partial_\rho\widetilde{\Gamma}^{(6)}-\Sigma_2^{(6)})$ and expanding \eqref{eq:Phi-6j-U2-cov} to $O(S^{-2})$ against
-  \cite[Eq.~(262)]{LewisFixedRank} across all four $(m,n)$ chambers (verified by exact symbolic computation; at fixed separated $\delta\ne 0$, $\rho_*(x)\asymp_\delta\sqrt{1-x^2}$ and
-  Cauchy's estimate on $|t|\le c_0(\delta)(1-x^2)/\kappa_f^2$ gives the $O_{f,\delta}(S^{-2}u_6^{-2})$ remainder just as in
-  Theorem~\ref{thm:hahn-u2-cov}(b)). On compact interior $(x,\delta)$, $E_{A,B}(C)=1+e_2^{6j}(\delta,x)S^{-2}+O(S^{-4})$ ($e_2^{6j}(\delta,x):=S^{2}e_2^{6j}$ in terms of the homogeneous $e_2^{6j}$ of Ref.~\cite{LewisFixedRank}) and
+  \cite[Eq.~(262)]{LewisFixedRank} across all four $(m,n)$ chambers (verified by exact symbolic computation; the fixed-rank remainder at separated $\delta\ne 0$ is proved
+  after this paragraph). On compact interior $(x,\delta)$, $E_{A,B}(C)=1+e_2^{6j}(\delta,x)S^{-2}+O(S^{-4})$ ($e_2^{6j}(\delta,x):=S^{2}e_2^{6j}$ in terms of the homogeneous $e_2^{6j}$ of Ref.~\cite{LewisFixedRank}) and
   two-term Taylor expansion of the main paper's interior second-order formula $W_6^{[2]}d^f_{nm}(\Theta_6^{[2]})$
   \cite[Corollary~5.3]{LewisGrowingRank} (stated there for $\Psi_f$ and $d^f_{mn}$, which differ from $\Phi_f$ and $d^f_{nm}$ by the same sign $(-1)^{m-n}$) matches \eqref{eq:Phi-6j-U2-cov} up to $O(S^{-2})$, proving interior all-rank
   uniformity.
+
+\emph{The fixed-rank remainder at separated $\delta$ in Part~(b).}  Fix $f\ge f_0$, $0<\delta_{\min}\le|\delta|\le\delta_0<1$, and put $t=S^{-2}$, $\kappa_f=f+\frac12$, $\rho=\kappa_f\sqrt t$, $s=\rho^2=\kappa_f^2t$; the physical point has $t=S^{-2}$, and below $(x,\delta)$ are held at their physical values while $t$ is complexified.  Write $d^f_{nm}(\Theta)=W_{6j}(\cos\Theta)P(\cos\Theta)$ with $P$ a polynomial depending only on $(f,m,n)$, so that $\cD_\Theta d^f_{nm}(\Theta)=-\sin\Theta\,W_{6j}(\cos\Theta)P'(\cos\Theta)$ (Lemma~\ref{lem:covariant-regularity}), and
+\begin{equation}
+ \begin{aligned}
+ Y(t)&:=\frac{\Phi_f}{E_{A,B}W_{6j}(x)},\\
+ Y^{\rm U}(t)&:=\frac{\Phi_f^{\mathrm{U2,cov}}}{E_{A,B}W_{6j}(x)}=W_6\,\frac{W_{6j}(\cos\Theta_6)}{W_{6j}(x)}\Bigl[(1+t\,\cC_0^{(6)})P(\cos\Theta_6)-\frac t\rho\,\Gamma_2^{(6)}\sin\Theta_6\,P'(\cos\Theta_6)\Bigr].
+ \end{aligned}
+\end{equation}
+Both are functions of $t$ at fixed $(x,\delta)$, and by Part~(b) (fixed-rank NLO match) $\Delta:=Y-Y^{\rm U}$ is analytic near $t=0$ with $\Delta(0)=\Delta'(0)=0$.  We show that $\Delta$ is holomorphic and bounded on $|t|\le r_I$, $r_I:=c_0(1-x^2)/\kappa_f^2$, uniformly in $x\in(-1,1)$, for a constant $c_0=c_0(f,\delta_0)>0$.
+
+\emph{Carrier.}  By \cite[Theorem~10.1(b) and its proof]{LewisFixedRank}, up to a fixed sign $Y=\Pi_f(t)^{-1/2}\widetilde P_f(\varsigma;\delta,t)$ with $\varsigma=(1-x)/2$, where $\widetilde P_f$ is a polynomial in $(\varsigma,t)$ whose coefficients are rational in $\delta$ with poles only at $\delta=\pm1$, and $\Pi_f(t)$ is a product of factors $1-q^2t(1\pm\delta)^{-2}$, $0<q\le f$.  For $|t|\le\frac12(1-\delta_0)^2/f^2$ each such factor has modulus $\ge\frac12$, so $|Y|\le C_Y(f,m,n,\delta_0)$ there, uniformly for $\varsigma\in[0,1]$.  Taking $c_0\le\frac12(1-\delta_0)^2$ (recall $\kappa_f>f$) puts $|t|\le r_I$ inside this disk.
+
+\emph{Angle and amplitude.}  Let $\alpha=\frac{1+\delta}2$, $\beta=\frac{1-\delta}2$, so $\alpha,\beta\in[\frac{1-\delta_0}2,\frac{1+\delta_0}2]$, $\eta(r)=[(1-r^2/4\alpha^2)(1-r^2/4\beta^2)]^{1/2}$ and $w(r,x)=(x-r^2/(4\alpha\beta))/\eta(r)$, so that $\Theta_6(\rho,x)=\int_0^1\arccos w(\xi\rho,x)\,\dd\xi$ for real $\rho$ (the closed form \eqref{eq:S6-closed} differentiates to $\omega_6=\arccos w$, as in Proposition~\ref{prop:perimeter-laws}), and we take this integral as the definition for complex $\rho$.  For $|r|^2\le c_0(1-x^2)$ and $c_0$ small, $|\eta^2-1|,|\eta-1|,|\eta^{-1}-1|\le C|r|^2$, hence
+\begin{equation}
+ |w-x|\le C_3|r|^2\le C_3c_0(1-x^2),
+\end{equation}
+and for $c_0$ small $|(1-w)-(1-x)|\le\frac14(1-x)$ and $|(1+w)-(1+x)|\le\frac14(1+x)$.  Every point $z$ of the segment $[x,w]$ then has $|1-z|\ge\frac34(1-x)$, $|1+z|\ge\frac34(1+x)$, so it avoids the cuts of $\arccos$ and $|1-z^2|\ge\frac9{16}(1-x^2)$.  Consequently $\arccos w$ is holomorphic and even in $r$, $|\arccos w-\theta|\le\frac43C_3c_0\sin\theta$ ($\theta=\arccos x$), $\Theta_6$ is even, hence holomorphic in $t$ on $|t|\le r_I$, with $|\Theta_6-\theta|\le C_4c_0\sin\theta$.  Writing $\Theta_6=\theta+\epsilon$ with $|\epsilon|\le C_4c_0\sin\theta$ gives
+\begin{equation}
+ \Bigl|\frac{\sin\Theta_6}{\sin\theta}-1\Bigr|\le Cc_0,\qquad|\cos\Theta_6-x|\le Cc_0(1-x^2).
+\end{equation}
+Moreover $D_6=(1-x^2)(1-\nu_6^2)$ with $\nu_6^2=\gamma^2s/(4\alpha^2\beta^2(1-x^2))$, $|\nu_6^2|\le C c_0\le\frac14$.  Hence $W_6=[\sin^2\Theta_6/(D_6)]^{1/4}$ and $W_{6j}(\cos\Theta_6)/W_{6j}(x)=\bigl(\frac{1-\cos\Theta_6}{1-x}\bigr)^{p_{\min}/2}\bigl(\frac{1+\cos\Theta_6}{1+x}\bigr)^{p_{\max}/2}$ are holomorphic on $|t|\le r_I$ with values in a fixed disk around $1$ (each ratio differs from $1$ by at most $2Cc_0$, since $|\cos\Theta_6-x|/(1\mp x)\le Cc_0(1\pm x)\le2Cc_0$), and $|P(\cos\Theta_6)|+|P'(\cos\Theta_6)|\le C(f,m,n)$.
+
+\emph{The second-order terms.}  By \eqref{eq:C0-6} and $\frac1{1-x}+\frac1{1+x}=\frac2{1-x^2}$, $|t\,\cC_0^{(6)}|\le C|t|(1-x^2)^{-1}\le Cc_0/\kappa_f^2$.  By \eqref{eq:tilde-Gamma-6}, \eqref{eq:Gamma2-6} and $\mathfrak c_{nm}(\Theta)\sin\Theta=\frac12[(\Sigma-\frac14)\cos\Theta-2\tau_\star]$,
+\begin{equation}
+ \begin{gathered}
+ \frac t\rho\Gamma_2^{(6)}\sin\Theta_6=\frac{F_1-F_2}{\kappa_f^2}+t\sin\Theta_6\Bigl(\frac{A_2}{\sqrt{D_6}}+\frac{A_3\,s}{D_6^{3/2}}\Bigr),\\
+ F_1:=A_1\sin\Theta_6\sqrt{D_6},\qquad F_2:=\tfrac12\bigl[(\Sigma-\tfrac14)\cos\Theta_6-2\tau_\star\bigr],
+ \end{gathered}
+\end{equation}
+using $t/\rho^2=\kappa_f^{-2}$.  This is holomorphic in $t$ on $|t|\le r_I$ (no division by $t$ occurs).  From \eqref{eq:A1-A3}--\eqref{eq:A2}: $|A_1|+|A_2|+|A_3|\le C(1-x^2)^{-1}$ (in $A_2$ the denominators $4\alpha^2-s$, $4\beta^2-s$ are bounded below and the numerator is a polynomial of degree $2$ in $s$ with bounded coefficients; in $A_3$, $|(\alpha-\beta x)(\beta-\alpha x)|\gamma^2\le1$), $|\sin\Theta_6|\le C(1-x^2)^{1/2}$ and $|\sqrt{D_6}|\asymp(1-x^2)^{1/2}$.  Hence $|F_1|\le C$, $|F_2|\le C$, $|t\sin\Theta_6A_2/\sqrt{D_6}|\le C|t|(1-x^2)^{-1}\le Cc_0/\kappa_f^2$ and $|t\sin\Theta_6A_3s/D_6^{3/2}|\le C|t||s|(1-x^2)^{-2}\le Cc_0^2/\kappa_f^2$.  So $\sup_{|t|\le r_I}|Y^{\rm U}|\le C_U(f,m,n,\delta_0)$, uniformly as $x\to\pm1$.  (The cancellation $F_1=F_2$ at $s=0$, which makes $Y^{\rm U}=Y+O(t^2)$, is the content of Part~(b) and is not needed for the bound.)
+
+\emph{Conclusion.}  $\Delta$ is holomorphic on $|t|\le r_I$ with $|\Delta|\le C_Y+C_U$ and $\Delta(0)=\Delta'(0)=0$, so $\Delta(t)=t^2g(t)$ with $g$ holomorphic on the disk and, by the maximum principle, $|g|\le(C_Y+C_U)/r_I^2$; thus $|\Delta(t)|\le(C_Y+C_U)(t/r_I)^2$.  At the physical point $t=S^{-2}$ this reads $|\Phi_f-\Phi_f^{\mathrm{U2,cov}}|\le C\,S^{-4}(1-x^2)^{-2}E_{A,B}W_{6j}$, provided $S^{-2}\le r_I/2$.  Now $u_6=S\min(\gamma-|\delta|,\,1-\gamma)$ with $\gamma^2-\delta^2=2\alpha\beta(1-x)$ and $1-\gamma^2=2\alpha\beta(1+x)$, $2\alpha\beta\le\frac12$.  For $x\ge0$, $u_6\le S(\gamma-|\delta|)=S\,2\alpha\beta(1-x)/(\gamma+|\delta|)\le S(1-x)/(2|\delta|)\le S(1-x^2)/(2|\delta|)$; for $x\le0$, $u_6\le S(1-\gamma)\le S(1+x)/2\le S(1-x^2)/2$.  So $u_6\le S(1-x^2)/(2|\delta|)$ throughout. Hence $S^{-4}(1-x^2)^{-2}\le(4\delta^2)^{-1}S^{-2}u_6^{-2}$, and, as $u_6\ge\frac12$, $S^{-2}(1-x^2)^{-1}\le(|\delta|S)^{-1}\le c_0/(2\kappa_f^2)$ for $S\ge S_0(f,\delta_{\min},c_0)$, which is the condition $S^{-2}\le r_I/2$.  This proves the fixed-rank remainder $O_{f,\delta,m,n}(S^{-2}u_6^{-2})E_{A,B}W_{6j}$ of Part~(b) as $S\to\infty$, uniformly for $\delta_{\min}\le|\delta|\le\delta_0$.
 
 For Part~(c), set $A=B$ ($\delta=0$, $\alpha=\beta=\frac12$), fix $\eta\in(0,\frac12]$ and restrict to $x\ge -1+2\eta$, so
   $\tau_v:=\frac{1-x}{2}=\frac{C^2}{S^2}\in(0,1-\eta]$ and $t:=S^{-2}$ ($\rho_f=\kappa_f\sqrt{t}$, $s=\rho_f^2=\kappa_f^2 t$).
