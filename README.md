@@ -1,9 +1,9 @@
 # Weyl-midpoint semiclassics for Wigner 3j and 6j symbols: supplement and verification programs
 
-**Repository:** <https://github.com/cmbant/weyl-midpoint-semiclassics> · **Compiled PDF:** [Supplement](supplement/joint_rank_position_uniformity.pdf)
+**Paper:** [Hexagon 2611.00725v1](https://hexagonmath.org/2611.00725v1) · **Repository:** <https://github.com/cmbant/weyl-midpoint-semiclassics> · **Compiled PDF:** [Supplement](supplement/joint_rank_position_uniformity.pdf)
 
 This repository accompanies the paper *Semiclassical Asymptotics of Wigner 3j and 6j Symbols at Growing Rank: Phase Horizons and
-Turning Connections* by Antony Lewis, the sequel to
+Turning Connections* by Antony Lewis (Hexagon 2611.00725v1, <https://hexagonmath.org/2611.00725v1>), the sequel to
 *Even Asymptotic Expansions and Uniform Hard-Edge Approximations for Wigner 3j and 6j Symbols at Fixed Rank* (the fixed-rank companion paper, Hexagon 2611.00533v1, <https://hexagonmath.org/2611.00533v1>). It holds
 
 * the technical supplement *Joint Rank–Position Uniformity for Weyl–Midpoint Wigner 3j Symbols*, which proves, for the
@@ -57,10 +57,12 @@ The supplement uses only standard LaTeX packages.
 If you use this work, please cite the paper and, for the verification programs, this repository:
 
 ```bibtex
-@unpublished{Lewis_weyl_midpoint_semiclassics,
-  author  = {Lewis, Antony},
-  title   = {Semiclassical Asymptotics of Wigner 3j and 6j Symbols at Growing Rank: Phase Horizons and Turning Connections},
-  year    = {2026}
+@misc{Lewis_weyl_midpoint_semiclassics,
+  author       = {Lewis, Antony},
+  title        = {Semiclassical Asymptotics of Wigner 3j and 6j Symbols at Growing Rank: Phase Horizons and Turning Connections},
+  year         = {2026},
+  howpublished = {Hexagon 2611.00725v1},
+  url          = {https://hexagonmath.org/2611.00725v1}
 }
 
 @software{Lewis_weyl_midpoint_semiclassics_companion,
