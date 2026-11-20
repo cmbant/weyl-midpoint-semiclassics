@@ -54,22 +54,22 @@ Wigner $3j$ Symbols\\[3pt]
 \maketitle
 
 \begin{abstract}
-Our earlier fixed-rank paper established asymptotics for Weyl-midpoint Wigner $3j$ and one-small $6j$ symbols uniformly up to the physical
-  lattice boundaries, while the growing-rank paper that this supplement accompanies (the main paper) treats growing rank on compact interior position sets. We bridge these regimes for the
-  Hahn/$3j$ family. An explicit edge factor, a covariant Wigner-$d$ derivative, and an algebraic second-eikonal correction define
-  a single second-order pullback. For every fixed turning margin $\delta\in(0,1)$, the naturally normalized error satisfies
+The fixed-rank Weyl-midpoint asymptotics of Wigner $3j$ and one-small $6j$ symbols are uniform to the lattice hard edges;
+  the growing-rank theory controls ranks below a turning curve on compact interior position sets. We bridge these regimes
+  for Hahn/$3j$ symbols by combining an exact discrete edge factor, a covariant Wigner-$d$ derivative, and an algebraic
+  second-eikonal correction. For every fixed turning margin $\delta\in(0,1)$,
 \begin{equation}
  D(q_L,x)^{1/4}\sqrt{2L+1}\,
  \bigl|\Phi_L^{M,\sigma}-\Phi_L^{\mathrm{U2,cov}}\bigr|
  \le C_{\delta,M,\sigma}\,[N(1-|x|)]^{-2}
 \end{equation}
-uniformly at every physical position and every admissible rank with $q_L/\sqrt{1-x^2}\le\sqrt{1-\delta}$. The proof combines a
-  Bessel-toe estimate, an edge-uniform Darboux residual, and discrete Jost propagation. A spectral Laguerre limit describes the
-  regime where rank and hard-edge scales meet and identifies the sharpness of the approximation outside isolated spectral values.
+at all physical positions and admissible ranks with $q_L/\sqrt{1-x^2}\le\sqrt{1-\delta}$. This is an \emph{absolute}
+  natural-gauge estimate, including at zeros. An $O(\nu_L^4)$ Bessel-toe estimate and a spectral Laguerre corner limit
+  delineate the near-edge accuracy and its sharpness.
 
-For the centered Racah/$6j$ family we establish algebraic actions, fixed-rank second-order matching, an isosceles improvement,
-  and a tetrahedral-duality corner approximation. The analogous global growing-rank $6j$ bound is stated as a \emph{conjecture},
-  not a theorem. This supplement builds on both papers; neither paper depends on its proofs.
+For centered Racah/$6j$ symbols we obtain algebraic actions and second eikonals, fixed-rank second-order matching, an
+  isosceles improvement, and a tetrahedral-duality corner approximation. The analogous global growing-rank $6j$ estimate
+  remains a \emph{conjecture}. The proofs use, but do not underpin, the two companion papers.
 \end{abstract}
 
 \setcounter{tocdepth}{1}
@@ -95,8 +95,10 @@ For bounded-width $SU(2)$ recoupling kernels centered at their unique affine Reg
 \end{enumerate}
 
 Neither result implies the other. When $x\to\pm 1$ at scale $1-|x|\asymp h$ (bounded lattice index $n=O(1)$ from the boundary),
-  omitting $E$ incurs an $O(1)$ relative error even at minimal rank. Conversely, simply multiplying the main paper's second-order
-  formula $W_q^{[2]}d^k_{ab}(\Theta^{[2]})$ by $E$ fails at $O(1)$ near the hard edges: as $x\to 1$,
+  omitting a nontrivial factor $E$ (when $p_\pm\ge2$ at the approached edge) incurs an $O(1)$ relative error even at
+  minimal rank. Conversely, simply multiplying the main paper's second-order
+  formula $W_q^{[2]}d^k_{ab}(\Theta^{[2]})$ by $E$ can fail at $O(1)$ near the hard edges (in particular for $p_+\ge2$): as
+  $x\to 1$,
   $\Theta(q,x)\asymp\sqrt{1-x}$ vanishes while $h^2\Gamma_2/q\asymp h^2(1-x)^{-3/2}$, so at $1-x\asymp h$ the shift
   $h^2\Gamma_2/q$ is comparable to $\Theta$ itself and perturbs the singular envelope $(\sin\frac{\Theta}{2})^{p_+}$ inside
   $d^k_{ab}$ by a non-vanishing $O(1)$ factor (Remark~\ref{rem:nonlinear-shift-failure}).
@@ -166,7 +168,8 @@ With $R_p(X):=1$ for $p\in\{0,1\}$ and $R_p(X):=\prod_{k=0}^{p-1}\bigl(1+\frac{-
 For the one-small $6j$ family $\sixj{a}{b}{c}{b+m}{a+n}{f}$ with fixed $(m,n)$, put $f_0:=\max(|m|,|n|)$, $p_{\min}:=|m-n|$,
   $p_{\max}:=|m+n|$, and centered lengths $A:=a+\frac{n+1}{2}$, $B:=b+\frac{m+1}{2}$, $C:=c+\frac12$, $S:=A+B=:h^{-1}$. Write
   $\alpha:=A/S=\frac{1+\delta}{2}$, $\beta:=B/S=\frac{1-\delta}{2}$ ($\delta=\alpha-\beta\in(-1,1)$),
-  $\gamma:=C/S=\sqrt{\alpha^2+\beta^2-2\alpha\beta x}$ with $x:=\frac{A^2+B^2-C^2}{2AB}\in(-1,1)$, and
+  $\gamma:=C/S=\sqrt{\alpha^2+\beta^2-2\alpha\beta x}$ (here $\delta$ denotes the shape skew, not a turning margin) with
+  $x:=\frac{A^2+B^2-C^2}{2AB}\in(-1,1)$, and
   $\rho=\rho_f:=(f+\frac12)/S$. On the physical $c$-lattice $C\in\{C_{\min}+r:r\in\mathbb{Z}_{\ge 0},\;C\le C_{\max}\}$ with
   $C_{\min}=|A-B|+\frac{p_{\min}+1}{2}$ and $C_{\max}=A+B-\frac{p_{\max}+1}{2}$, the Racah turning curve, discriminant, lattice
   edge distance, and edge factor are
@@ -270,16 +273,18 @@ At $\rho=\rho_*(x)$ ($\phi=\frac{\pi}{2}$, $\cos\phi=0$, $\sin\phi=1$), $x-\frac
 \end{proof}
 
 \subsection{Regimes in the joint edge--rank limit}
-Proposition~\ref{prop:perimeter-laws} resolves the geometry of the classical Bessel scaling $(1-|x|)\kappa_L^2=O(1)$:
+Proposition~\ref{prop:perimeter-laws} separates the Bessel-toe scale from the rank-oscillatory edge corridor. The exact identity
+$\kappa_L\sqrt{1-x^2}=(1+|x|)\,u(x)\nu_L(x)$ makes their overlap explicit:
 \begin{itemize}[leftmargin=2em,itemsep=2pt]
-\item \emph{Hilb/Bessel toe} ($u(x)\to\infty$ and $\kappa_L\sqrt{1-x^2}=O(1)$). Since
-  $\nu_L(x)\asymp\frac{\kappa_L\sqrt{1-x^2}}{u(x)}$, holding $\kappa_L\sqrt{1-x^2}=O(1)$ with $u(x)\to\infty$ (e.g.\ $1-x\asymp
-  N^{-2/3}$, $L\asymp N^{1/3}$) forces $\nu_L(x)\to 0$. Here $\Theta_q(x)=\arccos x\,(1+\frac16\nu_L^2+O(\nu_L^4))$ places
-  $d^L_{M\sigma}(\Theta_q)$ in its Bessel transition while the turning point $q_*(x)$ remains separated by large action
-  $\frac{\pi}{2}u(x)\to\infty$.
-\item \emph{Growing-rank edge corridor} ($u(x)\to\infty$ and $\nu_L(x)\in(0,\sqrt{1-\delta}]$). Here $L\asymp\nu_L\sqrt{u(x)N}$
-  grows macroscopically with the local turning rank, $\kappa_L\Theta_q(x)\asymp u(x)\nu_L\to\infty$ is in the oscillatory Wigner
-  bulk, and the effective Planck parameter of the rank WKB problem is $\heff:=(N(1-x^2))^{-1}\asymp u(x)^{-1}\to 0$.
+\item \emph{Hilb/Bessel toe} ($x\to 1^-$, $u(x)\to\infty$, and $\kappa_L\sqrt{1-x^2}=O(1)$; use reflection at the lower
+  edge). Then $\nu_L(x)=O(u(x)^{-1})\to0$. For $x\to1^-$ and $\nu_L\to0$,
+  $\Theta_{q_L}(x)/\arccos x=1-\frac16\nu_L^2+O(\nu_L^4+(1-x)\nu_L^2)$; the \emph{minus} sign follows directly from
+  $\partial_q S(q,x)=\arccos(x/\sqrt{1-q^2})$. Thus $d^L_{M\sigma}(\Theta_{q_L})$ lies in its Bessel transition while the
+  turning-point action $\frac{\pi}{2}u(x)$ diverges. A typical overlap is $1-x\asymp N^{-2/3}$ and $L\asymp N^{1/3}$.
+\item \emph{Rank-oscillatory edge corridor} ($u(x)\to\infty$, $0<\nu_L(x)\le\sqrt{1-\delta}$, and $u(x)\nu_L(x)\to\infty$).
+  Here $\kappa_L\asymp\nu_L\sqrt{N u(x)}$ and $\kappa_L\Theta_{q_L}(x)\asymp u(x)\nu_L(x)\to\infty$; the effective rank-WKB
+  parameter is $\heff=(N(1-x^2))^{-1}\asymp u(x)^{-1}\to0$. The condition $u(x)\to\infty$ alone does \emph{not} force an
+  oscillatory Wigner regime if $\nu_L(x)\to0$: when $u(x)\nu_L(x)=O(1)$ one remains in the Bessel-toe transition.
 \item \emph{Coalescent spectral Laguerre corner} ($u(x)=O(1)$ and $\nu_L(x)\in(0,1)$ fixed). At fixed lattice index
   $n_\pm=O(1)$, $1-|x|=\frac{p_\pm+1+2n_\pm}{N}$, so $(1-|x|)\kappa_L^2=O(1)$ means $L\asymp\sqrt{N}$, which is \emph{already} a
   fixed fraction $\nu_L\in(0,1)$ of the turning rank $N\sqrt{1-x^2}\asymp\sqrt{2u_\pm N}$. By \eqref{eq:3j-perimeter-law}, the
@@ -379,8 +384,8 @@ where $g_0(\nu):=\frac{z_*}{2u\nu}=\frac{\nu\sqrt{1-\nu^2}+\arcsin\nu}{2\nu}$ an
   $\nu\in(0,1)$ outside an at most discrete set of isolated roots (for example, at $n=0$, $p_+=3$, $\nu=0.75$, one has $u=4$,
   $z_*=5.376562$, and asymptotic relative discrepancy $0.0434$: Appendix~\ref{sec:numerics}, Tests~\texttt{3j~C6b}
   and~\texttt{NC4}). Consequently, within $\nu_L(x)\le\sqrt{1-\delta}$, the condition $\min(\nu_L(x),u(x)^{-1})\to 0$ is
-  sufficient for $\Phi_L^{\mathrm{U2,cov}}$ to be asymptotically exact (by \eqref{eq:joint-3j-bound} when $u(x)\to\infty$ and by
-  \eqref{eq:bessel-toe-bound} when $\nu_L(x)\to 0$ at bounded $u(x)$), and along any
+  sufficient for the absolute error in the natural gauge to vanish (by \eqref{eq:joint-3j-bound} when $u(x)\to\infty$
+  and by the comparison-envelope estimate \eqref{eq:bessel-toe-bound} when $\nu_L(x)\to0$ at bounded $u(x)$), and along any
   sequence with bounded $u(x)=u$ and $\nu_L(x)\to\nu\in(0,\sqrt{1-\delta}]$ it is also necessary except possibly at isolated
   values of $\nu\in(0,1)$.
 \end{corollary}
@@ -425,7 +430,7 @@ To prove non-coincidence with \eqref{eq:laguerre-limit-plus} for every $(M,\sigm
   $\min(\nu_L,u^{-1})\to 0$ is Theorem~\ref{thm:joint-3j}.
 \end{proof}
 
-\section{Covariant Wigner Basis and Algebraic Second Eikonal for Hahn/\texorpdfstring{$3j$}{3j}}
+\section{Covariant Wigner basis and algebraic second eikonal for Hahn/\texorpdfstring{$3j$}{3j}}
 \label{sec:covariant-3j}
 
 \subsection{Covariant angular derivative of Wigner \texorpdfstring{$d$}{d}-functions}
@@ -479,8 +484,8 @@ In \cite[Eq.~(46)]{LewisGrowingRank} the amplitude enters only through $a_0^2$,
   $a_0\cos p=\frac12(x-b_0)$ and $a_0\sin p=\frac12\sqrt D$, so every term of the bracket is a rational function of $q$ whose
   denominators are powers of $D$ and of $a_0^2$, and $\Sigma_2=\mathcal R(q)/\sqrt D$ with $\mathcal R$ rational. For the Hahn and
   centered Racah chains $a_0^2$ is a polynomial in $q^2$ and $D$ is linear in $q^2$, so $\int\Sigma_2\,\dd q$ is elementary. It is
-  algebraic, of the three-term forms \eqref{eq:tilde-Gamma-3} and \eqref{eq:tilde-Gamma-6}, because the arcsine and logarithmic
-  parts of the integral have vanishing coefficients, as differentiation of those forms confirms.
+  algebraic, of the three-term forms \eqref{eq:tilde-Gamma-3} and \eqref{eq:tilde-Gamma-6}, as is verified by directly
+  differentiating the displayed algebraic primitives; no separate arcsine or logarithmic term is needed.
 \end{remark}
 
 \begin{theorem}[Algebraic second eikonal and covariant pole cancellation for Hahn/$3j$]
@@ -597,6 +602,20 @@ The main paper's interior two-carrier corner lemma~\cite[Lemma~B.3]{LewisGrowing
   $\sin\omega_3(q,x)\asymp\varepsilon\sqrt{1-\nu^2}$. Before proving our main theorem, we establish three $\varepsilon$-uniform
   analytical lemmas that replace these interior inputs in the blown-up edge variables
   $(\nu,\hat{z},\varepsilon):=(q/\varepsilon,(\kappa\varepsilon)^{-1},\varepsilon)$.
+
+The three proof zones are governed by $\hat\kappa_k=(k+\tfrac12)\varepsilon$
+  and $\heff=(N\varepsilon^2)^{-1}$, with $\nu_k=\hat\kappa_k\heff$.
+  Zone~I ($\hat\kappa_L\le B$) uses analyticity in $t=N^{-2}$
+  and fixed-rank second-order contact. Zone~IIa
+  ($B\lesssim\hat\kappa_L\lesssim\hat K_*$) propagates that contact
+  in the $t=0$ Wigner Jost basis, while Zone~IIb
+  ($\hat\kappa_L\gtrsim\hat K_*$) sums the edge-uniform residual
+  in a discrete WKB Jost basis. The handoff
+  $\hat K_*=\heff^{-2/7}$ balances $\hat K_*^{-7}=\heff^2$
+  (the high-rank residual tail) against
+  $\hat K_*^6\heff^4=\heff^{16/7}=o(\heff^2)$
+  (the lower-zone handoff error). The lemmas below
+  control the constants as $\varepsilon\to0$.
 
 \subsection{\texorpdfstring{$\varepsilon$}{epsilon}-uniform Olver--Bessel expansion, corner residual, and Jost bases}
 
@@ -995,9 +1014,10 @@ where $u(x)=N(1-|x|)\ge 1$. Moreover, in the Bessel-toe regime $\kappa_L\sqrt{1-
   \bigl|\Phi_L^{M,\sigma}(x;N^{-1}) - \Phi_L^{\mathrm{U2,cov}}(x;N^{-1})\bigr| \le C(\delta,C_B,M,\sigma)\,\nu_L(x)^4\,\kappa_L^{p_\pm}\,E_N(x)\,W_{3j}(x),
   \label{eq:bessel-toe-bound}
 \end{equation}
-with $p_+$ for $x\ge 0$ and $p_-$ for $x\le 0$. In particular, the absolute envelope-scaled error \eqref{eq:joint-3j-bound} tends
-  to $0$ whenever $u(x)\to\infty$, and the relative envelope error in \eqref{eq:bessel-toe-bound} tends to $0$ down to the hard
-  boundary $n_\pm=0$ whenever $\nu_L(x)\to 0$.
+with $p_+$ for $x\ge 0$ and $p_-$ for $x\le 0$. In particular, the absolute error in the natural gauge \eqref{eq:joint-3j-bound} tends
+  to $0$ whenever $u(x)\to\infty$. In the Bessel toe, \eqref{eq:bessel-toe-bound} gives $O(\nu_L(x)^4)$ error relative
+  to the nonzero comparison envelope $\kappa_L^{p_\pm}E_N(x)W_{3j}(x)$, down to $n_\pm=0$ as $\nu_L(x)\to0$;
+  it does not assert pointwise relative accuracy at zeros of the exact symbol.
 \end{theorem}
 
 \begin{remark}[Absolute normalization of \eqref{eq:joint-3j-bound} versus relative accuracy of \eqref{eq:bessel-toe-bound}]
@@ -1261,7 +1281,7 @@ using $\Delta\hat{\kappa}_k=\varepsilon$, $\Delta\nu_k=\varepsilon\heff$, and $\
 We now extend the algebraic eikonal, covariant pole cancellation, and boundary/corner analysis to the centered Racah / one-small
   $6j$ family $\Phi_f(A,B,C)$ in the coordinates \eqref{eq:6j-turn}--\eqref{eq:6j-edge-factor}.
 
-\subsection{Three-term algebraic second eikonal, covariant pullback, and isosceles \texorpdfstring{$O(S^{-4})$}{O(S\^{}-4)} super-convergence}
+\subsection{Algebraic second eikonal and isosceles \texorpdfstring{$O(S^{-4})$}{O(S^-4)} accuracy}
 Despite the quartic factor $(4\alpha^2-\rho^2)(4\beta^2-\rho^2)$ in the Racah rank recurrence, the second eikonal
   $\widetilde{\Gamma}^{(6)}(\rho,x)$ also integrates in a purely algebraic three-term form with zero elliptic integrals.
 
@@ -1451,7 +1471,8 @@ In the macroscopic-rank isosceles limit $A=B\to\infty$ with $C=O(1)$ and $\rho_f
 \begin{conjecture}[Global joint rank--position uniformity for centered Racah/$6j$]
 \label{conj:joint-6j}
 Fix admissible $(m,n)$, ratio bound $0<\lambda<1$ ($|\delta|\le\delta_0=\frac{1-\lambda}{1+\lambda}$), and turning margin
-  $\delta_{\mathrm{turn}}\in(0,1)$. Uniformly for all physical $(A,B,C)$ with $\lambda\le A/B\le\lambda^{-1}$ and all ranks
+  $\delta_{\mathrm{turn}}\in(0,1)$. We conjecture that there exists $C_{\lambda,\delta_{\mathrm{turn}},m,n}>0$ such that,
+  uniformly for all physical $(A,B,C)$ with $\lambda\le A/B\le\lambda^{-1}$ and all ranks
   $f_0\le f<2\min(A,B)$ satisfying $\nu_6(\rho_f,x)\le\sqrt{1-\delta_{\mathrm{turn}}}$,
 \begin{equation}
   D_6(\rho_f,x)^{1/4}\sqrt{2f+1}\,\bigl|\Phi_f(A,B,C) - \Phi_f^{\mathrm{U2,cov}}(A,B,C)\bigr| \le \frac{C_{\lambda,\delta_{\mathrm{turn}},m,n}}{u_6(A,B,C)^2}.

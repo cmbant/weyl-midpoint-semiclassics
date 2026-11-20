@@ -164,11 +164,11 @@ def run_part_c_convergence():
         sups = [dense_sup_scan_3j(Nb + (0.5 if (sig % 1 != 0) else 0.0), M, sig, 0.82, 1.0) for Nb in (500.0, 2000.0, 8000.0, 32000.0)]
         max_sup_32k = max(max_sup_32k, sups[-1])
         d0, d1, d2 = abs(sups[1] - sups[0]), abs(sups[2] - sups[1]), abs(sups[3] - sups[2])
-        print(f"  [PASS] C1a Multi-N dense sup (M={M}, sig={sig}, nu<=0.82): N=500..32k -> {[round(v, 4) for v in sups]} (increments={[round(d0, 4), round(d1, 4), round(d2, 4)]})")
         assert 0.5 < sups[-1] < 3.5 and d1 <= d0 + 0.02 and d2 <= max(0.5 * d1, 0.025)
+        print(f"  [PASS] C1a Multi-N dense sup (M={M}, sig={sig}, nu<=0.82): N=500..32k -> {[round(v, 4) for v in sups]} (increments={[round(d0, 4), round(d1, 4), round(d2, 4)]})")
     sup_600 = max(dense_sup_scan_3j(600.5 if (sig % 1 != 0) else 600.0, M, sig, 0.82, 9.0) for M, sig in [(0.0, 0.0), (2.0, -1.0), (1.5, -0.5)])
-    print(f"  [PASS] C1b Dense scan at N=600 (nu<=0.82, n_in>=4 i.e. u>=9): sup = {sup_600:.4f} (ceiling <= {max_sup_32k:.4f})")
     assert 1.5 < sup_600 <= max_sup_32k + 0.05
+    print(f"  [PASS] C1b Dense scan at N=600 (nu<=0.82, n_in>=4 i.e. u>=9): sup = {sup_600:.4f} (ceiling <= {max_sup_32k:.4f})")
 
     for M, sig, L in [(0.0, 0.0, 4.0), (2.0, -1.0, 5.0), (1.5, -0.5, 4.5)]:
         p_p, p_m, vals = int(round(abs(M - sig))), int(round(abs(M + sig))), []
@@ -179,8 +179,8 @@ def run_part_c_convergence():
             pe, (vc, _) = exact_phi_3j_chain(N, x, L, M, sig)[L], phi_3j_u2_cov(N, x, L, M, sig)
             vals.append(abs(pe - vc) / (edge_factor_3j(N, x, M, sig) * w3j))
         r0, r1 = vals[0] / vals[1], vals[1] / vals[2]
-        print(f"  [PASS] C2 Hard edge n=0 (M={M}, sig={sig}, L={L}): 4x-N ratios = {r0:.2f}, {r1:.2f} (~16 = O(N^-2)), terminal={vals[2]:.3e}")
         assert abs(r1 - 16.0) < abs(r0 - 16.0) and abs(r1 - 16.0) < 0.5
+        print(f"  [PASS] C2 Hard edge n=0 (M={M}, sig={sig}, L={L}): 4x-N ratios = {r0:.2f}, {r1:.2f} (~16 = O(N^-2)), terminal={vals[2]:.3e}")
 
     M, sig, hilb_errs = 2.0, -1.0, []
     for N in [80.0, 640.0, 5120.0]:
@@ -189,8 +189,8 @@ def run_part_c_convergence():
         pe, (vc, D) = exact_phi_3j_chain(N, x, L, M, sig)[L], phi_3j_u2_cov(N, x, L, M, sig)
         hilb_errs.append((D ** 0.25) * math.sqrt(2.0 * L + 1.0) * abs(pe - vc))
     rh0, rh1 = hilb_errs[0] / hilb_errs[1], hilb_errs[1] / hilb_errs[2]
-    print(f"  [PASS] C3 Hilb toe O(nu_L^4) (L~2*N^{{1/3}}, 8x-N): errs = {hilb_errs[0]:.2e}->{hilb_errs[1]:.2e}->{hilb_errs[2]:.2e} (ratios={rh0:.2f}, {rh1:.2f} ~ 8^{{4/3}}=16)")
     assert abs(rh1 - 16.0) < abs(rh0 - 16.0) and abs(rh1 - 16.0) < 1.5
+    print(f"  [PASS] C3 Hilb toe O(nu_L^4) (L~2*N^{{1/3}}, 8x-N): errs = {hilb_errs[0]:.2e}->{hilb_errs[1]:.2e}->{hilb_errs[2]:.2e} (ratios={rh0:.2f}, {rh1:.2f} ~ 8^{{4/3}}=16)")
 
     for nu_t in [0.30, 0.50, 0.80]:
         res_scaled = []
@@ -207,8 +207,8 @@ def run_part_c_convergence():
             Ak = lambda j: math.sqrt((j * j - M * M) * (j * j - sig * sig) * (1.0 - j * j * h_r * h_r)) / (j * math.sqrt(4.0 * j * j - 1.0))
             Rk = abs((x_r - M * sig / (k_r * (k_r + 1.0))) * U_vals[k_r] - Ak(k_r + 1.0) * U_vals[k_r + 1.0] - Ak(k_r) * U_vals[k_r - 1.0])
             res_scaled.append(Rk / ((eps_r ** 1.5) * (((k_r + 0.5) * h_r / eps_r) * (heff_r ** 3) + ((k_r + 0.5) * eps_r) ** (-8.0))))
-        print(f"  [PASS] C4 Zone IIb eps-uniform residual (nu={nu_t:.2f}, eps=0.31->0.039): R_scaled={[round(v, 3) for v in res_scaled]}")
         assert abs(res_scaled[-1] - res_scaled[-2]) <= max(0.5 * abs(res_scaled[-2] - res_scaled[-3]), 0.05)
+        print(f"  [PASS] C4 Zone IIb eps-uniform residual (nu={nu_t:.2f}, eps=0.31->0.039): R_scaled={[round(v, 3) for v in res_scaled]}")
 
     int_errs = []
     for N_i in [200.0, 800.0, 3200.0]:
@@ -218,8 +218,8 @@ def run_part_c_convergence():
             pe_i, (vc_i, D_i) = exact_phi_3j_chain(N_i, x_i, L_i, M, sig)[L_i], phi_3j_u2_cov(N_i, x_i, L_i, M, sig)
             env = max(env, (D_i ** 0.25) * math.sqrt(2.0 * L_i + 1.0) * abs(pe_i - vc_i))
         int_errs.append(env)
-    print(f"  [PASS] C5 Fixed interior ratio (q~0.35): env_err = {int_errs[0]:.2e}->{int_errs[1]:.2e}->{int_errs[2]:.2e} (ratios={int_errs[0]/int_errs[1]:.2f}, {int_errs[1]/int_errs[2]:.2f} ~ 16)")
     assert 14.0 < int_errs[0] / int_errs[1] < 18.5 and 15.0 < int_errs[1] / int_errs[2] < 17.0
+    print(f"  [PASS] C5 Fixed interior ratio (q~0.35): env_err = {int_errs[0]:.2e}->{int_errs[1]:.2e}->{int_errs[2]:.2e} (ratios={int_errs[0]/int_errs[1]:.2f}, {int_errs[1]/int_errs[2]:.2f} ~ 16)")
 
     lag_errs, cor_bessel_errs, nu_c, u_c = [], [], 0.75, 4.0
     z_star_lim = u_c * (nu_c * math.sqrt(1.0 - nu_c * nu_c) + math.asin(nu_c))
@@ -237,9 +237,9 @@ def run_part_c_convergence():
         lim_v = epsilon_phase(M, sig) * edge_factor_R(3, 2.0) * math.sqrt(zs / (2.0 * u_c * nv * s_nv)) * (float(bessel_j(3, zs)) - (nv * H0 / (2.0 * u_c)) * float(bessel_j(4, zs)))
         vc_c, _ = phi_3j_u2_cov(N_l, xc, float(Lc), M, sig)
         cor_bessel_errs.append(abs(vc_c - lim_v))
+    assert 3.8 < lag_errs[0] / lag_errs[1] < 4.2 and 3.9 < cor_bessel_errs[1] / cor_bessel_errs[2] < 4.1
     print(f"  [PASS] C6a Laguerre corner (n=1, p_+=3, lam~1.2): |Phi-Lag| = {lag_errs[0]:.2e}->{lag_errs[1]:.2e}->{lag_errs[2]:.2e} (4x-N ratios={lag_errs[0]/lag_errs[1]:.2f}, {lag_errs[1]/lag_errs[2]:.2f} ~ 4)")
     print(f"  [PASS] C6b Cor 3.2 Bessel limit (z_*={z_star_lim:.6f}): |Phi_U2cov-lim(nu_L)| = {cor_bessel_errs[0]:.2e}->{cor_bessel_errs[1]:.2e}->{cor_bessel_errs[2]:.2e} (4x-N ratios={cor_bessel_errs[0]/cor_bessel_errs[1]:.2f}, {cor_bessel_errs[1]/cor_bessel_errs[2]:.2f} ~ 4)")
-    assert 3.8 < lag_errs[0] / lag_errs[1] < 4.2 and 3.9 < cor_bessel_errs[1] / cor_bessel_errs[2] < 4.1
 
 
 def run_part_d_negative_controls():
@@ -249,8 +249,8 @@ def run_part_d_negative_controls():
     pe = exact_phi_3j_chain(N, x0, L, M, sig)[L]
     v_no_E, _ = phi_3j_u2_cov(N, x0, L, M, sig, include_edge=False)
     rel_no_E = abs(pe - v_no_E) / abs(pe)
-    print(f"  [PASS] NC1 Omitting E_N(x) at n=0 (p_+=3, N=1280): rel_err = {rel_no_E:.4f} (exact 2/sqrt(3)-1 = {2.0/math.sqrt(3.0)-1.0:.4f})")
     assert abs(rel_no_E - (2.0 / math.sqrt(3.0) - 1.0)) < 1e-4
+    print(f"  [PASS] NC1 Omitting E_N(x) at n=0 (p_+=3, N=1280): rel_err = {rel_no_E:.4f} (exact 2/sqrt(3)-1 = {2.0/math.sqrt(3.0)-1.0:.4f})")
 
     p3_rels, raw_errs, noc0_errs = [], [], []
     for N_t in [320.0, 1280.0]:
@@ -266,10 +266,10 @@ def run_part_d_negative_controls():
         raw_errs.append(abs(pet - v_raw) / (edge_factor_3j(N_t, xt, M, sig) * w3j))
         noc0_errs.append(abs(pet - v_noc0) / (edge_factor_3j(N_t, xt, M, sig) * w3j))
     exact_nc2 = 1.0 - (23.0 / 24.0) ** 3.5
+    assert abs(p3_rels[1] - exact_nc2) < 5e-4 and 0.90 < raw_errs[0] / raw_errs[1] < 1.05 and 3.8 < noc0_errs[0] / noc0_errs[1] < 4.2
     print(f"  [PASS] NC2 Nonlinear shift E_N*W_q^[2]*d(Theta_q^[2]) at n=0: rel_err = {p3_rels[0]:.4f}->{p3_rels[1]:.4f} (exact 1-(23/24)^(7/2) = {exact_nc2:.4f})")
     print(f"  [PASS] NC3a Non-covariant raw d_Theta at n=0: 4x-N ratio = {raw_errs[0]/raw_errs[1]:.2f} (~1 = O(1) double-pole failure)")
     print(f"  [PASS] NC3b Omitting C_0^{{(3)}}(x) contact at n=0: 4x-N ratio = {noc0_errs[0]/noc0_errs[1]:.2f} (~4 = O(N^-1) simple-pole degradation)")
-    assert abs(p3_rels[1] - exact_nc2) < 5e-4 and 0.90 < raw_errs[0] / raw_errs[1] < 1.05 and 3.8 < noc0_errs[0] / noc0_errs[1] < 4.2
 
     nu_c, u_c = 0.75, 4.0
     s_nu, lam_s = math.sqrt(1.0 - nu_c * nu_c), 2.0 * u_c * nu_c * nu_c
@@ -284,8 +284,8 @@ def run_part_d_negative_controls():
         L_c = float(int(round(nu_c * N_c * math.sqrt(1.0 - xc * xc) - 0.5)))
         pe_c, (vc_c, _) = exact_phi_3j_chain(N_c, xc, L_c, M, sig)[L_c], phi_3j_u2_cov(N_c, xc, L_c, M, sig)
         c_errs.append(abs(pe_c - vc_c) / abs(pe_c))
-    print(f"  [PASS] NC4 Coalescent Laguerre corner (n=0, nu=0.75, N=800->12800): rel_err = {c_errs[0]:.4f}->{c_errs[1]:.4f}->{c_errs[2]:.4f} (exact = {exact_nc4:.4f})")
     assert abs(c_errs[2] - exact_nc4) < 1e-3
+    print(f"  [PASS] NC4 Coalescent Laguerre corner (n=0, nu=0.75, N=800->12800): rel_err = {c_errs[0]:.4f}->{c_errs[1]:.4f}->{c_errs[2]:.4f} (exact = {exact_nc4:.4f})")
 
 
 if __name__ == "__main__":

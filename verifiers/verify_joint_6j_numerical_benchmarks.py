@@ -206,8 +206,8 @@ def run_part_c_convergence():
     for m, n, off in [(0.0, 0.0, 0.5), (2.0, -1.0, 1.5), (1.5, -0.5, 1.0)]:
         sups = [dense_sup_scan_6j(3.0 * sc, 2.0 * sc + off, m, n, 0.82, 1.0) for sc in (100.0, 400.0, 1600.0, 6400.0)]
         d0, d1, d2 = abs(sups[1] - sups[0]), abs(sups[2] - sups[1]), abs(sups[3] - sups[2])
-        print(f"  [PASS] C2 Multi-S dense sup (m={m}, n={n}, A:B~3:2, nu_6<=0.82): S~500..32k -> {[round(v, 4) for v in sups]} (increments={[round(d0, 4), round(d1, 4), round(d2, 4)]})")
         assert 0.2 < sups[-1] < 2.0 and d2 <= max(0.6 * max(d0, d1), 0.05)
+        print(f"  [PASS] C2 Multi-S dense sup (m={m}, n={n}, A:B~3:2, nu_6<=0.82): S~500..32k -> {[round(v, 4) for v in sups]} (increments={[round(d0, 4), round(d1, 4), round(d2, 4)]})")
 
     m, n, fv = 2.0, -1.0, 5.0
     sep_min, sep_max, iso_min, iso_max = [], [], [], []
@@ -227,6 +227,7 @@ def run_part_c_convergence():
         pei, (vci, _) = exact_phi_6j_chain(Ai, Ai, Ci, fv, m, n)[fv], phi_6j_u2_cov(Ai, Ai, Ci, fv, m, n)
         iso_max.append(abs(pei - vci) / (edge_factor_6j(Ai, Ai, Ci, m, n) * ((1.0 - xi) / 2.0) ** 1.5 * ((1.0 + xi) / 2.0) ** 0.5))
     rm0, rm1 = iso_max[0] / iso_max[1], iso_max[1] / iso_max[2]
+    assert 15.0 < sep_min[1] / sep_min[2] < 16.5 and 15.0 < sep_max[1] / sep_max[2] < 16.5 and 245.0 < iso_min[0] / iso_min[1] < 268.0 and abs(rm1 - 16.0) < abs(rm0 - 16.0) and abs(rm1 - 16.0) < 0.6
     print(f"  [PASS] C3a Separated r=0 (A:B~3:2): C_min ratios={sep_min[0]/sep_min[1]:.2f}, {sep_min[1]/sep_min[2]:.2f}; C_max ratios={sep_max[0]/sep_max[1]:.2f}, {sep_max[1]/sep_max[2]:.2f} (~16 = O(S^-2))")
     print(f"  [PASS] C3b Isosceles A=B: C_min (x>=0) 4x-S ratio={iso_min[0]/iso_min[1]:.1f} (~256 = O(S^-4)); C_max (x->-1) ratios={rm0:.2f}, {rm1:.2f} (~16 = O(S^-2))")
     # C3c: thm:racah-u2-cov(c) on x >= -1+2*eta: exact isosceles slices x = 1 - (C/A)^2/2 at fixed C/A, A doubling (ratio 16 = O(S^-4)).
@@ -241,7 +242,6 @@ def run_part_c_convergence():
         assert all(13.0 < r < 19.0 for r in rats[nskip:]), rats
         note = f"; first {nskip} ratio pre-asymptotic, not asserted" if nskip else ""
         print(f"  [PASS] C3c Isosceles A=B at fixed x={xi:.4f} < 0 (C/A={num}/{den}): 2x-S ratios={[round(r, 2) for r in rats]} (~16 = O(S^-4){note})")
-    assert 15.0 < sep_min[1] / sep_min[2] < 16.5 and 15.0 < sep_max[1] / sep_max[2] < 16.5 and 245.0 < iso_min[0] / iso_min[1] < 268.0 and abs(rm1 - 16.0) < abs(rm0 - 16.0) and abs(rm1 - 16.0) < 0.6
 
     cor_sups, iso_sups = [], []
     for sc in [200.0, 800.0]:
@@ -263,10 +263,10 @@ def run_part_c_convergence():
             (vals if C_c <= 15.0 else vals_ext).append(val)
         iso_sups.append(max(vals))
         ext_sups.append(max(vals + vals_ext))
+    assert abs(cor_sups[1] - cor_sups[0]) / cor_sups[1] < 0.05 and abs(iso_sups[1] - iso_sups[0]) / iso_sups[1] < 0.03
     print(f"  [PASS] C4 Growing-rank corridor nu_6=0.60 (S~1000->4000): max = {cor_sups[0]:.4f} -> {cor_sups[1]:.4f}")
     print(f"  [PASS] C5 Macroscopic isosceles corner (A=B=500->2000, rho=0.35, integer C=2..15): max(D_6^{{1/4}}*sqrt(2f+1)*|dPhi|*C^2) = {iso_sups[0]:.4f} -> {iso_sups[1]:.4f}; "
           f"with C in {{18,66,258}} added: {ext_sups[0]:.4f} -> {ext_sups[1]:.4f}")
-    assert abs(cor_sups[1] - cor_sups[0]) / cor_sups[1] < 0.05 and abs(iso_sups[1] - iso_sups[0]) / iso_sups[1] < 0.03
 
 
 def run_part_d_negative_controls():
@@ -275,8 +275,8 @@ def run_part_d_negative_controls():
     pe_s, (vn_s, _) = exact_phi_6j_chain(1200.0, 801.5, 400.5, fv, m, n)[fv], phi_6j_u2_cov(1200.0, 801.5, 400.5, fv, m, n, include_edge=False)
     pe_i, (vn_i, _) = exact_phi_6j_chain(640.0, 640.0, 2.0, fv, m, n)[fv], phi_6j_u2_cov(640.0, 640.0, 2.0, fv, m, n, include_edge=False)
     rel_s, rel_i = abs(pe_s - vn_s) / abs(pe_s), abs(pe_i - vn_i) / abs(pe_i)
-    print(f"  [PASS] NC1 Omitting E_{{A,B}}(C_min): sep rel_err={rel_s:.4f} (2/sqrt(3)-1), isosceles rel_err={rel_i:.4f} (exact 1/3=0.3333)")
     assert abs(rel_s - (2.0 / math.sqrt(3.0) - 1.0)) < 2e-4 and abs(rel_i - (1.0 / 3.0)) < 1e-4
+    print(f"  [PASS] NC1 Omitting E_{{A,B}}(C_min): sep rel_err={rel_s:.4f} (2/sqrt(3)-1), isosceles rel_err={rel_i:.4f} (exact 1/3=0.3333)")
 
     p3_rels, raw_errs, noc0_errs, coal_rels = [], [], [], []
     for sc in [160, 640]:
@@ -297,11 +297,11 @@ def run_part_d_negative_controls():
         pec, (vcc, _) = exact_phi_6j_chain(At, Bt, Ct, fc, m, n)[fc], phi_6j_u2_cov(At, Bt, Ct, fc, m, n)
         coal_rels.append(abs(pec - vcc) / abs(pec))
     exact_nc2 = 1.0 - (23.0 / 24.0) ** 3.5
+    assert abs(p3_rels[1] - exact_nc2) < 5e-4 and 0.90 < raw_errs[0] / raw_errs[1] < 1.05 and 3.8 < noc0_errs[0] / noc0_errs[1] < 4.2 and coal_rels[1] > 0.02 and abs(coal_rels[1] - coal_rels[0]) / coal_rels[1] < 0.05
     print(f"  [PASS] NC2 Nonlinear shift E*W_6^[2]*d(Theta_6^[2]) at C_min: rel_err={p3_rels[0]:.4f}->{p3_rels[1]:.4f} (exact 1-(23/24)^(7/2)={exact_nc2:.4f})")
     print(f"  [PASS] NC3a Non-covariant raw d_Theta at C_min: 4x-S ratio={raw_errs[0]/raw_errs[1]:.2f} (~1 = O(1) double-pole failure)")
     print(f"  [PASS] NC3b Omitting C_0^{{(6)}}(delta,x) at C_min: 4x-S ratio={noc0_errs[0]/noc0_errs[1]:.2f} (~4 = O(S^-1) simple-pole degradation)")
     print(f"  [PASS] NC4 Separated coalescent corner (r=0, nu_6=0.75, S=801.5->3201.5): rel_err={coal_rels[0]:.4f}->{coal_rels[1]:.4f} (O(1) non-vanishing)")
-    assert abs(p3_rels[1] - exact_nc2) < 5e-4 and 0.90 < raw_errs[0] / raw_errs[1] < 1.05 and 3.8 < noc0_errs[0] / noc0_errs[1] < 4.2 and coal_rels[1] > 0.02 and abs(coal_rels[1] - coal_rels[0]) / coal_rels[1] < 0.05
 
 
 if __name__ == "__main__":
